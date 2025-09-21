@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>演示站点</title>
+        <title>chenalna</title>
         <link>https://example.com/</link>
-        <description>Recent content on 演示站点</description>
+        <description>Recent content on chenalna</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>Example Person</copyright>
+        <copyright>chenalna</copyright>
         <lastBuildDate>Tue, 04 Mar 2025 20:54:24 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Test</title>
         <link>https://example.com/p/test/</link>
@@ -14,35 +14,7 @@
         
         <guid>https://example.com/p/test/</guid>
         <description>&lt;h1 id=&#34;include--stdioh&#34;&gt;include  &amp;lt;stdio.h&amp;gt;
-&lt;/h1&gt;&lt;p&gt;int main(void)&lt;/p&gt;
-&lt;p&gt;printf(&amp;ldquo;Hello world\n&amp;rdquo;);&lt;/p&gt;
-&lt;p&gt;这是一个区块引用，包含代码：
-&lt;?
-echo &#39;Hello, World!&#39;;
-function test() {
-echo &#39;This is a test.&#39;;
-}
-test();
-?&gt;
-wq&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&amp;lt;?
-echo &amp;lsquo;Hello, World!&amp;rsquo;;
-function test() {
-echo &amp;lsquo;This is a test.&amp;rsquo;;
-}
-?&amp;gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&amp;lt;
-echo &amp;lsquo;Hello, World!&amp;rsquo;;
-function test() {
-echo &amp;lsquo;This is a test.&amp;rsquo;;
-}
-?&amp;gt;
-wq&lt;/p&gt;&lt;/blockquote&gt;
-</description>
+&lt;/h1&gt;</description>
         </item>
         <item>
         <title>Chinese Test</title>
@@ -435,6 +407,8 @@ wq&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;h3 id=&#34;examples&#34;&gt;Examples
 &lt;/h3&gt;&lt;p&gt;Inline math: $\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$&lt;/p&gt;
+&lt;p&gt;Block math:
+&lt;/p&gt;
 $$
  \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } 
 $$</description>

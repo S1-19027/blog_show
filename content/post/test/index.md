@@ -5,33 +5,4 @@ title : 'Test'
 ---
 # include  <stdio.h>
 
-  int main(void)
 
-  printf("Hello world\n");
-
-这是一个区块引用，包含代码：
-    <?
-    echo 'Hello, World!';
-    function test() {
-    echo 'This is a test.';
-    }
-    test();
-?>
-wq
-
->
-
-> <&quest;
-> echo 'Hello, World!';
-> function test() {
-> echo 'This is a test.';
-> }
-?>
-
-> <
-> echo 'Hello, World!';
-> function test() {
-> echo 'This is a test.';
-> }
-?>
-wq
