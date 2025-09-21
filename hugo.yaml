@@ -56,7 +56,7 @@ params:
     - post
   featuredImageField: image
   rssFullContent: true
-  favicon: # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
+  favicon: /favicon.ico # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
 
   footer:
     since: 2020
@@ -67,7 +67,7 @@ params:
     lastUpdated: Jan 02, 2006 15:04 MST
 
   sidebar:
-    emoji: 🍥
+    emoji: 🪐
     subtitle: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     avatar:
       enabled: true
@@ -220,19 +220,34 @@ menu:
       name: GitHub
       #   url: https://github.com/CaiJimmy/hugo-theme-stack
       url: https://github.com/S1-19027
+      weight: 1
       params:
         icon: brand-github
 
     - identifier: twitter
       name: Twitter
       url: https://x.com/chen129909186
+      weight: 2
       params:
         icon: brand-twitter
     - identifier: bilibili
       name: Bilibili
       url: https://space.bilibili.com/14816686
+      weight: 3
       params:
-        icon: bilibili
+        icon: brand-bilibili
+    - identifier: email
+      name: Email
+      url: mailto:chenalna52@gmail.com
+      weight: 4
+      params:
+        icon: mail
+    - identifier: rss
+      name: RSS
+      url: https://github.com/S1-19027
+      weight: 5
+      params:
+        icon: rss
 links:
   - title: GitHub
     description: GitHub is the world's largest software development platform.
