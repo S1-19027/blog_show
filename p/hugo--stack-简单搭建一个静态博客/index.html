@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 静态博客已成为现代技术博客、个人站点和文档系统的热门选择。\n本文基于Hugo\nHugo优势 生产的性能好 本质上都是讲master文件通过预定好的特质转成html文件\n环境准备 下载node.js 下载golang 安装golang 安装hugo之前，先安装好golang，推荐安装最新版本。\n安装时选择安装目录为 C:\\Users\\sky\\work\\soft\\golang 或者 D:\\sky\\work\\soft\\golang。\n修改环境变量，将 GOPATH 的值修改为 C:\\Users\\sky\\work\\soft\\gopath 或者 D:\\sky\\work\\soft\\gopath（默认为 %USERPROFILE%\\go）。\n安装nodejs/npm 为了使用Google Docsy主题，需要安装nodejs/npm。\n在网站下载nodejs\n安装时选择安装路径为 C:\\Users\\sky\\work\\soft\\nodejs 或者 D:\\sky\\work\\soft\\nodejs。\n安装Hugo 在Hugo Releases页面下载对应操作系统版本的安装包。Hugo官方下载文档 ,如hugo_extended_0.150.0_windows-amd64.zip.下载下来之后，解压缩，将 hugo.exe 文件复制到目录下。\n然后修改环境变量，在 Path 中增加这个路径， 验证安装 $ which hugo 、$ hugo version。\n切记由于 hugo和主题之间版本有依赖关系，因此不同主题选择不同版本\n打开命令提示符，输入hugo version来验证安装是否成功。\nHugo安装完成后的配置工作 设置别名 为了方便使用，增加 hugo server 命令的 alias 用来本地编辑时的实时预览： vi ~/.zshrc 增加内容：\n1 2 3 4 5 # hugo alias h=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34;&#39; alias h2=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 2323&#39; alias h3=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 3333&#39; alias h4=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 4343&#39; hugo命令行参数说明：\n">
-<title>Test</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="从零开始的博客生活">
+<title>Hugo &#43; Stack 简单搭建一个静态博客</title>
 
-<link rel='canonical' href='https://example.com/p/test/'>
+<link rel='canonical' href='https://example.com/p/hugo--stack-%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/'>
 
-<link rel="stylesheet" href="/scss/style.min.cac69214c8302269ee3e6ca35020a4db9b8e79aabea56cb301ccc471f00b9f16.css"><meta property='og:title' content="Test">
-<meta property='og:description' content="前言 静态博客已成为现代技术博客、个人站点和文档系统的热门选择。\n本文基于Hugo\nHugo优势 生产的性能好 本质上都是讲master文件通过预定好的特质转成html文件\n环境准备 下载node.js 下载golang 安装golang 安装hugo之前，先安装好golang，推荐安装最新版本。\n安装时选择安装目录为 C:\\Users\\sky\\work\\soft\\golang 或者 D:\\sky\\work\\soft\\golang。\n修改环境变量，将 GOPATH 的值修改为 C:\\Users\\sky\\work\\soft\\gopath 或者 D:\\sky\\work\\soft\\gopath（默认为 %USERPROFILE%\\go）。\n安装nodejs/npm 为了使用Google Docsy主题，需要安装nodejs/npm。\n在网站下载nodejs\n安装时选择安装路径为 C:\\Users\\sky\\work\\soft\\nodejs 或者 D:\\sky\\work\\soft\\nodejs。\n安装Hugo 在Hugo Releases页面下载对应操作系统版本的安装包。Hugo官方下载文档 ,如hugo_extended_0.150.0_windows-amd64.zip.下载下来之后，解压缩，将 hugo.exe 文件复制到目录下。\n然后修改环境变量，在 Path 中增加这个路径， 验证安装 $ which hugo 、$ hugo version。\n切记由于 hugo和主题之间版本有依赖关系，因此不同主题选择不同版本\n打开命令提示符，输入hugo version来验证安装是否成功。\nHugo安装完成后的配置工作 设置别名 为了方便使用，增加 hugo server 命令的 alias 用来本地编辑时的实时预览： vi ~/.zshrc 增加内容：\n1 2 3 4 5 # hugo alias h=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34;&#39; alias h2=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 2323&#39; alias h3=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 3333&#39; alias h4=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 4343&#39; hugo命令行参数说明：\n">
-<meta property='og:url' content='https://example.com/p/test/'>
+<link rel="stylesheet" href="/scss/style.min.cac69214c8302269ee3e6ca35020a4db9b8e79aabea56cb301ccc471f00b9f16.css"><meta property='og:title' content="Hugo + Stack 简单搭建一个静态博客">
+<meta property='og:description' content="从零开始的博客生活">
+<meta property='og:url' content='https://example.com/p/hugo--stack-%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/'>
 <meta property='og:site_name' content='chenalna'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-04T20:54:24&#43;08:00'/><meta property='article:modified_time' content='2025-03-04T20:54:24&#43;08:00'/>
-<meta name="twitter:title" content="Test">
-<meta name="twitter:description" content="前言 静态博客已成为现代技术博客、个人站点和文档系统的热门选择。\n本文基于Hugo\nHugo优势 生产的性能好 本质上都是讲master文件通过预定好的特质转成html文件\n环境准备 下载node.js 下载golang 安装golang 安装hugo之前，先安装好golang，推荐安装最新版本。\n安装时选择安装目录为 C:\\Users\\sky\\work\\soft\\golang 或者 D:\\sky\\work\\soft\\golang。\n修改环境变量，将 GOPATH 的值修改为 C:\\Users\\sky\\work\\soft\\gopath 或者 D:\\sky\\work\\soft\\gopath（默认为 %USERPROFILE%\\go）。\n安装nodejs/npm 为了使用Google Docsy主题，需要安装nodejs/npm。\n在网站下载nodejs\n安装时选择安装路径为 C:\\Users\\sky\\work\\soft\\nodejs 或者 D:\\sky\\work\\soft\\nodejs。\n安装Hugo 在Hugo Releases页面下载对应操作系统版本的安装包。Hugo官方下载文档 ,如hugo_extended_0.150.0_windows-amd64.zip.下载下来之后，解压缩，将 hugo.exe 文件复制到目录下。\n然后修改环境变量，在 Path 中增加这个路径， 验证安装 $ which hugo 、$ hugo version。\n切记由于 hugo和主题之间版本有依赖关系，因此不同主题选择不同版本\n打开命令提示符，输入hugo version来验证安装是否成功。\nHugo安装完成后的配置工作 设置别名 为了方便使用，增加 hugo server 命令的 alias 用来本地编辑时的实时预览： vi ~/.zshrc 增加内容：\n1 2 3 4 5 # hugo alias h=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34;&#39; alias h2=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 2323&#39; alias h3=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 3333&#39; alias h4=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 4343&#39; hugo命令行参数说明：\n">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:published_time' content='2025-09-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-23T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Hugo + Stack 简单搭建一个静态博客">
+<meta name="twitter:description" content="从零开始的博客生活">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -359,22 +359,9 @@
     <li><a href="#配置主题">配置主题</a>
       <ol>
         <li><a href="#常用命令">常用命令</a></li>
-        <li><a href="#主题骨架">主题骨架</a></li>
+        <li><a href="#404-page-not-found">404 Page Not Found</a></li>
       </ol>
     </li>
-    <li><a href="#使用git命令下载主题">使用git命令下载主题</a>
-      <ol>
-        <li><a href="#page-not-found">Page Not Found</a></li>
-      </ol>
-    </li>
-    <li><a href="#遇到错误">遇到错误</a></li>
-    <li><a href="#docsy主题">Docsy主题</a>
-      <ol>
-        <li><a href="#项目的启动文件介绍">项目的启动文件介绍</a></li>
-        <li><a href="#项目的配置文件介绍">项目的配置文件介绍</a></li>
-      </ol>
-    </li>
-    <li><a href="#安装hexo">安装hexo</a></li>
     <li><a href="#github推送自动化">Github推送自动化</a>
       <ol>
         <li><a href="#自动化流程">自动化流程</a></li>
@@ -403,12 +390,28 @@
 
     <div class="article-details">
     
+    <header class="article-category">
+        
+            <a href="/categories/hugo/" >
+                Hugo
+            </a>
+        
+            <a href="/categories/web/" >
+                Web
+            </a>
+        
+    </header>
+    
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/test/">Test</a>
+            <a href="/p/hugo--stack-%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/">Hugo &#43; Stack 简单搭建一个静态博客</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            从零开始的博客生活
+        </h3>
         
     </div>
 
@@ -428,7 +431,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Mar 04, 2025</time>
+                <time class="article-time--published">Sep 23, 2025</time>
             </div>
         
 
@@ -443,7 +446,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 11 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -461,30 +464,11 @@
     <h2 id="前言">前言
 </h2><p>静态博客已成为现代技术博客、个人站点和文档系统的热门选择。</p>
 <p>本文基于Hugo</p>
-
-
-
-
-
-
-    
-
-
-<div class="video-wrapper">
-    <iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;high_quality=1&amp;page=1&bvid=BV1oH4y197rN"
-            scrolling="no"
-            frameborder="no"
-            framespacing="0"
-            allowfullscreen="true"
-    >
-    </iframe>
-</div>
-
 <h2 id="hugo优势">Hugo优势
 </h2><ol>
-<li>生产的性能好</li>
+<li>生产的性能好。Hugo是由 Go 语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。</li>
 </ol>
-<p>本质上都是讲master文件通过预定好的特质转成html文件</p>
+<p>无论是Hugo还是Hexo，本质上都是将master文件通过预定好的模板渲染html文件</p>
 <h2 id="环境准备">环境准备
 </h2><ol>
 <li>下载node.js</li>
@@ -815,608 +799,14 @@ draft改成false，否则不会显示</p>
 <li>&ndash;minify:生成时压缩输出文件</li>
 <li>&ndash;gc:构建时运行垃圾回收</li>
 </ul>
-<h3 id="主题骨架">主题骨架
-</h3><p>创建新主题时，Hugo 会生成一个可用的主题骨架。例如，以下命令：
-hugo new theme my-theme
-会创建以下目录结构(省略了子目录):</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">` my-theme/  
-</span></span><span class="line"><span class="cl">  ├── archetypes/  
-</span></span><span class="line"><span class="cl">  ├── assets/  
-</span></span><span class="line"><span class="cl">  ├── content/  
-</span></span><span class="line"><span class="cl">  ├── data/  
-</span></span><span class="line"><span class="cl">  ├── i18n/  
-</span></span><span class="line"><span class="cl">  ├── layouts/  
-</span></span><span class="line"><span class="cl">  ├── static/  
-</span></span><span class="line"><span class="cl">  ├── LICENSE  
-</span></span><span class="line"><span class="cl">  ├── `README.md`  
-</span></span><span class="line"><span class="cl">  ├── hugo.toml  
-</span></span><span class="line"><span class="cl">  └── theme.toml  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>使用上述描述的联合文件系统，Hugo 将每个目录挂载到项目的相应位置。当两个文件路径相同时，项目目录中的文件优先。这样，例如，您可以通过在项目目录相同位置放置一个副本来覆盖主题的模板。</p>
-<h2 id="使用git命令下载主题">使用git命令下载主题
-</h2><blockquote>
-<ol>
-<li>在myblog 目录下使用git 命令来下载主题hugo-theme-bootstrap4-blog：
-<code>git clone &lt;https://github.com/alanorth/hugo-theme-bootstrap4-blog.git&gt; themes/hugo-theme-bootstrap4-blog</code>
-下载下来的主题会放在themes 目录中：</li>
-</ol></blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">└── hugo-theme-bootstrap4-blog
-</span></span><span class="line"><span class="cl">    ├── CHANGELOG.md
-</span></span><span class="line"><span class="cl">    ├── LICENSE.txt
-</span></span><span class="line"><span class="cl">    ├── README.md
-</span></span><span class="line"><span class="cl">    ├── archetypes
-</span></span><span class="line"><span class="cl">    ├── assets
-</span></span><span class="line"><span class="cl">    ├── exampleSite         # 本主题示例内容
-</span></span><span class="line"><span class="cl">    |      ├── content      # 示例博客文章
-</span></span><span class="line"><span class="cl">    │      |-- static
-</span></span><span class="line"><span class="cl">    │      |-- config.toml  # 本主题配置
-</span></span><span class="line"><span class="cl">    ├── i18n
-</span></span><span class="line"><span class="cl">    ├── images
-</span></span><span class="line"><span class="cl">    ├── layouts
-</span></span><span class="line"><span class="cl">    ├── package-lock.json
-</span></span><span class="line"><span class="cl">    ├── package.json
-</span></span><span class="line"><span class="cl">    ├── screenshot.png
-</span></span><span class="line"><span class="cl">    ├── source
-</span></span><span class="line"><span class="cl">    ├── theme.toml
-</span></span><span class="line"><span class="cl">    └── webpack.config.js
-</span></span></code></pre></td></tr></table>
-</div>
-</div><blockquote>
-<ol start="2">
-<li>使用主题
-我们将exampleSite 目录中的内容，复制到博客根目录myblog 中，在myblog 目录中执行命令：
-<code>cp themes/hugo-theme-bootstrap4-blog/exampleSite/* ./ -r</code>
-删除旧的hugo.toml
-(存疑将archetypes/default.md,&quot;+&ldquo;改成&rdquo;-&quot;,&quot;=&ldquo;改成&rdquo;+&quot;，因为这个时toml格式的，我们要改成yaml格式)</li>
-<li>启动博客服务
-使用下面命令启动服务：
-<code>&gt;&gt;&gt; hugo server</code></li>
-</ol></blockquote>
-<h3 id="page-not-found">Page Not Found
+<h3 id="404-page-not-found">404 Page Not Found
 </h3><p><strong>注意，一旦网站可以建立，那么除非你做一个新的文件，否则就一直404</strong></p>
 <ol>
 <li>hugo server &ndash;theme=your_theme_name(echo &ldquo;theme = &lsquo;ananke&rsquo;&rdquo; &raquo; hugo.toml)，这个相当于向hugo.toml添加theme</li>
 <li>删去 hugo.toml,保留config.toml</li>
 </ol>
-<h2 id="遇到错误">遇到错误
-</h2><ol>
-<li>子模块可能没有被正确初始化，或者 .gitmodules 文件中的配置与实际的子模块路径不匹配.</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/usr/bin/git -c protocol.version=2 submodule update --init --force
-</span></span><span class="line"><span class="cl">Error: fatal: No url found for submodule path &#39;themes/hugo-theme-bootstrap4-blog&#39; in .gitmodules
-</span></span><span class="line"><span class="cl">Error: The process &#39;/usr/bin/git&#39; failed with exit code 128  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>​	解决方法：添加子模块
-git submodule add <a class="link" href="https://github.com/theNewDynamic/gohugo-theme-ananke.git"  target="_blank" rel="noopener"
-    >https://github.com/theNewDynamic/gohugo-theme-ananke.git</a> themes/ananke.</p>
-<ol start="2">
-<li></li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ERROR deprecated: .Site.Social was deprecated in Hugo v0.124.0 and subsequently
-</span></span><span class="line"><span class="cl">removed. Implement taxonomy &#39;social&#39; or use .Site.Params.Social instead.
-</span></span><span class="line"><span class="cl">ERROR deprecated: .Site.Authors was deprecated in Hugo v0.124.0 and subsequently
-</span></span><span class="line"><span class="cl">removed. Implement taxonomy &#39;authors&#39; or use .Site.Params.Author instead.
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>​	解决方法
-如报错信息，找到对应并替换即可</p>
-<ol start="3">
-<li><code>range can't iterate over Your Name</code></li>
-</ol>
-<p>Hugo 提示 range can&rsquo;t iterate over Your Name，这意味着你在模板中尝试使用 range 迭代一个字符串（Your Name），
-而 range 只能用于迭代数组、切片或映射（map），不能用于迭代单个字符串。</p>
-<p>你的<code>.Site.Params.Author</code>配置在<code>config.toml</code>里是：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">author</span> <span class="p">=</span> <span class="s2">&#34;Your Name&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>executing &quot;partials/twitter_cards.html&quot; at &lt;.twitter&gt;: can't evaluate field twitter in type interface {}</code></p>
-<p>模板 <code>partials/twitter_cards.html</code> 里面，有类似这样的代码：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">Author</span><span class="w"> </span><span class="p">}}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">{{</span><span class="w"> </span><span class="p">.</span><span class="nx">twitter</span><span class="w"> </span><span class="p">}}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{{</span><span class="w"> </span><span class="nx">end</span><span class="w"> </span><span class="p">}}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>这段代码假设 <code>Author</code> 是一个数组或对象，每个元素都有 <code>twitter</code> 字段。</p>
-<p>但你提供的是字符串 <code>&quot;Your Name&quot;</code>，模板自然找不到 <code>.twitter</code> 字段 → 报错。</p>
-<p>方法 1：修改 config.toml 中的 author 配置
-将 author 配置为一个对象或数组，而不是字符串。例如：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">author</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nx">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#34;Your Name&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="nx">twitter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#34;your_twitter&#34;</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>如果你需要迭代多个作者，可以将 author 配置为一个数组：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">[[</span><span class="nx">params</span><span class="p">.</span><span class="nx">author</span><span class="p">]]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nx">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#34;Author 1&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="nx">twitter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#34;author1_twitter&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">[[</span><span class="nx">params</span><span class="p">.</span><span class="nx">author</span><span class="p">]]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#34;Author 2&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nx">twitter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">&#34;</span><span class="nx">author2_twitter</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">.</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>方法2：如果 author 必须是一个字符串（例如 author = &ldquo;Your Name&rdquo;），你需要修改模板文件，避免使用 range 迭代 .Site.Params.Author。
-例如，将 twitter_cards.html 中的代码：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">Author</span><span class="w"> </span><span class="p">}}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">{{</span><span class="w"> </span><span class="p">.</span><span class="nx">twitter</span><span class="w"> </span><span class="p">}}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{{</span><span class="w"> </span><span class="nx">end</span><span class="w"> </span><span class="p">}}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>改为：
-<code>{{ .Site.Params.Author }}</code></p>
-<p>方法 3：调试模板</p>
-<p>在 <code>twitter_cards.html</code> 中打印上下文，看看实际传入了什么：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{ printf &#34;%#v&#34; . }}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>可以快速发现传入的上下文是否有 <code>twitter</code> 字段。</li>
-<li>用于排查问题，非常有用。</li>
-</ul>
-<p>方法 4：临时禁用 Twitter 卡片</p>
-<p>如果不需要 Twitter 卡片，可以在 <code>head-meta.html</code> 注释掉调用：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{/* {{ partial &#34;twitter_cards.html&#34; . }} */}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>避免报错，让网站能正常生成。</li>
-<li>适合快速排查或暂时不需要社交卡片功能。</li>
-</ul>
-<ol start="4">
-<li></li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> $ hugo
-</span></span><span class="line"><span class="cl"> bash: line 1: hugo: command not found
-</span></span><span class="line"><span class="cl"> &#34;build.command&#34; failed                                        
-</span></span><span class="line"><span class="cl"> ────────────────────────────────────────────────────────────────
-</span></span><span class="line"><span class="cl">   Error message
-</span></span><span class="line"><span class="cl">   Command failed with exit code 127: hugo (https://ntl.fyi/exit-code-127)
-</span></span><span class="line"><span class="cl">   Error location
-</span></span><span class="line"><span class="cl">   In Build command from Netlify app:
-</span></span><span class="line"><span class="cl">   hugo
-</span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">   Resolved config
-</span></span><span class="line"><span class="cl">   build:
-</span></span><span class="line"><span class="cl">     command: hugo
-</span></span><span class="line"><span class="cl">     commandOrigin: ui
-</span></span><span class="line"><span class="cl">     publish: /opt/build/repo/public
-</span></span><span class="line"><span class="cl">     publishOrigin: ui
-</span></span><span class="line"><span class="cl"> Build failed due to a user error: Build script returned non-zero exit code: 2
-</span></span><span class="line"><span class="cl"> Failing build: Failed to build site
-</span></span><span class="line"><span class="cl"> Finished processing build request in 16.127s
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>这个错误表明在你的构建环境中，hugo 命令未找到。hugo 是一个用于生成静态网站的工具，而你的构建系统（这里是 Netlify）无法找到它。
-解决方法：在 Netlify UI 中设置 Hugo 版本
-如果你不想使用 netlify.toml 文件，可以通过 Netlify 的 UI 设置 Hugo 版本：</p>
-<p>登录 Netlify 并进入你的项目。</p>
-<p>导航到 Site settings &gt; Build &amp; deploy &gt; Environment &gt; Environment variables。</p>
-<p>添加一个环境变量：</p>
-<p>Key: HUGO_VERSION</p>
-<p>Value: 0.120.4（替换为你需要的 Hugo 版本）。</p>
-<p>保存并重新触发构建。</p>
-<h2 id="docsy主题">Docsy主题
-</h2><p>Docsy 是一个基于 Hugo 的主题，专门用于构建技术文档集。以下是一般 Docsy 项目的基本目录结构：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.
-</span></span><span class="line"><span class="cl">├── archetypes           # 自定义模板定义
-</span></span><span class="line"><span class="cl">├── assets                # 存放静态资源，如样式表、JavaScript 和图片
-</span></span><span class="line"><span class="cl">│  
-</span></span><span class="line"><span class="cl">├── css               # 主题和站点的自定义 CSS
-</span></span><span class="line"><span class="cl">│    └── ...
-</span></span><span class="line"><span class="cl">├── content              # 网站内容，包括页面和博客文章
-</span></span><span class="line"><span class="cl">│    ├── _index.md         # 主页内容
-</span></span><span class="line"><span class="cl">│    ├── docs              # 文档区域
-</span></span><span class="line"><span class="cl">│    │   └──_index.md     # 文档首页
-</span></span><span class="line"><span class="cl">│    ├── blog              # 博客文章
-</span></span><span class="line"><span class="cl">│    └── ...
-</span></span><span class="line"><span class="cl">├── data                  # YAML 数据文件，可用于自定义站点变量或数据
-</span></span><span class="line"><span class="cl">├── layouts               # 自定义布局文件
-</span></span><span class="line"><span class="cl">├── static                # 非 Hugo 处理的静态资源，将被直接复制到生成的站点中
-</span></span><span class="line"><span class="cl">├── themes                # 包含 Docsy 主题的子目录
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="项目的启动文件介绍">项目的启动文件介绍
-</h3><p>在 Docsy 项目中，主要的启动文件是 config.toml 或 config.yaml（取决于你的偏好）。这些配置文件位于项目根目录下，用来设置网站的基本参数、导航菜单、多语言支持等。</p>
-<p>例如，一个简单的 config.toml 文件可能如下所示：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#Hugo 属性设置 
-</span></span><span class="line"><span class="cl">title = &#34;我的文档站点&#34;
-</span></span><span class="line"><span class="cl">#网站地址
-</span></span><span class="line"><span class="cl">baseURL = &#34;https://example.com/&#34;
-</span></span><span class="line"><span class="cl">#网站语言
-</span></span><span class="line"><span class="cl">languageCode = &#34;en-us&#34;
-</span></span><span class="line"><span class="cl"># 网站title
-</span></span><span class="line"><span class="cl">title = &#34;我的博客&#34;                   
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># 主题的名字，这个要跟myblog/themes 目录中的子目录的目录名一致
-</span></span><span class="line"><span class="cl">theme = &#34;hugo-theme-bootstrap4-blog&#34;    
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># home/category/tag 页面显示的文章数 (Default: 10)
-</span></span><span class="line"><span class="cl">paginate = 5
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># home/category/tag 页面用于摘要的字数 (Default: 70)
-</span></span><span class="line"><span class="cl">summaryLength = 50
-</span></span><span class="line"><span class="cl"># optionally override the site&#39;s footer with custom copyright text
-</span></span><span class="line"><span class="cl"># copyright = &#34;Except where otherwise noted, content on this site is licensed under a [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/).&#34;
-</span></span><span class="line"><span class="cl">#googleAnalytics = &#34;UA-123-45&#34;
-</span></span><span class="line"><span class="cl">#disqusShortname = &#34;XYW&#34;
-</span></span><span class="line"><span class="cl"># 博客链接的路径格式
-</span></span><span class="line"><span class="cl">[permalinks]
-</span></span><span class="line"><span class="cl">  posts = &#34;/:year/:month/:title/&#34;
-</span></span><span class="line"><span class="cl">  page = &#34;/:slug/&#34;
-</span></span><span class="line"><span class="cl">顶部栏
-</span></span><span class="line"><span class="cl">[[menu.main]]
-</span></span><span class="line"><span class="cl">name = &#34;首页&#34;
-</span></span><span class="line"><span class="cl">weight = 1
-</span></span><span class="line"><span class="cl">identifier = &#34;home&#34;
-</span></span><span class="line"><span class="cl">url = &#34;/&#34;
-</span></span><span class="line"><span class="cl"> 侧边栏
-</span></span><span class="line"><span class="cl">[[menu.main]]
-</span></span><span class="line"><span class="cl">name = &#34;文档&#34;
-</span></span><span class="line"><span class="cl">weight = 2
-</span></span><span class="line"><span class="cl">identifier = &#34;docs&#34;
-</span></span><span class="line"><span class="cl">url = &#34;/docs/&#34;
-</span></span><span class="line"><span class="cl">#Theme 属性设置
-</span></span><span class="line"><span class="cl">#
-</span></span><span class="line"><span class="cl">[params]
-</span></span><span class="line"><span class="cl">  # Site author
-</span></span><span class="line"><span class="cl">  author = &#34;Your Name&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  # Description/subtitle for homepage (can be Markdown)
-</span></span><span class="line"><span class="cl">  description = &#34;A simple Hugo theme based on the Bootstrap v4 blog example.&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  # Show header (default: true)
-</span></span><span class="line"><span class="cl">  #header_visible = true
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  # Format dates with Go&#39;s time formatting
-</span></span><span class="line"><span class="cl">  date_format = &#34;Mon Jan 02, 2006&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  # verification string for Google Webmaster Tools
-</span></span><span class="line"><span class="cl">  #google_verify_meta = &#34;BAi57DROASu4b2mkVNA_EyUsobfA7Mq8BmSg7Rn-Zp9&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  # verification string for Bing Webmaster Tools
-</span></span><span class="line"><span class="cl">  #bing_verify_meta = &#34;3DA353059F945D1AA256B1CD8A3DA847&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  # verification string for Yandex Webmaster Tools
-</span></span><span class="line"><span class="cl">  #yandex_verify_meta = &#34;66b077430f35f04a&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  # Optionally display a message about the site&#39;s use of cookies, which may be
-</span></span><span class="line"><span class="cl">  # required for your site in the European Union. Set the parameter below to a
-</span></span><span class="line"><span class="cl">  # page where the user can get more information about cookies, either on your
-</span></span><span class="line"><span class="cl">  # site or externally, for example:
-</span></span><span class="line"><span class="cl">  #cookie_consent_info_url = &#34;/cookie-information/&#34;
-</span></span><span class="line"><span class="cl">  #cookie_consent_info_url = &#34;http://cookiesandyou.com&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  # show sharing icons on pages/posts (default: true)
-</span></span><span class="line"><span class="cl">  #sharingicons = true
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  # Display post summaries instead of content in list templates (default: true)
-</span></span><span class="line"><span class="cl">  #truncate = true
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  # Disable the use of sub-resource integrity on CSS/JS assets (default: false)
-</span></span><span class="line"><span class="cl">  # Useful if you&#39;re using a CDN or other host where you can&#39;t control cache headers
-</span></span><span class="line"><span class="cl">  #disable_sri = false
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  [params.sidebar]
-</span></span><span class="line"><span class="cl">    # Optional about block for sidebar (can be Markdown)
-</span></span><span class="line"><span class="cl">    about = &#34;A simple Hugo theme based on the [Bootstrap v4 blog example](http://v4-alpha.getbootstrap.com/examples/blog/).&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    # How many posts to show on the sidebar (Default: 5)
-</span></span><span class="line"><span class="cl">    #num_recent_posts = 2
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  [params.social]
-</span></span><span class="line"><span class="cl">    # Optional, used for attribution in Twitter cards (ideally not a person
-</span></span><span class="line"><span class="cl">    # for example: nytimes, flickr, NatGeo, etc).
-</span></span><span class="line"><span class="cl">    # See: https://dev.twitter.com/cards/types/summary-large-image
-</span></span><span class="line"><span class="cl">    twitter = &#34;username&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># Default content language for Hugo 0.17&#39;s multilingual support (default is &#34;en&#34;)
-</span></span><span class="line"><span class="cl"># See: https://github.com/spf13/hugo/blob/master/docs/content/content/multilingual.md
-</span></span><span class="line"><span class="cl">#DefaultContentLanguage = &#34;en&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># Languages to render
-</span></span><span class="line"><span class="cl">#[languages.en]
-</span></span><span class="line"><span class="cl">#[languages.bg]
-</span></span><span class="line"><span class="cl">  # Bulgarian date format is dd.mm.yyyy
-</span></span><span class="line"><span class="cl">  #date_format = &#34;02.01.2006&#34;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># vim: ts=2 sw=2 et
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>在这个例子中，我们设置了网站的标题、基础 URL 和语言代码，以及两个主菜单项（首页和文档）。</p>
-<h3 id="项目的配置文件介绍">项目的配置文件介绍
-</h3><p>config.toml/config.yaml
-这是整个站点的核心配置文件，你可以在这里设定站点的基本信息、导航菜单、元数据参数、多语言支持等。
-_config.yaml in /themes/docsy
-尽管这不是项目本身的配置文件，但 Docsy 主题也有自己的_config.yaml。这个文件包含了 Docsy 提供的默认配置，可以在项目中的 config.toml/config.yaml 中覆盖或扩展。
-.hugorc （可选）
-如果你选择使用 JSON 格式的配置，可以创建一个 .hugorc 文件来存储配置。它的工作方式与 config.toml 类似。
-archetypes 目录
-此目录下的文件定义了创建新页面时的默认内容结构。例如，你可以创建一个 doc.md 文件作为文档页面的模板。
-static 和 assets 目录
-这两个目录分别存放静态文件和处理过的静态资源。static 直接包含要复制到生成站点的内容，而 assets 内的文件会经过诸如 Sass 编译等预处理器处理。
-以上就是 Docsy 主题的基本介绍和使用指南。更多详细信息和高级配置，请参考 Docsy 的官方文档。</p>
-<h2 id="安装hexo">安装hexo
-</h2><p>npm install -g hexo-cli</p>
+<p><strong>推荐</strong>：在 <code>config.toml</code> 中写 <code>theme = &quot;your_theme_name&quot;</code></p>
+<p><strong>临时</strong>：命令行 <code>hugo server --theme=your_theme_name</code></p>
 <h2 id="github推送自动化">Github推送自动化
 </h2><p>在使用 GitHub Pages 构建并托管博客时，我们面临一个常见问题：如何在保持源码安全的同时，将构建好</p>
 <p>的 <strong>public</strong> 文件用于页面展示。直接丢上去的往往是public文件。为了解决这一问题，我们可以通过创建两个 GitHub 仓库来实现不同用途的分离和自动化管理。</p>
@@ -1444,12 +834,12 @@ static 和 assets 目录
 <p>generate token，然后复制生成的token</p>
 <p>点开<strong>source_blog</strong>,Security-Secrets and variables-Actions-Repository secrets,创建一个新的。</p>
 <p>自动化代码(deploy.yml)，</p>
-<p>1.修改分支改成master</p>
+<p>修改分支改成master</p>
 <p>将.github_hugo移到blog下，并且去掉<code>_hugo</code>,作为部署文件</p>
 <p>git init 创建.git 文件</p>
 <p>EXTERNAL_REPOSITORY:<code>xx/blog_show</code>，展示的博客</p>
 <p>blow_show里所展示的就是public里面的内容</p>
-<p>blow_show&gt;Settings&gt;Pages&gt;Build and delployment master root</p>
+<p>blow_show&gt;Settings&gt;Pages&gt;Build and delployment，改成 master 和root</p>
 <p>你可以在根目录创建一个批处理脚本，用来快速启动本地服务器并使用 chrome 打开网页。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1483,8 +873,8 @@ static 和 assets 目录
 <p>为了让 <code>blog.xyz.com</code> 指向你的 Netlify 博客，需要在域名注册商那里设置 DNS：</p>
 <ol>
 <li>登录域名注册商控制台。</li>
-<li>进入[<strong>DNS 管理</strong> 或 <strong>域名解析</strong> ]([云解析 DNS 控制台])(<a class="link" href="https://dnsnext.console.aliyun.com/authoritative/domains"  target="_blank" rel="noopener"
-    >https://dnsnext.console.aliyun.com/authoritative/domains</a>)页面。</li>
+<li>进入<a class="link" href="https://dnsnext.console.aliyun.com/authoritative/domains"  target="_blank" rel="noopener"
+    ><strong>DNS 管理</strong> 或 <strong>域名解析</strong> </a>页面。</li>
 <li>添加以下记录：</li>
 </ol>
 <ul>
@@ -1600,9 +990,8 @@ static 和 assets 目录
 <li>
 <p>阿里云返回：
 <code>CNAME chenalna.netlify.app</code></p>
-<p>👉 这只是告诉浏览器：
-“<code>blog.chenalna.site</code> 的解析结果 <strong>等同于</strong> <code>chenalna.netlify.app</code>，
-你去解析这个域名就行。”</p>
+<p><code>blog.chenalna.site</code> 的解析结果 <strong>等同于</strong> <code>chenalna.netlify.app</code>，
+解析这个域名就行。</p>
 <p>2️⃣ 浏览器继续查询 <code>chenalna.netlify.app</code></p>
 </li>
 <li>
@@ -1657,7 +1046,7 @@ static 和 assets 目录
 </div></li>
 <li>
 <p>关键点：<strong>Host = blog.chenalna.site</strong>
-👉 即使连接的是 Netlify 的 IP，
+。 即使连接的是 Netlify 的 IP，
 Host 告诉 Netlify：“我访问的是 <code>blog.chenalna.site</code> 项目。”</p>
 <p>5️⃣ Netlify 服务器返回内容</p>
 </li>
@@ -1722,6 +1111,12 @@ Host 告诉 Netlify：“我访问的是 <code>blog.chenalna.site</code> 项目�
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/hugo/">Hugo</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">
