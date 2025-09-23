@@ -59,7 +59,7 @@
                     
                     
                         
-                        <img src="/img/avatar_hu_e0bcad670b324842.png" width="300"
+                        <img src="/img/avatar_hu_9192c1e85cf4320b.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -367,13 +367,8 @@
         <li><a href="#自动化流程">自动化流程</a></li>
       </ol>
     </li>
-    <li><a href="#使用netlify">使用Netlify</a>
-      <ol>
-        <li><a href="#如何建立自己的博客域名">如何建立自己的（博客）域名</a></li>
-        <li><a href="#为什么需要两个方向的绑定">为什么需要两个方向的绑定？</a></li>
-      </ol>
-    </li>
-    <li><a href="#edge自带问题">Edge自带问题</a></li>
+    <li><a href="#使用netlify">使用Netlify</a></li>
+    <li><a href="#参考">参考</a></li>
   </ol>
 </nav>
         </div>
@@ -446,7 +441,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -465,14 +460,16 @@
 </h2><p>静态博客已成为现代技术博客、个人站点和文档系统的热门选择。</p>
 <p>本文基于Hugo</p>
 <h2 id="hugo优势">Hugo优势
-</h2><ol>
-<li>生产的性能好。Hugo是由 Go 语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。</li>
-</ol>
+</h2><p>生产的性能好。Hugo是由 Go 语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。</p>
 <p>无论是Hugo还是Hexo，本质上都是将master文件通过预定好的模板渲染html文件</p>
 <h2 id="环境准备">环境准备
 </h2><ol>
-<li>下载node.js</li>
-<li>下载golang</li>
+<li>
+<p>下载golang</p>
+</li>
+<li>
+<p>下载node.js</p>
+</li>
 </ol>
 <h2 id="安装golang">安装golang
 </h2><p>安装hugo之前，先安装好<a class="link" href="https://go.dev/dl/"  target="_blank" rel="noopener"
@@ -495,8 +492,8 @@
 <p>切记由于 hugo和主题之间版本有依赖关系，因此不同主题选择不同版本</p>
 <p>打开命令提示符，输入<code>hugo version</code>来验证安装是否成功。</p>
 <h2 id="hugo安装完成后的配置工作">Hugo安装完成后的配置工作
-</h2><p>设置别名
-为了方便使用，增加 hugo server 命令的 alias 用来本地编辑时的实时预览：
+</h2><p><strong>设置别名</strong></p>
+<p>为了方便使用，增加 hugo server 命令的 alias 用来本地编辑时的实时预览：
 vi ~/.zshrc
 增加内容：</p>
 <div class="highlight"><div class="chroma">
@@ -522,13 +519,25 @@ vi ~/.zshrc
 h2/h3/h4 指定了不同的端口，当需要在本地打开多个时，可以使用固定端口而不是随机端口。</p>
 <h2 id="设置代理">设置代理
 </h2><h3 id="npm代理">npm代理
-</h3><blockquote>
-<p>主要是 npm 命令需要代理才能顺利下载文件，比如:安装 PostCSS
-要构建或更新站点的 CSS 资源，您还需要PostCSS创建最终资产。如果您需要安装它，您必须在您的机器上安装最新版本的NodeJS，以便您可以使用npmNode 包管理器。默认情况npm下，在您运行的目录下安&gt;装工具npm install：
-npm install -D autoprefixer
-`npm install -D postcss-cli
-npm install -D &ndash;save autoprefixer
-如果发生报错，并且查看到如下的错误信息</p>
+</h3><p>主要是 npm 命令需要代理才能顺利下载文件，比如:安装 PostCSS
+要构建或更新站点的 CSS 资源，您还需要PostCSS创建最终资产。</p>
+<p>如果您需要安装它，您必须在您的机器上安装最新版本的NodeJS，以便您可以使用npmNode 包管理器。</p>
+<p>默认情况npm下，在您运行的目录下安装工具</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">npm install：
+</span></span><span class="line"><span class="cl">npm install -D autoprefixer
+</span></span><span class="line"><span class="cl">npm install -D postcss-cli
+</span></span><span class="line"><span class="cl">npm install -D --save autoprefixer
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果发生报错，并且查看到如下的错误信息</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -546,12 +555,13 @@ npm install -D &ndash;save autoprefixer
 </span></span><span class="line"><span class="cl">command sh -c node postinstall.js
 </span></span><span class="line"><span class="cl">✖ Hugo installation failed. :
 </span></span><span class="line"><span class="cl">node:internal/process/promises:391
-</span></span><span class="line"><span class="cl">   triggerUncaughtException(err, true /&gt;*fromPromise*/);
-</span></span><span class="line"><span class="cl">  	^
+</span></span><span class="line"><span class="cl">triggerUncaughtException(err, true /&gt;*fromPromise*/);
+</span></span><span class="line"><span class="cl">	^
 </span></span><span class="line"><span class="cl">RequestError: getaddrinfo ENOTFOUND github.com
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><p>解决方式：</p>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -563,10 +573,18 @@ npm install -D &ndash;save autoprefixer
 </span></span><span class="line"><span class="cl">npm config set https-proxy &lt;http://192.168.2.1:7890&gt;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>如果遇到报错信息：
-Failed to connect to github.com port 443 after 21045 m
-connect to github.com port 443 after 21045 ms: Could not &gt;connect to server
-注意修改成自己的IP和端口号</p>
+</div><p>如果遇到报错信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Failed to connect to github.com port 443 after 21045 ms
+</span></span><span class="line"><span class="cl">Could not connect to server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意修改成自己的IP和端口号</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -577,8 +595,7 @@ connect to github.com port 443 after 21045 ms: Could not &gt;connect to server
 </span></span><span class="line"><span class="cl">git config --global https.proxy &lt;http://127.0.0.1:7890&gt;
 </span></span></code></pre></td></tr></table>
 </div>
-</div></blockquote>
-<h2 id="站点骨架">站点骨架
+</div><h2 id="站点骨架">站点骨架
 </h2><p>每个 Hugo 项目都是一个目录，其中的子目录贡献于站点的内容、结构、行为和呈现。</p>
 <p>在创建新站点时，Hugo 会生成一个项目骨架。例如，以下命令：<br>
 利用hugo new site myblog(此时需要用到hugo.exe,假设存放在bin下),会在bin下生成myblog</p>
@@ -628,7 +645,7 @@ connect to github.com port 443 after 21045 ms: Could not &gt;connect to server
 </li>
 </ul>
 <p>​	存放所有博客文章和页面。每个markdown文件的Front matter中定义标题、日期、草稿状态、标签与分类等信息。</p>
-<p>​	实例文件：</p>
+<p>​	示例文件：</p>
 <pre><code>title:&quot;我的第一篇文章&quot;
 date:2024-03-21
 draft:false
@@ -656,9 +673,9 @@ categories:[“技术博客”]
 </ul>
 <ol>
 <li>利用Hugo命令构建站点时，Hugo 会创建一个 public 目录，目录包含发布的网站，在运行 hugo 命令时生成。Hugo 根据需要重建此目录及其内容。</li>
-<li>通常还会创建一个 resources 目录：目录包含 Hugo 资源管道的缓存输出，在运行 hugo 或 hugo server 命令时生成。默认情况下，此缓存目录包括 CSS 和图片。Hugo 根据需要重建此目录及其内容</li>
-<li>Hugo 创建了一个联合文件系统，允许将两个或多个目录挂载到同一位置。例如，假设您的主目录包含一个 Hugo 项目的目录，另一个目录包含共享内容.您可以使用挂载（mounts）在构建站点时包含共享内容。在站点配置中</li>
-<li>当两个或多个文件具有相同路径时，优先级顺序遵循挂载的顺序。例如，如果共享内容目录包含 books/book-1.md，则会被忽略，因为项目的 content 目录先被挂载。</li>
+<li>通常还会创建一个 resources 目录：目录包含 Hugo 资源管道的缓存输出，在运行 hugo 或 hugo server 命令时生成。默认情况下，此缓存目录包括 CSS 和图片。Hugo 根据需要重建此目录及其内容。</li>
+<li>Hugo 创建了一个联合文件系统，允许将两个或多个目录挂载到同一位置。例如，假设您的主目录包含一个 Hugo 项目的目录，另一个目录包含共享内容。您可以使用挂载（mounts）在构建站点时包含共享内容。</li>
+<li>在站点配置中当两个或多个文件具有相同路径时，优先级顺序遵循挂载的顺序。例如，如果共享内容目录包含 books/book-1.md，则会被忽略，因为项目的 content 目录先被挂载。</li>
 <li>将archetypes/default.md,&quot;+&ldquo;改成&rdquo;-&quot;,&quot;=&ldquo;改成&rdquo;+&quot;，因为这个时toml格式的，我们要改成yaml格式</li>
 </ol>
 <h2 id="配置主题">配置主题
@@ -807,6 +824,8 @@ draft改成false，否则不会显示</p>
 </ol>
 <p><strong>推荐</strong>：在 <code>config.toml</code> 中写 <code>theme = &quot;your_theme_name&quot;</code></p>
 <p><strong>临时</strong>：命令行 <code>hugo server --theme=your_theme_name</code></p>
+<p>如果需要更多,如配置favicon，评论区，参考<a class="link" href="https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/"  target="_blank" rel="noopener"
+    >建站技术 | 使用 Hugo + Stack 简单搭建一个博客</a></p>
 <h2 id="github推送自动化">Github推送自动化
 </h2><p>在使用 GitHub Pages 构建并托管博客时，我们面临一个常见问题：如何在保持源码安全的同时，将构建好</p>
 <p>的 <strong>public</strong> 文件用于页面展示。直接丢上去的往往是public文件。为了解决这一问题，我们可以通过创建两个 GitHub 仓库来实现不同用途的分离和自动化管理。</p>
@@ -827,19 +846,35 @@ draft改成false，否则不会显示</p>
 <h3 id="自动化流程">自动化流程
 </h3><p>利用<strong>Github Actions</strong>或脚本实现如下自动化：</p>
 <ol>
-<li>在源码仓库更新时触发构建操作，生成博客所需的静态文件</li>
-<li>将生成的文件自动推送到展示仓库，无需手动干预</li>
-</ol>
+<li>
+<p>在源码仓库更新时触发构建操作，生成博客所需的静态文件</p>
+</li>
+<li>
+<p>将生成的文件自动推送到展示仓库，无需手动干预</p>
+</li>
+<li>
 <p>Settings-&gt;Developer Settings-&gt;Personal access tokens -&gt; Tokens(classic),勾选repo和workflow，过期时间选择永远不过期</p>
+</li>
+</ol>
 <p>generate token，然后复制生成的token</p>
+<ol start="2">
+<li>
 <p>点开<strong>source_blog</strong>,Security-Secrets and variables-Actions-Repository secrets,创建一个新的。</p>
-<p>自动化代码(deploy.yml)，</p>
-<p>修改分支改成master</p>
-<p>将.github_hugo移到blog下，并且去掉<code>_hugo</code>,作为部署文件</p>
+</li>
+<li>
+<p>修改自动化代码(deploy.yml)，将修改分支改成master。将.github_hugo移到blog下，并且去掉<code>_hugo</code>,作为部署文件</p>
+</li>
+<li>
 <p>git init 创建.git 文件</p>
+</li>
+<li>
 <p>EXTERNAL_REPOSITORY:<code>xx/blog_show</code>，展示的博客</p>
-<p>blow_show里所展示的就是public里面的内容</p>
-<p>blow_show&gt;Settings&gt;Pages&gt;Build and delployment，改成 master 和root</p>
+</li>
+</ol>
+<p>​	blow_show里所展示的就是public里面的内容</p>
+<ol start="6">
+<li>blow_show&gt;Settings&gt;Pages&gt;Build and delployment，改成 master 和root</li>
+</ol>
 <p>你可以在根目录创建一个批处理脚本，用来快速启动本地服务器并使用 chrome 打开网页。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -860,251 +895,19 @@ draft改成false，否则不会显示</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="使用netlify">使用Netlify
-</h2><p>Add newproject &gt; import an existing project &gt;选择blog_show</p>
-<h3 id="如何建立自己的博客域名">如何建立自己的（博客）域名
-</h3><p>​	以<code>blog.xyz.site</code>为例</p>
-<ol>
-<li>
-<p>首先选择域名注册商，如<a class="link" href="https://wanwang.aliyun.com/domain"  target="_blank" rel="noopener"
-    >阿里云</a>,购买自定义域名如<code>xyz.site</code>.可以自定义子域名，如<code>blog.xyz.site</code>。</p>
-</li>
-<li>
-<p>配置DNS记录</p>
-<p>为了让 <code>blog.xyz.com</code> 指向你的 Netlify 博客，需要在域名注册商那里设置 DNS：</p>
-<ol>
-<li>登录域名注册商控制台。</li>
-<li>进入<a class="link" href="https://dnsnext.console.aliyun.com/authoritative/domains"  target="_blank" rel="noopener"
-    ><strong>DNS 管理</strong> 或 <strong>域名解析</strong> </a>页面。</li>
-<li>添加以下记录：</li>
-</ol>
-<ul>
-<li><strong>CNAME 记录</strong>
-<ul>
-<li><strong>主机名/名称/记录</strong>：<code>blog</code></li>
-<li><strong>指向/值/记录值</strong>：你的 Netlify 默认域名（<code>chenaasad.netlify.app</code>）</li>
-<li><strong>TTL</strong>：默认即可</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>⚠️ 注意：不要同时为同一个子域名添加 A 记录，如果添加了 CNAME，就不要再加 A 记录。</p></blockquote>
-<ol start="4">
-<li>保存并等待 DNS 生效（通常几分钟到 24 小时）。</li>
-</ol>
-</li>
-<li>
-<p>在 Netlify 添加自定义域</p>
-<ol>
-<li>
-<p>登录 Netlify 控制台，进入你的站点设置。</p>
-</li>
-<li>
-<p>选择 <strong>Domain management → Custom domains → Add custom domain</strong>。</p>
-<p>即<a class="link" href="https://app.netlify.com/projects/chenalna/dns/setup"  target="_blank" rel="noopener"
-    >Set up Netlify DNS </a></p>
-</li>
-<li>
-<p>输入你的域名 <code>blog.xyz.com</code> 并保存。</p>
-</li>
-<li>
-<p>Netlify 会自动检测你的 CNAME 配置是否正确，如果一切正常，它会颁发 SSL 证书（HTTPS）。</p>
-</li>
-<li>
-<p>Netlify 会自动为自定义域名生成免费的 Let&rsquo;s Encrypt SSL 证书。</p>
-<p>你只需要确保在站点设置中开启 <strong>Enforce HTTPS</strong>（强制 HTTPS）。</p>
-<p>等证书生效后，你的博客就可以通过 <code>https://blog.xyz.com</code> 访问。</p>
-</li>
-</ol>
-</li>
-<li>
-<p>DNS 是否已传播</p>
-<p>即便你已经添加了正确的 CNAME 记录，DNS 修改需要一定时间才能在全球生效。</p>
-<ul>
-<li>一般 10 分钟到 24 小时不等。</li>
-<li>可以用以下工具查询是否已生效：
-<ul>
-<li><a class="link" href="https://dnschecker.org/#CNAME/blog.chenalna.site"  target="_blank" rel="noopener"
-    >https://dnschecker.org/#CNAME/blog.chenalna.site</a>
-看到解析结果是 <strong><code>chenaasad.netlify.app</code></strong> 才算成功。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>是否开启了 CDN/代理</p>
-<p>如果你使用 Cloudflare 或类似服务：</p>
-<ul>
-<li>确保 <code>blog</code> 这一条记录**小云朵为灰色（DNS only）**而不是橙色（代理状态），
-因为橙色会隐藏真实 CNAME，导致 Netlify 无法验证。</li>
-<li>验证完成并签发证书后，可以再开启代理。</li>
-</ul>
-</li>
-</ol>
-<h3 id="为什么需要两个方向的绑定">为什么需要两个方向的绑定？
-</h3><ol>
-<li>
-<p>阿里云的作用</p>
-<p>阿里云是<strong>域名注册商</strong>，它只负责：</p>
-<ul>
-<li>记录「访问 blog.chenalna.site 时去哪台服务器找内容」</li>
-<li>也就是<strong>DNS 解析</strong>（把域名解析成 IP 或转发到另一个域名）</li>
-</ul>
-<blockquote>
-<p>你在阿里云添加 <strong>CNAME 记录</strong>，只是告诉互联网：
-“访问 <code>blog.chenalna.site</code> 时，请先去找 <code>chenalna.netlify.app</code>”。</p></blockquote>
-<p>阿里云并不知道 <code>chenalna.netlify.app</code> 是不是你的站点，也不会给你的网站签 SSL 证书。
-它只是把访问者“指路”给 Netlify。</p>
-</li>
-</ol>
-<p>2.Netfliy作用</p>
-<p>​	Netlify 是<strong>托管服务商</strong>，它必须：</p>
-<ul>
-<li><strong>确认这个域名是你的</strong>（防止别人盗用你的域名指到他们的服务器）</li>
-<li><strong>为这个域名签发 SSL 证书</strong>（HTTPS 加密）</li>
-<li>配置站点路由，把 <code>blog.chenalna.site</code> 的请求交给你的博客程序</li>
-</ul>
-<blockquote>
-<p>所以你在 <strong>Netlify → Domain management</strong> 添加域名，
-就是告诉 Netlify：
-“这个域名是我的，DNS 我已经指到你们这里，请为它提供服务并签证书。”</p></blockquote>
-<ol start="3">
-<li>
-<p>总结</p>
-<p><strong>阿里云</strong>：相当于邮局的“地址登记处”，你告诉它：</p>
-<p>“有人找 <code>blog.chenalna.site</code>，就送到 Netlify。”</p>
-<p><strong>Netlify</strong>：相当于你自己的“房子”，你得告诉它：</p>
-<p>“这个地址归我，请给这个地址挂上门牌和门锁（SSL证书）。”</p>
-</li>
-<li>
-<p>归纳</p>
-<p>1️⃣ 你输入 <code>https://blog.chenalna.site</code></p>
-</li>
-</ol>
-<ul>
-<li>
-<p>浏览器需要找到这个域名的 <strong>IP</strong>。</p>
-</li>
-<li>
-<p>向 DNS 递归服务器（例如阿里云）查询 <code>blog.chenalna.site</code> 的记录。</p>
-</li>
-<li>
-<p>阿里云返回：
-<code>CNAME chenalna.netlify.app</code></p>
-<p><code>blog.chenalna.site</code> 的解析结果 <strong>等同于</strong> <code>chenalna.netlify.app</code>，
-解析这个域名就行。</p>
-<p>2️⃣ 浏览器继续查询 <code>chenalna.netlify.app</code></p>
-</li>
-<li>
-<p>递归 DNS 服务器向 <strong>Netlify 的权威 DNS</strong> 查询 A/AAAA 记录。</p>
-</li>
-<li>
-<p>Netlify 返回一个或多个 <strong>IP</strong>（通常是 CDN/负载均衡节点）。</p>
-</li>
-<li>
-<p>浏览器最终得到<strong>托管服务器 IP</strong>。</p>
-<p>3️⃣ 浏览器建立 TCP/TLS 连接</p>
-</li>
-<li>
-<p>浏览器连接到<strong>刚刚得到的 IP</strong>。</p>
-</li>
-<li>
-<p>如果是 HTTPS，会先发起 <strong>TLS 握手</strong>：</p>
-<ul>
-<li>
-<p>在 <code>ClientHello</code> 里带上 <strong>SNI</strong>（Server Name Indication）：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">blog.chenalna.site
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>这样服务器才能选择正确的 SSL 证书。</p>
-<p>4️⃣ 浏览器发送 HTTP 请求</p>
-</li>
-</ul>
-</li>
-<li>
-<p>握手完成后，浏览器发送标准 HTTP 请求：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET / HTTP/1.1
-</span></span><span class="line"><span class="cl">Host: blog.chenalna.site
-</span></span><span class="line"><span class="cl">User-Agent: ...
-</span></span><span class="line"><span class="cl">Accept: ...
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>关键点：<strong>Host = blog.chenalna.site</strong>
-。 即使连接的是 Netlify 的 IP，
-Host 告诉 Netlify：“我访问的是 <code>blog.chenalna.site</code> 项目。”</p>
-<p>5️⃣ Netlify 服务器返回内容</p>
-</li>
-<li>
-<p>Netlify 根据 Host 找到对应的项目（你 GitHub 部署的静态文件）。</p>
-</li>
-<li>
-<p>直接返回 <strong>HTML/CSS/JS</strong> 等静态资源。</p>
-</li>
-<li>
-<p>因为是静态站点，返回的就是<strong>最终网页文件</strong>，不需要再发起其他“对象请求”才能获取主体内容（除非页面里引用了图片、JS、CSS，这些会触发额外的 HTTP 请求）。</p>
-</li>
-</ul>
-<div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>域名类型</th>
-          <th>作用</th>
-          <th>是否必须</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Netlify 子域名</strong> <code>chenalna.netlify.app</code></td>
-          <td>Netlify 自动分配，始终可用，方便测试或直接访问</td>
-          <td>✅ 自动拥有</td>
-      </tr>
-      <tr>
-          <td><strong>自定义域名</strong> <code>blog.chenalna.site</code></td>
-          <td>你绑定的独立域名，用于品牌化访问</td>
-          <td>可选</td>
-      </tr>
-  </tbody>
-</table></div>
-<p>它们共存，不冲突，<strong>访问最终落在同一个 Netlify 服务器和同一份内容上</strong>。</p>
-<h2 id="edge自带问题">Edge自带问题
+</h2><p>Add newproject → import an existing project→选择blog_show</p>
+<h2 id="参考">参考
 </h2><ol>
-<li>此网站的证书无效。由于此连接不安全，因此信息(如密码或信用卡)不会安全地发送到此网站，并且可能被其他人截获或看到。建议你不要在此网站输入个人信息或避免使用此网站。</li>
+<li><a class="link" href="https://www.bilibili.com/video/BV1fNNreEEDi"  target="_blank" rel="noopener"
+    >hexo与hugo博客搭建与github自动化推送和服务器推送</a></li>
+<li><a class="link" href="https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/"  target="_blank" rel="noopener"
+    >Stack官方文档 </a></li>
 </ol>
-<p><strong>DNS 解析未生效</strong></p>
-<ul>
-<li>你在阿里云添加了 <code>blog.chenalna.site</code> 的 CNAME，但 DNS 还没有在全球生效。</li>
-<li>Netlify 还没检测到域名指向它的服务器，因此 <strong>无法签发 SSL 证书</strong>。</li>
-<li>生效时间通常 10 分钟到 24 小时不等。</li>
-</ul>
-<ol start="2">
-<li>
-<p>与此站点的连接不安全此站点有一个由受信任的颁发机构颁发的有效证书。但是，网站的某些部分不安全。这意味着信息 (如密码或信用卡) 可能不会安全地发送到此站点，并可能被其他人截获或查看。</p>
-<p>Let’s Encrypt 的证书 <strong>有效期为 90 天（约 3 个月）</strong>。</p>
-<p>Netlify 会在证书到期前 <strong>自动续签</strong>，无需手动干预。</p>
-<p><strong>清除 Edge 缓存和证书状态</strong></p>
-<ul>
-<li>打开 Edge → 设置 → 隐私、搜索和服务 → 清除浏览数据 → 勾选缓存文件、Cookie</li>
-<li>也可以在地址栏输入 <code>edge://net-internals/#dns</code> → Clear host cache</li>
-<li>再重新访问 <code>https://blog.chenalna.site</code></li>
-</ul>
-</li>
-</ol>
+<p>这是第一页内容。</p>
+<!--pagebreak-->
+<p>这是第二页内容。</p>
+<!--pagebreak-->
+<p>这是第三页内容。</p>
 
 </section>
 

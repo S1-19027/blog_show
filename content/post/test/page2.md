@@ -1,8 +1,8 @@
 ## 使用git命令下载主题
 
 >1. 在myblog 目录下使用git 命令来下载主题hugo-theme-bootstrap4-blog：
->   `git clone <https://github.com/alanorth/hugo-theme-bootstrap4-blog.git> themes/hugo-theme-bootstrap4-blog`
->   下载下来的主题会放在themes 目录中：
+>     `git clone <https://github.com/alanorth/hugo-theme-bootstrap4-blog.git> themes/hugo-theme-bootstrap4-blog`
+>     下载下来的主题会放在themes 目录中：
 
 ```
 └── hugo-theme-bootstrap4-blog
@@ -27,13 +27,13 @@
 ```
 
 >2. 使用主题
->   我们将exampleSite 目录中的内容，复制到博客根目录myblog 中，在myblog 目录中执行命令：
->   `cp themes/hugo-theme-bootstrap4-blog/exampleSite/* ./ -r`
->   删除旧的hugo.toml
->   (存疑将archetypes/default.md,"+"改成"-","="改成"+"，因为这个时toml格式的，我们要改成yaml格式)
+>     我们将exampleSite 目录中的内容，复制到博客根目录myblog 中，在myblog 目录中执行命令：
+>     `cp themes/hugo-theme-bootstrap4-blog/exampleSite/* ./ -r`
+>     删除旧的hugo.toml
+>     (存疑将archetypes/default.md,"+"改成"-","="改成"+"，因为这个时toml格式的，我们要改成yaml格式)
 >3. 启动博客服务
->   使用下面命令启动服务：
->   `>>> hugo server`
+>     使用下面命令启动服务：
+>     `>>> hugo server`
 
 
 
@@ -50,7 +50,7 @@ Error: The process '/usr/bin/git' failed with exit code 128
 ​	解决方法：添加子模块
   git submodule add <https://github.com/theNewDynamic/gohugo-theme-ananke.git> themes/ananke.
 
-2. 
+2.  
 
 ```
 ERROR deprecated: .Site.Social was deprecated in Hugo v0.124.0 and subsequently
@@ -61,6 +61,10 @@ removed. Implement taxonomy 'authors' or use .Site.Params.Author instead.
 
 ​	解决方法
 如报错信息，找到对应并替换即可
+
+
+
+
 
 3. `range can't iterate over Your Name`
 
@@ -196,6 +200,82 @@ Value: 0.120.4（替换为你需要的 Hugo 版本）。
 
 保存并重新触发构建。
 
+5. 推送的时候是master（主仓库，因为你没有权限）不是change（本地）
+
+​	`git commit -m "Add brand-bilibili icon" git push origin my-changes`，写成`git push origin master`了
+
+​	**解决方法：回退 fork 的 master**
+
+如果你**必须**把 fork 的 master 恢复到推送前的状态（例如不想把修改放在 master 上）：
+
+1. 找到推送前的 commit：
+
+   ```
+   cd themes/hugo-theme-stack
+   git log --oneline --decorate
+   ```
+
+   记下误推前的 commit ID，例如 `abcdef0`。
+
+2. 强制回退远程 master：
+
+   ```
+   git checkout master
+   git reset --hard abcdef0      # 回到旧的 commit
+   git push origin master --force
+   ```
+   
+3. 把你的修改推到新分支：
+
+git checkout -b my-changes
+
+git push origin my-changes
+
+
+4. 更新父仓库指针：
+
+cd ../..
+
+git add themes/hugo-theme-stack
+
+git commit -m "Update submodule pointer to my-changes"
+
+git push origin master
+
+**如果你确实要修改主题源码（例如修改 theme 下的模板）**
+
+此时子模块必须 fork，因为：
+
+- 你想改的文件在 `themes/hugo-theme-stack/`
+- 父仓库不会直接跟踪这些文件
+
+每次修改流程：
+
+1. 进入子模块：
+
+   ```
+   cd themes/hugo-theme-stack
+   git checkout my-changes   # 建议始终在自己分支
+   git pull origin my-changes  # 保持同步
+   # 做修改
+   git add .
+   git commit -m "Update theme style"
+   git push origin my-changes
+   ```
+
+2. 回到父仓库更新指针：
+
+   ```
+   cd ../..
+   git add themes/hugo-theme-stack
+   git commit -m "Update submodule pointer"
+   git push origin master
+   ```
+
+利用submodule来更新， 自己新建的没有更新是因为submodule没有更新
+
+
+
 ## Docsy主题
 
 Docsy 是一个基于 Hugo 的主题，专门用于构建技术文档集。以下是一般 Docsy 项目的基本目录结构：
@@ -217,7 +297,6 @@ Docsy 是一个基于 Hugo 的主题，专门用于构建技术文档集。以�
 ├── layouts               # 自定义布局文件
 ├── static                # 非 Hugo 处理的静态资源，将被直接复制到生成的站点中
 ├── themes                # 包含 Docsy 主题的子目录
-
 ```
 
 ### 项目的启动文件介绍
@@ -376,3 +455,258 @@ hugo new theme my-theme
 ## 安装hexo
 
 npm install -g hexo-cli
+
+
+
+
+
+### 如何建立自己的（博客）域名 
+
+​	以`blog.xyz.site`为例
+
+1. 首先选择域名注册商，如[阿里云](https://wanwang.aliyun.com/domain),购买自定义域名如`xyz.site`.可以自定义子域名，如`blog.xyz.site`。
+
+2. 配置DNS记录
+
+   为了让 `blog.xyz.com` 指向你的 Netlify 博客，需要在域名注册商那里设置 DNS：
+
+   1. 登录域名注册商控制台。
+   2. 进入[**DNS 管理** 或 **域名解析** ](https://dnsnext.console.aliyun.com/authoritative/domains)页面。
+   3. 添加以下记录：
+
+   - **CNAME 记录**
+     - **主机名/名称/记录**：`blog`
+     - **指向/值/记录值**：你的 Netlify 默认域名（`chenaasad.netlify.app`）
+     - **TTL**：默认即可
+
+   > ⚠️ 注意：不要同时为同一个子域名添加 A 记录，如果添加了 CNAME，就不要再加 A 记录。
+
+   4. 保存并等待 DNS 生效（通常几分钟到 24 小时）。
+
+3. 在 Netlify 添加自定义域
+
+   1. 登录 Netlify 控制台，进入你的站点设置。
+
+   2. 选择 **Domain management → Custom domains → Add custom domain**。
+
+      即[Set up Netlify DNS ](https://app.netlify.com/projects/chenalna/dns/setup)
+
+   3. 输入你的域名 `blog.xyz.com` 并保存。
+
+   4. Netlify 会自动检测你的 CNAME 配置是否正确，如果一切正常，它会颁发 SSL 证书（HTTPS）。
+
+   5. Netlify 会自动为自定义域名生成免费的 Let's Encrypt SSL 证书。
+
+      你只需要确保在站点设置中开启 **Enforce HTTPS**（强制 HTTPS）。
+
+      等证书生效后，你的博客就可以通过 `https://blog.xyz.com` 访问。
+
+4. DNS 是否已传播
+
+   即便你已经添加了正确的 CNAME 记录，DNS 修改需要一定时间才能在全球生效。
+
+   - 一般 10 分钟到 24 小时不等。
+   - 可以用以下工具查询是否已生效：
+     - https://dnschecker.org/#CNAME/blog.chenalna.site
+       看到解析结果是 **`chenaasad.netlify.app`** 才算成功。
+
+5. 是否开启了 CDN/代理
+
+   如果你使用 Cloudflare 或类似服务：
+
+   - 确保 `blog` 这一条记录**小云朵为灰色（DNS only）**而不是橙色（代理状态），
+     因为橙色会隐藏真实 CNAME，导致 Netlify 无法验证。
+   - 验证完成并签发证书后，可以再开启代理。
+
+
+
+### 为什么需要两个方向的绑定？
+
+1. 阿里云的作用
+
+   阿里云是**域名注册商**，它只负责：
+
+   - 记录「访问 blog.chenalna.site 时去哪台服务器找内容」
+   - 也就是**DNS 解析**（把域名解析成 IP 或转发到另一个域名）
+
+   > 你在阿里云添加 **CNAME 记录**，只是告诉互联网：
+   > “访问 `blog.chenalna.site` 时，请先去找 `chenalna.netlify.app`”。
+
+   阿里云并不知道 `chenalna.netlify.app` 是不是你的站点，也不会给你的网站签 SSL 证书。
+    它只是把访问者“指路”给 Netlify。
+
+2.Netfliy作用
+
+​	Netlify 是**托管服务商**，它必须：
+
+- **确认这个域名是你的**（防止别人盗用你的域名指到他们的服务器）
+- **为这个域名签发 SSL 证书**（HTTPS 加密）
+- 配置站点路由，把 `blog.chenalna.site` 的请求交给你的博客程序
+
+> 所以你在 **Netlify → Domain management** 添加域名，
+> 就是告诉 Netlify：
+> “这个域名是我的，DNS 我已经指到你们这里，请为它提供服务并签证书。”
+
+3. 总结
+
+   **阿里云**：相当于邮局的“地址登记处”，你告诉它：
+
+   “有人找 `blog.chenalna.site`，就送到 Netlify。”
+
+   **Netlify**：相当于你自己的“房子”，你得告诉它：
+
+   “这个地址归我，请给这个地址挂上门牌和门锁（SSL证书）。”
+
+4. 归纳
+
+   1️⃣ 你输入 `https://blog.chenalna.site`
+
+- 浏览器需要找到这个域名的 **IP**。
+
+- 向 DNS 递归服务器（例如阿里云）查询 `blog.chenalna.site` 的记录。
+
+- 阿里云返回：
+  `CNAME chenalna.netlify.app`
+
+  `blog.chenalna.site` 的解析结果 **等同于** `chenalna.netlify.app`，
+   解析这个域名。
+
+  2️⃣ 浏览器继续查询 `chenalna.netlify.app`
+
+- 递归 DNS 服务器向 **Netlify 的权威 DNS** 查询 A/AAAA 记录。
+
+- Netlify 返回一个或多个 **IP**（通常是 CDN/负载均衡节点）。
+
+- 浏览器最终得到**托管服务器 IP**。
+
+  3️⃣ 浏览器建立 TCP/TLS 连接
+
+- 浏览器连接到**刚刚得到的 IP**。
+
+- 如果是 HTTPS，会先发起 **TLS 握手**：
+
+  - 在 `ClientHello` 里带上 **SNI**（Server Name Indication）：
+
+    ```
+    blog.chenalna.site
+    ```
+
+  - 这样服务器才能选择正确的 SSL 证书。
+
+  4️⃣ 浏览器发送 HTTP 请求
+
+- 握手完成后，浏览器发送标准 HTTP 请求：
+
+  ```
+  GET / HTTP/1.1
+  Host: blog.chenalna.site
+  User-Agent: ...
+  Accept: ...
+  ```
+
+- 关键点：**Host = blog.chenalna.site**
+  。 即使连接的是 **Netlify** 的 IP，
+  Host 告诉 Netlify：“我访问的是 `blog.chenalna.site` 项目。”
+
+  5️⃣ Netlify 服务器返回内容
+
+- Netlify 根据 Host 找到对应的项目（你 GitHub 部署的静态文件）。
+
+- 直接返回 **HTML/CSS/JS** 等静态资源。
+
+- 因为是静态站点，返回的就是**最终网页文件**，不需要再发起其他“对象请求”才能获取主体内容（除非页面里引用了图片、JS、CSS，这些的附属资源，会触发额外的 HTTP 请求）。
+
+| 域名类型                                  | 作用                                           | 是否必须   |
+| ----------------------------------------- | ---------------------------------------------- | ---------- |
+| **Netlify 子域名** `chenalna.netlify.app` | Netlify 自动分配，始终可用，方便测试或直接访问 | ✅ 自动拥有 |
+| **自定义域名** `blog.chenalna.site`       | 你绑定的独立域名，用于品牌化访问               | 可选       |
+
+它们共存，不冲突，**访问最终落在同一个 Netlify 服务器和同一份内容上**。
+
+Netlify 部署时，你在项目设置中指定了**构建命令**和**输出目录**（Publish directory）。
+ Netlify 会把这个目录里的内容部署到 CDN。
+ 所以虽然仓库里你看不到一个手写的 `index.html`，
+ **Netlify 构建完成后生成的 `index.html`** 才是浏览器实际拿到的页面入口。
+
+
+
+## Edge自带问题
+
+1. 此网站的证书无效。由于此连接不安全，因此信息(如密码或信用卡)不会安全地发送到此网站，并且可能被其他人截获或看到。建议你不要在此网站输入个人信息或避免使用此网站。
+
+**DNS 解析未生效**
+
+- 你在阿里云添加了 `blog.chenalna.site` 的 CNAME，但 DNS 还没有在全球生效。
+- Netlify 还没检测到域名指向它的服务器，因此 **无法签发 SSL 证书**。
+- 生效时间通常 10 分钟到 24 小时不等。
+
+2. 与此站点的连接不安全此站点有一个由受信任的颁发机构颁发的有效证书。但是，网站的某些部分不安全。这意味着信息 (如密码或信用卡) 可能不会安全地发送到此站点，并可能被其他人截获或查看。
+
+   Let’s Encrypt 的证书 **有效期为 90 天（约 3 个月）**。
+
+   Netlify 会在证书到期前 **自动续签**，无需手动干预。
+
+   **清除 Edge 缓存和证书状态**
+
+   - 打开 Edge → 设置 → 隐私、搜索和服务 → 清除浏览数据 → 勾选缓存文件、Cookie
+   - 也可以在地址栏输入 `edge://net-internals/#dns` → Clear host cache
+   - 再重新访问 `https://blog.chenalna.site`
+
+## 脚本功能
+
+1. **copy_assests.sh**
+
+​	将themes/hugo-theme-stack/assests下的文件复制到blog/assests下
+
+2. local_launch.bat
+
+   本地运行
+
+3. push.bat
+
+​	**自动把本地 Hugo 生成网站推送到远程服务器部署**
+
+
+
+## mailto的用法
+
+### 1. `mailto:` 基本用法
+
+`mailto:` 是一个 URL 协议，用来在网页上创建点击后自动打开默认邮件客户端的新邮件窗口，并自动填入收件人、主题等信息。
+
+**基本语法：**
+
+```
+mailto:email@example.com
+```
+
+**示例：**
+
+```
+<a href="mailto:chenalna52@gmail.com">发送邮件</a>
+```
+
+点击链接后，系统会自动打开默认的邮件客户端，并将 `chenalna52@gmail.com` 填入收件人字段。
+
+------
+
+### 2. `mailto:` 高级用法（可带参数）
+
+你还可以附加 `subject`（主题）、`body`（邮件内容）、`cc`、`bcc` 等参数：
+
+```
+mailto:chenalna52@gmail.com?subject=Hello&body=This%20is%20a%20test
+```
+
+- **注意**：空格和特殊字符需要用 URL 编码（比如空格用 `%20`）。
+- **多个收件人**可以用逗号分隔：
+
+```
+mailto:abc@example.com,xyz@example.com
+```
+
+​	
+
+
+
+

@@ -17,14 +17,16 @@ tags:
 
 ## Hugo优势
 
-1. 生产的性能好。Hugo是由 Go 语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
+生产的性能好。Hugo是由 Go 语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
 
 无论是Hugo还是Hexo，本质上都是将master文件通过预定好的模板渲染html文件
 
 ## 环境准备
 
-1. 下载node.js
-2. 下载golang
+1. 下载golang
+
+2. 下载node.js
+
 
 ## 安装golang
 
@@ -58,7 +60,8 @@ tags:
 
 ## Hugo安装完成后的配置工作
 
-设置别名
+**设置别名**
+
 为了方便使用，增加 hugo server 命令的 alias 用来本地编辑时的实时预览：
 vi ~/.zshrc
 增加内容：
@@ -82,39 +85,54 @@ h2/h3/h4 指定了不同的端口，当需要在本地打开多个时，可以�
 ## 设置代理
 
 ### npm代理
->主要是 npm 命令需要代理才能顺利下载文件，比如:安装 PostCSS
->要构建或更新站点的 CSS 资源，您还需要PostCSS创建最终资产。如果您需要安装它，您必须在您的机器上安装最新版本的NodeJS，以便您可以使用npmNode 包管理器。默认情况npm下，在您运行的目录下安>装工具npm install：
->npm install -D autoprefixer
->`npm install -D postcss-cli
->npm install -D --save autoprefixer
->如果发生报错，并且查看到如下的错误信息
->
->```
->path /home/sky/work/code/learning/docsy/>node_modules/hugo-extended
->command failed
->command sh -c node postinstall.js
-> ✖ Hugo installation failed. :
-> node:internal/process/promises:391
->    triggerUncaughtException(err, true />*fromPromise*/);
->   	^
->RequestError: getaddrinfo ENOTFOUND github.com
->```
->
->```
->npm config set registry <https://registry.npmmirror.com>
->npm config set proxy <http://192.168.2.1:7890>
->npm config set https-proxy <http://192.168.2.1:7890>
->```
->
->如果遇到报错信息：
->Failed to connect to github.com port 443 after 21045 m
->connect to github.com port 443 after 21045 ms: Could not >connect to server
->注意修改成自己的IP和端口号
->
->````
->git config --global http.proxy <http://127.0.0.1:7890>
->git config --global https.proxy <http://127.0.0.1:7890>
->````
+主要是 npm 命令需要代理才能顺利下载文件，比如:安装 PostCSS
+要构建或更新站点的 CSS 资源，您还需要PostCSS创建最终资产。
+
+如果您需要安装它，您必须在您的机器上安装最新版本的NodeJS，以便您可以使用npmNode 包管理器。
+
+默认情况npm下，在您运行的目录下安装工具
+
+```
+npm install：
+npm install -D autoprefixer
+npm install -D postcss-cli
+npm install -D --save autoprefixer
+```
+如果发生报错，并且查看到如下的错误信息
+
+```
+path /home/sky/work/code/learning/docsy/>node_modules/hugo-extended
+command failed
+command sh -c node postinstall.js
+✖ Hugo installation failed. :
+node:internal/process/promises:391
+triggerUncaughtException(err, true />*fromPromise*/);
+	^
+RequestError: getaddrinfo ENOTFOUND github.com
+```
+
+解决方式：
+
+```
+npm config set registry <https://registry.npmmirror.com>
+npm config set proxy <http://192.168.2.1:7890>
+npm config set https-proxy <http://192.168.2.1:7890>
+```
+
+如果遇到报错信息：
+
+```
+Failed to connect to github.com port 443 after 21045 ms
+Could not connect to server
+```
+
+
+注意修改成自己的IP和端口号
+
+````
+git config --global http.proxy <http://127.0.0.1:7890>
+git config --global https.proxy <http://127.0.0.1:7890>
+````
 
 ## 站点骨架
 
@@ -148,7 +166,7 @@ myblog/
 
 ​	存放所有博客文章和页面。每个markdown文件的Front matter中定义标题、日期、草稿状态、标签与分类等信息。
 
-​	实例文件：
+​	示例文件：
 
 	title:"我的第一篇文章"
 	date:2024-03-21
@@ -175,9 +193,9 @@ myblog/
   
 
 1. 利用Hugo命令构建站点时，Hugo 会创建一个 public 目录，目录包含发布的网站，在运行 hugo 命令时生成。Hugo 根据需要重建此目录及其内容。
-2. 通常还会创建一个 resources 目录：目录包含 Hugo 资源管道的缓存输出，在运行 hugo 或 hugo server 命令时生成。默认情况下，此缓存目录包括 CSS 和图片。Hugo 根据需要重建此目录及其内容
-3. Hugo 创建了一个联合文件系统，允许将两个或多个目录挂载到同一位置。例如，假设您的主目录包含一个 Hugo 项目的目录，另一个目录包含共享内容.您可以使用挂载（mounts）在构建站点时包含共享内容。在站点配置中
-4. 当两个或多个文件具有相同路径时，优先级顺序遵循挂载的顺序。例如，如果共享内容目录包含 books/book-1.md，则会被忽略，因为项目的 content 目录先被挂载。
+2. 通常还会创建一个 resources 目录：目录包含 Hugo 资源管道的缓存输出，在运行 hugo 或 hugo server 命令时生成。默认情况下，此缓存目录包括 CSS 和图片。Hugo 根据需要重建此目录及其内容。
+3. Hugo 创建了一个联合文件系统，允许将两个或多个目录挂载到同一位置。例如，假设您的主目录包含一个 Hugo 项目的目录，另一个目录包含共享内容。您可以使用挂载（mounts）在构建站点时包含共享内容。
+4. 在站点配置中当两个或多个文件具有相同路径时，优先级顺序遵循挂载的顺序。例如，如果共享内容目录包含 books/book-1.md，则会被忽略，因为项目的 content 目录先被挂载。
 5. 将archetypes/default.md,"+"改成"-","="改成"+"，因为这个时toml格式的，我们要改成yaml格式
 
 ## 配置主题
@@ -257,6 +275,8 @@ draft改成false，否则不会显示
 - --minify:生成时压缩输出文件
 - --gc:构建时运行垃圾回收
 
+
+
 ### 404 Page Not Found
 
 __注意，一旦网站可以建立，那么除非你做一个新的文件，否则就一直404__
@@ -267,6 +287,8 @@ __注意，一旦网站可以建立，那么除非你做一个新的文件，否
 **推荐**：在 `config.toml` 中写 `theme = "your_theme_name"`
 
 **临时**：命令行 `hugo server --theme=your_theme_name`
+
+如果需要更多,如配置favicon，评论区，参考[建站技术 | 使用 Hugo + Stack 简单搭建一个博客][1]
 
 ## Github推送自动化
 
@@ -288,25 +310,21 @@ __注意，一旦网站可以建立，那么除非你做一个新的文件，否
 1. 在源码仓库更新时触发构建操作，生成博客所需的静态文件
 2.  将生成的文件自动推送到展示仓库，无需手动干预
 
-Settings->Developer Settings->Personal access tokens -> Tokens(classic),勾选repo和workflow，过期时间选择永远不过期
+1. Settings->Developer Settings->Personal access tokens -> Tokens(classic),勾选repo和workflow，过期时间选择永远不过期
 
 generate token，然后复制生成的token
 
-点开**source_blog**,Security-Secrets and variables-Actions-Repository secrets,创建一个新的。
+2. 点开**source_blog**,Security-Secrets and variables-Actions-Repository secrets,创建一个新的。
 
-自动化代码(deploy.yml)，
+3. 修改自动化代码(deploy.yml)，将修改分支改成master。将.github_hugo移到blog下，并且去掉`_hugo`,作为部署文件
 
-修改分支改成master
+4. git init 创建.git 文件
 
-将.github_hugo移到blog下，并且去掉`_hugo`,作为部署文件
+5. EXTERNAL_REPOSITORY:`xx/blog_show`，展示的博客
 
-git init 创建.git 文件
+​	blow_show里所展示的就是public里面的内容
 
-EXTERNAL_REPOSITORY:`xx/blog_show`，展示的博客
-
-blow_show里所展示的就是public里面的内容
-
-blow_show>Settings>Pages>Build and delployment，改成 master 和root
+6. blow_show>Settings>Pages>Build and delployment，改成 master 和root
 
 你可以在根目录创建一个批处理脚本，用来快速启动本地服务器并使用 chrome 打开网页。
 
@@ -321,189 +339,28 @@ pause
 
 ## 使用Netlify
 
-Add newproject > import an existing project >选择blog_show
+Add newproject → import an existing project→选择blog_show
 
-### 如何建立自己的（博客）域名 
 
-​	以`blog.xyz.site`为例
 
-1. 首先选择域名注册商，如[阿里云](https://wanwang.aliyun.com/domain),购买自定义域名如`xyz.site`.可以自定义子域名，如`blog.xyz.site`。
 
-2. 配置DNS记录
 
-   为了让 `blog.xyz.com` 指向你的 Netlify 博客，需要在域名注册商那里设置 DNS：
+## 参考
+1. [hexo与hugo博客搭建与github自动化推送和服务器推送](https://www.bilibili.com/video/BV1fNNreEEDi)
+2. [Stack官方文档 ](https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/)   
 
-   1. 登录域名注册商控制台。
-   2. 进入[**DNS 管理** 或 **域名解析** ](https://dnsnext.console.aliyun.com/authoritative/domains)页面。
-   3. 添加以下记录：
+[1]: https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/
 
-   - **CNAME 记录**
-     - **主机名/名称/记录**：`blog`
-     - **指向/值/记录值**：你的 Netlify 默认域名（`chenaasad.netlify.app`）
-     - **TTL**：默认即可
 
-   > ⚠️ 注意：不要同时为同一个子域名添加 A 记录，如果添加了 CNAME，就不要再加 A 记录。
 
-   4. 保存并等待 DNS 生效（通常几分钟到 24 小时）。
 
-3. 
-   在 Netlify 添加自定义域
 
-   1. 登录 Netlify 控制台，进入你的站点设置。
+这是第一页内容。
 
-   2. 选择 **Domain management → Custom domains → Add custom domain**。
+<!--pagebreak-->
 
-      即[Set up Netlify DNS ](https://app.netlify.com/projects/chenalna/dns/setup)
+这是第二页内容。
 
-   3. 输入你的域名 `blog.xyz.com` 并保存。
+<!--pagebreak-->
 
-   4. Netlify 会自动检测你的 CNAME 配置是否正确，如果一切正常，它会颁发 SSL 证书（HTTPS）。
-
-   5. Netlify 会自动为自定义域名生成免费的 Let's Encrypt SSL 证书。
-
-      你只需要确保在站点设置中开启 **Enforce HTTPS**（强制 HTTPS）。
-
-      等证书生效后，你的博客就可以通过 `https://blog.xyz.com` 访问。
-
-4. DNS 是否已传播
-
-   即便你已经添加了正确的 CNAME 记录，DNS 修改需要一定时间才能在全球生效。
-
-   - 一般 10 分钟到 24 小时不等。
-   - 可以用以下工具查询是否已生效：
-     - https://dnschecker.org/#CNAME/blog.chenalna.site
-        看到解析结果是 **`chenaasad.netlify.app`** 才算成功。
-
-5. 是否开启了 CDN/代理
-
-   如果你使用 Cloudflare 或类似服务：
-
-   - 确保 `blog` 这一条记录**小云朵为灰色（DNS only）**而不是橙色（代理状态），
-      因为橙色会隐藏真实 CNAME，导致 Netlify 无法验证。
-   - 验证完成并签发证书后，可以再开启代理。
-
-
-
-### 为什么需要两个方向的绑定？
-
-1. 阿里云的作用
-
-   阿里云是**域名注册商**，它只负责：
-
-   - 记录「访问 blog.chenalna.site 时去哪台服务器找内容」
-   - 也就是**DNS 解析**（把域名解析成 IP 或转发到另一个域名）
-
-   > 你在阿里云添加 **CNAME 记录**，只是告诉互联网：
-   >  “访问 `blog.chenalna.site` 时，请先去找 `chenalna.netlify.app`”。
-
-   阿里云并不知道 `chenalna.netlify.app` 是不是你的站点，也不会给你的网站签 SSL 证书。
-    它只是把访问者“指路”给 Netlify。
-
-2.Netfliy作用
-
-​	Netlify 是**托管服务商**，它必须：
-
-- **确认这个域名是你的**（防止别人盗用你的域名指到他们的服务器）
-- **为这个域名签发 SSL 证书**（HTTPS 加密）
-- 配置站点路由，把 `blog.chenalna.site` 的请求交给你的博客程序
-
-> 所以你在 **Netlify → Domain management** 添加域名，
->  就是告诉 Netlify：
->  “这个域名是我的，DNS 我已经指到你们这里，请为它提供服务并签证书。”
-
-3.  总结
-	
-	**阿里云**：相当于邮局的“地址登记处”，你告诉它：
-	
-	“有人找 `blog.chenalna.site`，就送到 Netlify。”
-	
-	**Netlify**：相当于你自己的“房子”，你得告诉它：
-	
-	“这个地址归我，请给这个地址挂上门牌和门锁（SSL证书）。”
-	
-4. 归纳
-
-	1️⃣ 你输入 `https://blog.chenalna.site`
-
-- 浏览器需要找到这个域名的 **IP**。
-
-- 向 DNS 递归服务器（例如阿里云）查询 `blog.chenalna.site` 的记录。
-
-- 阿里云返回：
-  `CNAME chenalna.netlify.app`
-
-  
-  `blog.chenalna.site` 的解析结果 **等同于** `chenalna.netlify.app`，
-   解析这个域名就行。
-
-	2️⃣ 浏览器继续查询 `chenalna.netlify.app`
-
-- 递归 DNS 服务器向 **Netlify 的权威 DNS** 查询 A/AAAA 记录。
-- Netlify 返回一个或多个 **IP**（通常是 CDN/负载均衡节点）。
-- 浏览器最终得到**托管服务器 IP**。
-
-	3️⃣ 浏览器建立 TCP/TLS 连接
-
-- 浏览器连接到**刚刚得到的 IP**。
-
-- 如果是 HTTPS，会先发起 **TLS 握手**：
-
-  - 在 `ClientHello` 里带上 **SNI**（Server Name Indication）：
-
-    ```
-    blog.chenalna.site
-    ```
-
-  - 这样服务器才能选择正确的 SSL 证书。
-
-	4️⃣ 浏览器发送 HTTP 请求
-
-- 握手完成后，浏览器发送标准 HTTP 请求：
-
-  ```
-  GET / HTTP/1.1
-  Host: blog.chenalna.site
-  User-Agent: ...
-  Accept: ...
-  ```
-
-- 关键点：**Host = blog.chenalna.site**
-   。 即使连接的是 Netlify 的 IP，
-   Host 告诉 Netlify：“我访问的是 `blog.chenalna.site` 项目。”
-
-	5️⃣ Netlify 服务器返回内容
-
-- Netlify 根据 Host 找到对应的项目（你 GitHub 部署的静态文件）。
-- 直接返回 **HTML/CSS/JS** 等静态资源。
-- 因为是静态站点，返回的就是**最终网页文件**，不需要再发起其他“对象请求”才能获取主体内容（除非页面里引用了图片、JS、CSS，这些会触发额外的 HTTP 请求）。
-
-| 域名类型                                  | 作用                                           | 是否必须   |
-| ----------------------------------------- | ---------------------------------------------- | ---------- |
-| **Netlify 子域名** `chenalna.netlify.app` | Netlify 自动分配，始终可用，方便测试或直接访问 | ✅ 自动拥有 |
-| **自定义域名** `blog.chenalna.site`       | 你绑定的独立域名，用于品牌化访问               | 可选       |
-
-它们共存，不冲突，**访问最终落在同一个 Netlify 服务器和同一份内容上**。
-
-
-
-## Edge自带问题
-
-1. 此网站的证书无效。由于此连接不安全，因此信息(如密码或信用卡)不会安全地发送到此网站，并且可能被其他人截获或看到。建议你不要在此网站输入个人信息或避免使用此网站。
-
-**DNS 解析未生效**
-
-- 你在阿里云添加了 `blog.chenalna.site` 的 CNAME，但 DNS 还没有在全球生效。
-- Netlify 还没检测到域名指向它的服务器，因此 **无法签发 SSL 证书**。
-- 生效时间通常 10 分钟到 24 小时不等。
-
-2. 与此站点的连接不安全此站点有一个由受信任的颁发机构颁发的有效证书。但是，网站的某些部分不安全。这意味着信息 (如密码或信用卡) 可能不会安全地发送到此站点，并可能被其他人截获或查看。
-
-   Let’s Encrypt 的证书 **有效期为 90 天（约 3 个月）**。
-
-   Netlify 会在证书到期前 **自动续签**，无需手动干预。
-
-   **清除 Edge 缓存和证书状态**
-
-   - 打开 Edge → 设置 → 隐私、搜索和服务 → 清除浏览数据 → 勾选缓存文件、Cookie
-   - 也可以在地址栏输入 `edge://net-internals/#dns` → Clear host cache
-   - 再重新访问 `https://blog.chenalna.site`
+这是第三页内容。
