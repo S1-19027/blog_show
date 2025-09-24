@@ -2,6 +2,8 @@
 date : "2025-09-23" 
 title: Hugo + Stack 简单搭建一个静态博客
 description: 从零开始的博客生活
+weight: 1
+series: "test"
 categories:
     - Hugo
     - Web
@@ -28,7 +30,7 @@ tags:
 2. 下载node.js
 
 
-## 安装golang
+### 安装golang
 
 安装hugo之前，先安装好[golang](<https://go.dev/dl/>)，推荐安装最新版本。
 
@@ -36,7 +38,7 @@ tags:
 
 修改环境变量，将 GOPATH 的值修改为 C:\Users\sky\work\soft\gopath 或者 D:\sky\work\soft\gopath（默认为 %USERPROFILE%\go）。
 
-## 安装nodejs/npm
+### 安装nodejs/npm
 
 为了使用Google Docsy主题，需要安装nodejs/npm。
 
@@ -44,7 +46,7 @@ tags:
 
 安装时选择安装路径为 C:\Users\sky\work\soft\nodejs 或者 D:\sky\work\soft\nodejs。
 
-## 安装Hugo
+### 安装Hugo
 
 在Hugo Releases页面下载对应操作系统版本的安装包。[Hugo官方下载文档](https://gohugo.io/installation/)
 ,如`hugo_extended_0.150.0_windows-amd64.zip`.下载下来之后，解压缩，将 hugo.exe 文件复制到目录下。
@@ -341,8 +343,11 @@ pause
 
 Add newproject → import an existing project→选择blog_show
 
+## Typora +PicGo 图床配置
 
+下载[PicGo]([Releases · Molunerfinn/PicGo](https://github.com/Molunerfinn/PicGo/releases))
 
+创建一个新的仓库如**blog_picture** 设置为公开博客图片
 
 
 ## 参考
@@ -351,16 +356,3 @@ Add newproject → import an existing project→选择blog_show
 
 [1]: https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/
 
-
-
-
-
-这是第一页内容。
-
-<!--pagebreak-->
-
-这是第二页内容。
-
-<!--pagebreak-->
-
-这是第三页内容。

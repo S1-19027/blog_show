@@ -1,3 +1,16 @@
+---
+date : "2025-09-23" 
+title: 遇到的问题
+description: 远比想象的多
+weight: 2
+series: "test"
+categories:
+    - Hugo
+    - Web
+tags:
+    - Hugo
+---
+
 ## 使用git命令下载主题
 
 >1. 在myblog 目录下使用git 命令来下载主题hugo-theme-bootstrap4-blog：
@@ -705,8 +718,53 @@ mailto:chenalna52@gmail.com?subject=Hello&body=This%20is%20a%20test
 mailto:abc@example.com,xyz@example.com
 ```
 
-​	
+## Hugo单篇文章分页探究
 
+#### 1. Hugo 的分页概念
 
+在 Hugo 中，分页 (`pagination`) 通常用于 **列表页面**，例如：
 
+- 博客首页（显示多篇文章的列表）
+- 分类页（显示某个分类下的文章列表）
+- 标签页（显示某个标签下的文章列表）
+
+分页的作用是：如果文章很多，每页只显示一定数量的文章（比如每页 5 篇），然后用户可以通过“上一页/下一页”或页码来浏览其他文章。
+
+#### 2. 单篇文章内分页
+
+Hugo 不支持单篇文章分页是通过 **`<!--more-->`** 或 **`read more`** 来控制文章摘要显示，但这和模板中的 `paginator` 并不一样。
+ 文档中介绍的 `paginator` 是 `{{ .Paginate }}` 语法，用于列表分页，而不是单篇文章内容分页。
+
+Hugo 本质是**静态站点生成器**，生成的是一组 **固定的 HTML 文件**，它不会像 PHP 或 Node 这种动态后端根据 `?page=1` 之类的参数实时拆分内容。所以即使 URL 上写了 `?page=1`、`?page=2`，如果没有在构建时为每一个参数生成独立的页面文件，浏览器也只会访问到同一个静态文件。
+
+我之前给出的 `?page=` 方案，严格来说只是“伪分页”——
+
+使用 **单篇 Markdown 文件 + `<!--pagebreak-->`** 的方法，带上一页/下一页按钮。
+
+#### 3. 在 Hugo 中的现实做法
+
+如果你想**真正**实现一篇文章的分页阅读，通常有以下几种方式：
+
+##### 1. **拆分为多篇内容文件**（最可靠）
+
+例如：
+
+```
+content/posts/my-article/
+    _index.md    # 目录页（可以写简介）
+    part1.md
+    part2.md
+    part3.md
+```
+
+- 每个 `partX.md` 都是一篇独立文章。
+- 使用列表模板（或自定义导航）实现“上一页/下一页”跳转。
+- 构建后每个 part 都会生成一个独立的 HTML 文件，这才是真分页。
+
+##### 2. **直接写成长文**
+
+Hugo 的推荐做法通常是：
+
+- 用 **目录（Table of Contents）** + **锚点跳转** (`#section-1`) 来组织长文章。
+- 通过 Hugo 的 `{{ .TableOfContents }}` 自动生成侧边导航，让读者可以快速跳转。
 

@@ -28,18 +28,18 @@
 &lt;p&gt;下载node.js&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;安装golang&#34;&gt;安装golang
-&lt;/h2&gt;&lt;p&gt;安装hugo之前，先安装好&lt;a class=&#34;link&#34; href=&#34;https://go.dev/dl/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h3 id=&#34;安装golang&#34;&gt;安装golang
+&lt;/h3&gt;&lt;p&gt;安装hugo之前，先安装好&lt;a class=&#34;link&#34; href=&#34;https://go.dev/dl/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;golang&lt;/a&gt;，推荐安装最新版本。&lt;/p&gt;
 &lt;p&gt;安装时选择安装目录为 C:\Users\sky\work\soft\golang 或者 D:\sky\work\soft\golang。&lt;/p&gt;
 &lt;p&gt;修改环境变量，将 GOPATH 的值修改为 C:\Users\sky\work\soft\gopath 或者 D:\sky\work\soft\gopath（默认为 %USERPROFILE%\go）。&lt;/p&gt;
-&lt;h2 id=&#34;安装nodejsnpm&#34;&gt;安装nodejs/npm
-&lt;/h2&gt;&lt;p&gt;为了使用Google Docsy主题，需要安装nodejs/npm。&lt;/p&gt;
+&lt;h3 id=&#34;安装nodejsnpm&#34;&gt;安装nodejs/npm
+&lt;/h3&gt;&lt;p&gt;为了使用Google Docsy主题，需要安装nodejs/npm。&lt;/p&gt;
 &lt;p&gt;在网站下载&lt;a class=&#34;link&#34; href=&#34;https://nodejs.org/en/download/package-manager&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;nodejs&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;安装时选择安装路径为 C:\Users\sky\work\soft\nodejs 或者 D:\sky\work\soft\nodejs。&lt;/p&gt;
-&lt;h2 id=&#34;安装hugo&#34;&gt;安装Hugo
-&lt;/h2&gt;&lt;p&gt;在Hugo Releases页面下载对应操作系统版本的安装包。&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/installation/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;h3 id=&#34;安装hugo&#34;&gt;安装Hugo
+&lt;/h3&gt;&lt;p&gt;在Hugo Releases页面下载对应操作系统版本的安装包。&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/installation/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hugo官方下载文档&lt;/a&gt;
 ,如&lt;code&gt;hugo_extended_0.150.0_windows-amd64.zip&lt;/code&gt;.下载下来之后，解压缩，将 hugo.exe 文件复制到目录下。&lt;/p&gt;
 &lt;p&gt;然后修改环境变量，在 Path 中增加这个路径，
@@ -453,6 +453,10 @@ draft改成false，否则不会显示&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;使用netlify&#34;&gt;使用Netlify
 &lt;/h2&gt;&lt;p&gt;Add newproject → import an existing project→选择blog_show&lt;/p&gt;
+&lt;h2 id=&#34;typora-picgo-图床配置&#34;&gt;Typora +PicGo 图床配置
+&lt;/h2&gt;&lt;p&gt;下载[PicGo](&lt;a class=&#34;link&#34; href=&#34;https://github.com/Molunerfinn/PicGo/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Releases · Molunerfinn/PicGo&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;创建一个新的仓库如&lt;strong&gt;blog_picture&lt;/strong&gt; 设置为公开博客图片&lt;/p&gt;
 &lt;h2 id=&#34;参考&#34;&gt;参考
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1fNNreEEDi&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -460,11 +464,6 @@ draft改成false，否则不会显示&lt;/p&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Stack官方文档 &lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;这是第一页内容。&lt;/p&gt;
-&lt;!--pagebreak--&gt;
-&lt;p&gt;这是第二页内容。&lt;/p&gt;
-&lt;!--pagebreak--&gt;
-&lt;p&gt;这是第三页内容。&lt;/p&gt;
 </description>
         </item>
         <item>

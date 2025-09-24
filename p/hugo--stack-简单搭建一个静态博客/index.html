@@ -345,10 +345,13 @@
   <ol>
     <li><a href="#前言">前言</a></li>
     <li><a href="#hugo优势">Hugo优势</a></li>
-    <li><a href="#环境准备">环境准备</a></li>
-    <li><a href="#安装golang">安装golang</a></li>
-    <li><a href="#安装nodejsnpm">安装nodejs/npm</a></li>
-    <li><a href="#安装hugo">安装Hugo</a></li>
+    <li><a href="#环境准备">环境准备</a>
+      <ol>
+        <li><a href="#安装golang">安装golang</a></li>
+        <li><a href="#安装nodejsnpm">安装nodejs/npm</a></li>
+        <li><a href="#安装hugo">安装Hugo</a></li>
+      </ol>
+    </li>
     <li><a href="#hugo安装完成后的配置工作">Hugo安装完成后的配置工作</a></li>
     <li><a href="#设置代理">设置代理</a>
       <ol>
@@ -368,6 +371,7 @@
       </ol>
     </li>
     <li><a href="#使用netlify">使用Netlify</a></li>
+    <li><a href="#typora-picgo-图床配置">Typora +PicGo 图床配置</a></li>
     <li><a href="#参考">参考</a></li>
   </ol>
 </nav>
@@ -471,18 +475,18 @@
 <p>下载node.js</p>
 </li>
 </ol>
-<h2 id="安装golang">安装golang
-</h2><p>安装hugo之前，先安装好<a class="link" href="https://go.dev/dl/"  target="_blank" rel="noopener"
+<h3 id="安装golang">安装golang
+</h3><p>安装hugo之前，先安装好<a class="link" href="https://go.dev/dl/"  target="_blank" rel="noopener"
     >golang</a>，推荐安装最新版本。</p>
 <p>安装时选择安装目录为 C:\Users\sky\work\soft\golang 或者 D:\sky\work\soft\golang。</p>
 <p>修改环境变量，将 GOPATH 的值修改为 C:\Users\sky\work\soft\gopath 或者 D:\sky\work\soft\gopath（默认为 %USERPROFILE%\go）。</p>
-<h2 id="安装nodejsnpm">安装nodejs/npm
-</h2><p>为了使用Google Docsy主题，需要安装nodejs/npm。</p>
+<h3 id="安装nodejsnpm">安装nodejs/npm
+</h3><p>为了使用Google Docsy主题，需要安装nodejs/npm。</p>
 <p>在网站下载<a class="link" href="https://nodejs.org/en/download/package-manager"  target="_blank" rel="noopener"
     >nodejs</a></p>
 <p>安装时选择安装路径为 C:\Users\sky\work\soft\nodejs 或者 D:\sky\work\soft\nodejs。</p>
-<h2 id="安装hugo">安装Hugo
-</h2><p>在Hugo Releases页面下载对应操作系统版本的安装包。<a class="link" href="https://gohugo.io/installation/"  target="_blank" rel="noopener"
+<h3 id="安装hugo">安装Hugo
+</h3><p>在Hugo Releases页面下载对应操作系统版本的安装包。<a class="link" href="https://gohugo.io/installation/"  target="_blank" rel="noopener"
     >Hugo官方下载文档</a>
 ,如<code>hugo_extended_0.150.0_windows-amd64.zip</code>.下载下来之后，解压缩，将 hugo.exe 文件复制到目录下。</p>
 <p>然后修改环境变量，在 Path 中增加这个路径，
@@ -896,6 +900,10 @@ draft改成false，否则不会显示</p>
 </div>
 </div><h2 id="使用netlify">使用Netlify
 </h2><p>Add newproject → import an existing project→选择blog_show</p>
+<h2 id="typora-picgo-图床配置">Typora +PicGo 图床配置
+</h2><p>下载[PicGo](<a class="link" href="https://github.com/Molunerfinn/PicGo/releases"  target="_blank" rel="noopener"
+    >Releases · Molunerfinn/PicGo</a>)</p>
+<p>创建一个新的仓库如<strong>blog_picture</strong> 设置为公开博客图片</p>
 <h2 id="参考">参考
 </h2><ol>
 <li><a class="link" href="https://www.bilibili.com/video/BV1fNNreEEDi"  target="_blank" rel="noopener"
@@ -903,11 +911,6 @@ draft改成false，否则不会显示</p>
 <li><a class="link" href="https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/"  target="_blank" rel="noopener"
     >Stack官方文档 </a></li>
 </ol>
-<p>这是第一页内容。</p>
-<!--pagebreak-->
-<p>这是第二页内容。</p>
-<!--pagebreak-->
-<p>这是第三页内容。</p>
 
 </section>
 
