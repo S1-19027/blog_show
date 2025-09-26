@@ -6,7 +6,9 @@
 
 <link rel='canonical' href='https://example.com/p/hugo--stack-%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/'>
 
-<link rel="stylesheet" href="/scss/style.min.cac69214c8302269ee3e6ca35020a4db9b8e79aabea56cb301ccc471f00b9f16.css"><meta property='og:title' content="Hugo + Stack 简单搭建一个静态博客">
+<link rel="stylesheet" href="/scss/style.min.cac69214c8302269ee3e6ca35020a4db9b8e79aabea56cb301ccc471f00b9f16.css">
+
+<link rel="stylesheet" href="/scss/custom.min.2d342f467fd823e80779fec51a79449af341574c91722ab8c192d65cd70133a2.css" integrity="sha256-LTQvRn/YI&#43;gHef7FGnlEmvNBV0yRciq4wZLWXNcBM6I="><meta property='og:title' content="Hugo + Stack 简单搭建一个静态博客">
 <meta property='og:description' content="从零开始的博客生活">
 <meta property='og:url' content='https://example.com/p/hugo--stack-%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/'>
 <meta property='og:site_name' content='chenalna'>
@@ -372,6 +374,7 @@
     </li>
     <li><a href="#使用netlify">使用Netlify</a></li>
     <li><a href="#typora-picgo-图床配置">Typora +PicGo 图床配置</a></li>
+    <li><a href="#使用云服务器">使用云服务器</a></li>
     <li><a href="#参考">参考</a></li>
   </ol>
 </nav>
@@ -445,7 +448,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 4 分钟
                 </time>
             </div>
         
@@ -851,19 +854,13 @@ draft改成false，否则不会显示</p>
 </h3><p>利用<strong>Github Actions</strong>或脚本实现如下自动化：</p>
 <ol>
 <li>
-<p>在源码仓库更新时触发构建操作，生成博客所需的静态文件</p>
+<p>在源码仓库更新时触发构建操作，生成博客所需的静态文件。将生成的文件自动推送到展示仓库，无需手动干预。</p>
 </li>
 <li>
-<p>将生成的文件自动推送到展示仓库，无需手动干预</p>
+<p><a id="step1"></a>Settings-&gt;Developer Settings-&gt;Personal access tokens -&gt; Tokens(classic),勾选repo和workflow，过期时间选择永远不过期。generate token，然后复制生成的token。</p>
 </li>
 <li>
-<p>Settings-&gt;Developer Settings-&gt;Personal access tokens -&gt; Tokens(classic),勾选repo和workflow，过期时间选择永远不过期</p>
-</li>
-</ol>
-<p>generate token，然后复制生成的token</p>
-<ol start="2">
-<li>
-<p>点开<strong>source_blog</strong>,Security-Secrets and variables-Actions-Repository secrets,创建一个新的。</p>
+<p>点开<strong>source_blog</strong>,Security-Secrets and variables-Actions-Repository secrets-New repository secret,填写<a class="link" href="#step1" >2</a>中生成的token。</p>
 </li>
 <li>
 <p>修改自动化代码(deploy.yml)，将修改分支改成master。将.github_hugo移到blog下，并且去掉<code>_hugo</code>,作为部署文件</p>
@@ -876,7 +873,7 @@ draft改成false，否则不会显示</p>
 </li>
 </ol>
 <p>​	blow_show里所展示的就是public里面的内容</p>
-<ol start="6">
+<ol start="7">
 <li>blow_show&gt;Settings&gt;Pages&gt;Build and delployment，改成 master 和root</li>
 </ol>
 <p>你可以在根目录创建一个批处理脚本，用来快速启动本地服务器并使用 chrome 打开网页。</p>
@@ -899,11 +896,45 @@ draft改成false，否则不会显示</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="使用netlify">使用Netlify
-</h2><p>Add newproject → import an existing project→选择blog_show</p>
+</h2><p>Add new project → import an existing project→选择blog_show</p>
 <h2 id="typora-picgo-图床配置">Typora +PicGo 图床配置
-</h2><p>下载[PicGo](<a class="link" href="https://github.com/Molunerfinn/PicGo/releases"  target="_blank" rel="noopener"
-    >Releases · Molunerfinn/PicGo</a>)</p>
-<p>创建一个新的仓库如<strong>blog_picture</strong> 设置为公开博客图片</p>
+</h2><p>下载<a class="link" href="https://github.com/Molunerfinn/PicGo/releases"  title="Releases · Molunerfinn/PicGo"
+     target="_blank" rel="noopener"
+    >PicGo</a></p>
+<p>创建一个新的仓库如<strong>blog_picture</strong> 设置为公开博客图片</p>
+<p><a class="link" href="#%e8%87%aa%e5%8a%a8%e5%8c%96%e6%b5%81%e7%a8%8b" >再次重复操作</a>,生成一个blog_show,然后在PicGo里填写对应Token.</p>
+<p>这样子就可以通过PicGo上传了。</p>
+<p>但是我不想每次都得要先通过PicGo上传至Github，然后将链接如（<code>https://raw.githubusercontent.com/S1-19027/blog_picture/master/image-20250925115857370.png</code>）再复制到Markdown里的链接语法。</p>
+<p>我希望截图后就可以直接上传至github</p>
+<p>在Typora中：</p>
+<ol>
+<li>
+<p>指定一下图形设置的上传服务设定</p>
+</li>
+<li>
+<p>插入图片时选择上传图片。</p>
+</li>
+</ol>
+<p>阿里云图床,开通OSS教程：<a class="link" href="https://developer.aliyun.com/article/1465963"  target="_blank" rel="noopener"
+    >参考文献1</a>、<a class="link" href="https://blog.csdn.net/qq_51210361/article/details/145210585"  target="_blank" rel="noopener"
+    >参考文献2</a></p>
+<p>注：阿里云的99元/年云服务器似乎不太行，还是老实买点2核4Gib的</p>
+<p>华为云相比较太贵了，更多的我也懒得去找了。</p>
+<h2 id="使用云服务器">使用云服务器
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                        
+</span></span><span class="line"><span class="cl">│ A new version (/tmp/tmp.QB1PQknVLa) of configuration file /etc/ssh/sshd_config is available, but the version installed currently has been locally modified.  │                                           
+</span></span><span class="line"><span class="cl">│ What do you want to do about modified configuration file sshd_config?       
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>选择<code>Install the package maintainer's version</code>即可</p>
+<p>利用Nginx即可</p>
 <h2 id="参考">参考
 </h2><ol>
 <li><a class="link" href="https://www.bilibili.com/video/BV1fNNreEEDi"  target="_blank" rel="noopener"
@@ -911,7 +942,10 @@ draft改成false，否则不会显示</p>
 <li><a class="link" href="https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/"  target="_blank" rel="noopener"
     >Stack官方文档 </a></li>
 </ol>
-
+<script>
+console.log('Waline 配置检查:');
+console.log('ServerURL:', 'https://commentsystem.chenalna.site');
+</script>
 </section>
 
 
@@ -949,46 +983,23 @@ draft改成false，否则不会显示</p>
      
     
         
-    <div class="disqus-container">
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
 <style>
-    .disqus-container {
+    .waline-container {
         background-color: var(--card-background);
         border-radius: var(--card-border-radius);
         box-shadow: var(--shadow-l1);
         padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
     }
-</style>
-
-<script>
-    window.addEventListener('onColorSchemeChange', (e) => {
-        if (typeof DISQUS == 'object') {
-            DISQUS.reset({
-                reload: true
-            });
-        }
-    })
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://npm.elemecdn.com/@waline/emojis@1.1.0/bilibili"],"lang":"zh-CN","locale":{"admin":"Admin","placeholder":"请留言"},"requiredMeta":["nick","mail","link"],"serverURL":"https://commentsystem.chenalna.site","visitor":false});
 </script>
 
     

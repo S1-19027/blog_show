@@ -6,7 +6,9 @@
 
 <link rel='canonical' href='https://example.com/links/'>
 
-<link rel="stylesheet" href="/scss/style.min.cac69214c8302269ee3e6ca35020a4db9b8e79aabea56cb301ccc471f00b9f16.css"><meta property='og:title' content="Links">
+<link rel="stylesheet" href="/scss/style.min.cac69214c8302269ee3e6ca35020a4db9b8e79aabea56cb301ccc471f00b9f16.css">
+
+<link rel="stylesheet" href="/scss/custom.min.2d342f467fd823e80779fec51a79449af341574c91722ab8c192d65cd70133a2.css" integrity="sha256-LTQvRn/YI&#43;gHef7FGnlEmvNBV0yRciq4wZLWXNcBM6I="><meta property='og:title' content="Links">
 <meta property='og:description' content="To use this feature, add links section to frontmatter.\nThis page&rsquo;s frontmatter:\n1 2 3 4 5 6 7 8 9 links: - title: GitHub description: GitHub is the world&#39;s largest software development platform. website: https://github.com image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png - title: TypeScript description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. website: https://www.typescriptlang.org image: ts-logo-128.jpg image field accepts both local and external images.\n">
 <meta property='og:url' content='https://example.com/links/'>
 <meta property='og:site_name' content='chenalna'>
@@ -476,6 +478,27 @@
     
 
      
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://npm.elemecdn.com/@waline/emojis@1.1.0/bilibili"],"lang":"zh-CN","locale":{"admin":"Admin","placeholder":"请留言"},"requiredMeta":["nick","mail","link"],"serverURL":"https://commentsystem.chenalna.site","visitor":false});
+</script>
+
     
 
     <footer class="site-footer">

@@ -404,19 +404,13 @@ draft改成false，否则不会显示&lt;/p&gt;
 &lt;/h3&gt;&lt;p&gt;利用&lt;strong&gt;Github Actions&lt;/strong&gt;或脚本实现如下自动化：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;在源码仓库更新时触发构建操作，生成博客所需的静态文件&lt;/p&gt;
+&lt;p&gt;在源码仓库更新时触发构建操作，生成博客所需的静态文件。将生成的文件自动推送到展示仓库，无需手动干预。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;将生成的文件自动推送到展示仓库，无需手动干预&lt;/p&gt;
+&lt;p&gt;&lt;a id=&#34;step1&#34;&gt;&lt;/a&gt;Settings-&amp;gt;Developer Settings-&amp;gt;Personal access tokens -&amp;gt; Tokens(classic),勾选repo和workflow，过期时间选择永远不过期。generate token，然后复制生成的token。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Settings-&amp;gt;Developer Settings-&amp;gt;Personal access tokens -&amp;gt; Tokens(classic),勾选repo和workflow，过期时间选择永远不过期&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;generate token，然后复制生成的token&lt;/p&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;点开&lt;strong&gt;source_blog&lt;/strong&gt;,Security-Secrets and variables-Actions-Repository secrets,创建一个新的。&lt;/p&gt;
+&lt;p&gt;点开&lt;strong&gt;source_blog&lt;/strong&gt;,Security-Secrets and variables-Actions-Repository secrets-New repository secret,填写&lt;a class=&#34;link&#34; href=&#34;#step1&#34; &gt;2&lt;/a&gt;中生成的token。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;修改自动化代码(deploy.yml)，将修改分支改成master。将.github_hugo移到blog下，并且去掉&lt;code&gt;_hugo&lt;/code&gt;,作为部署文件&lt;/p&gt;
@@ -429,7 +423,7 @@ draft改成false，否则不会显示&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;​	blow_show里所展示的就是public里面的内容&lt;/p&gt;
-&lt;ol start=&#34;6&#34;&gt;
+&lt;ol start=&#34;7&#34;&gt;
 &lt;li&gt;blow_show&amp;gt;Settings&amp;gt;Pages&amp;gt;Build and delployment，改成 master 和root&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;你可以在根目录创建一个批处理脚本，用来快速启动本地服务器并使用 chrome 打开网页。&lt;/p&gt;
@@ -452,11 +446,45 @@ draft改成false，否则不会显示&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;使用netlify&#34;&gt;使用Netlify
-&lt;/h2&gt;&lt;p&gt;Add newproject → import an existing project→选择blog_show&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;Add new project → import an existing project→选择blog_show&lt;/p&gt;
 &lt;h2 id=&#34;typora-picgo-图床配置&#34;&gt;Typora +PicGo 图床配置
-&lt;/h2&gt;&lt;p&gt;下载[PicGo](&lt;a class=&#34;link&#34; href=&#34;https://github.com/Molunerfinn/PicGo/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Releases · Molunerfinn/PicGo&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;创建一个新的仓库如&lt;strong&gt;blog_picture&lt;/strong&gt; 设置为公开博客图片&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;下载&lt;a class=&#34;link&#34; href=&#34;https://github.com/Molunerfinn/PicGo/releases&#34;  title=&#34;Releases · Molunerfinn/PicGo&#34;
+     target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PicGo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;创建一个新的仓库如&lt;strong&gt;blog_picture&lt;/strong&gt; 设置为公开博客图片&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;#%e8%87%aa%e5%8a%a8%e5%8c%96%e6%b5%81%e7%a8%8b&#34; &gt;再次重复操作&lt;/a&gt;,生成一个blog_show,然后在PicGo里填写对应Token.&lt;/p&gt;
+&lt;p&gt;这样子就可以通过PicGo上传了。&lt;/p&gt;
+&lt;p&gt;但是我不想每次都得要先通过PicGo上传至Github，然后将链接如（&lt;code&gt;https://raw.githubusercontent.com/S1-19027/blog_picture/master/image-20250925115857370.png&lt;/code&gt;）再复制到Markdown里的链接语法。&lt;/p&gt;
+&lt;p&gt;我希望截图后就可以直接上传至github&lt;/p&gt;
+&lt;p&gt;在Typora中：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;指定一下图形设置的上传服务设定&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;插入图片时选择上传图片。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;阿里云图床,开通OSS教程：&lt;a class=&#34;link&#34; href=&#34;https://developer.aliyun.com/article/1465963&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;参考文献1&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_51210361/article/details/145210585&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;参考文献2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;注：阿里云的99元/年云服务器似乎不太行，还是老实买点2核4Gib的&lt;/p&gt;
+&lt;p&gt;华为云相比较太贵了，更多的我也懒得去找了。&lt;/p&gt;
+&lt;h2 id=&#34;使用云服务器&#34;&gt;使用云服务器
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                        
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│ A new version (/tmp/tmp.QB1PQknVLa) of configuration file /etc/ssh/sshd_config is available, but the version installed currently has been locally modified.  │                                           
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│ What do you want to do about modified configuration file sshd_config?       
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;选择&lt;code&gt;Install the package maintainer&#39;s version&lt;/code&gt;即可&lt;/p&gt;
+&lt;p&gt;利用Nginx即可&lt;/p&gt;
 &lt;h2 id=&#34;参考&#34;&gt;参考
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1fNNreEEDi&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -464,7 +492,10 @@ draft改成false，否则不会显示&lt;/p&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Stack官方文档 &lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</description>
+&lt;script&gt;
+console.log(&#39;Waline 配置检查:&#39;);
+console.log(&#39;ServerURL:&#39;, &#39;https://commentsystem.chenalna.site&#39;);
+&lt;/script&gt;</description>
         </item>
         
     </channel>

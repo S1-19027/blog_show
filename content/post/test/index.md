@@ -3,6 +3,7 @@ date : "2025-09-23"
 title: Hugo + Stack 简单搭建一个静态博客
 description: 从零开始的博客生活
 weight: 1
+draft: false
 series: "test"
 categories:
     - Hugo
@@ -305,28 +306,25 @@ __注意，一旦网站可以建立，那么除非你做一个新的文件，否
    - 用于存储构建后的文件（如public文件夹），供Github Pages或其他托管服务使用
    - 设为Public仓库，确保可以正常访问页面
 
+
 ### 自动化流程
 
 利用**Github Actions**或脚本实现如下自动化：
 
-1. 在源码仓库更新时触发构建操作，生成博客所需的静态文件
-2.  将生成的文件自动推送到展示仓库，无需手动干预
+1. 在源码仓库更新时触发构建操作，生成博客所需的静态文件。将生成的文件自动推送到展示仓库，无需手动干预。
 
-1. Settings->Developer Settings->Personal access tokens -> Tokens(classic),勾选repo和workflow，过期时间选择永远不过期
+2. <a id="step1"></a>Settings->Developer Settings->Personal access tokens -> Tokens(classic),勾选repo和workflow，过期时间选择永远不过期。generate token，然后复制生成的token。
 
-generate token，然后复制生成的token
+3. 点开**source_blog**,Security-Secrets and variables-Actions-Repository secrets-New repository secret,填写[2](#step1)中生成的token。
 
-2. 点开**source_blog**,Security-Secrets and variables-Actions-Repository secrets,创建一个新的。
+4. 修改自动化代码(deploy.yml)，将修改分支改成master。将.github_hugo移到blog下，并且去掉`_hugo`,作为部署文件
 
-3. 修改自动化代码(deploy.yml)，将修改分支改成master。将.github_hugo移到blog下，并且去掉`_hugo`,作为部署文件
-
-4. git init 创建.git 文件
-
-5. EXTERNAL_REPOSITORY:`xx/blog_show`，展示的博客
+5. git init 创建.git 文件
+6. EXTERNAL_REPOSITORY:`xx/blog_show`，展示的博客
 
 ​	blow_show里所展示的就是public里面的内容
 
-6. blow_show>Settings>Pages>Build and delployment，改成 master 和root
+7. blow_show>Settings>Pages>Build and delployment，改成 master 和root
 
 你可以在根目录创建一个批处理脚本，用来快速启动本地服务器并使用 chrome 打开网页。
 
@@ -341,13 +339,47 @@ pause
 
 ## 使用Netlify
 
-Add newproject → import an existing project→选择blog_show
+Add new project → import an existing project→选择blog_show
 
 ## Typora +PicGo 图床配置
 
-下载[PicGo]([Releases · Molunerfinn/PicGo](https://github.com/Molunerfinn/PicGo/releases))
+下载[PicGo](https://github.com/Molunerfinn/PicGo/releases "Releases · Molunerfinn/PicGo")
 
-创建一个新的仓库如**blog_picture** 设置为公开博客图片
+创建一个新的仓库如**blog_picture** 设置为公开博客图片
+
+[再次重复操作](#自动化流程),生成一个blog_show,然后在PicGo里填写对应Token.
+
+这样子就可以通过PicGo上传了。
+
+但是我不想每次都得要先通过PicGo上传至Github，然后将链接如（`https://raw.githubusercontent.com/S1-19027/blog_picture/master/image-20250925115857370.png`）再复制到Markdown里的链接语法。
+
+我希望截图后就可以直接上传至github
+
+在Typora中：
+
+1. 指定一下图形设置的上传服务设定
+
+2. 插入图片时选择上传图片。
+
+
+阿里云图床,开通OSS教程：[参考文献1](https://developer.aliyun.com/article/1465963)、[参考文献2](https://blog.csdn.net/qq_51210361/article/details/145210585)
+
+注：阿里云的99元/年云服务器似乎不太行，还是老实买点2核4Gib的
+
+华为云相比较太贵了，更多的我也懒得去找了。
+
+## 使用云服务器
+
+```
+                        
+│ A new version (/tmp/tmp.QB1PQknVLa) of configuration file /etc/ssh/sshd_config is available, but the version installed currently has been locally modified.  │                                           
+│ What do you want to do about modified configuration file sshd_config?       
+```
+选择`Install the package maintainer's version`即可
+
+利用Nginx即可
+
+
 
 
 ## 参考
@@ -356,3 +388,9 @@ Add newproject → import an existing project→选择blog_show
 
 [1]: https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/
 
+
+
+<script>
+console.log('Waline 配置检查:');
+console.log('ServerURL:', 'https://commentsystem.chenalna.site');
+</script>
