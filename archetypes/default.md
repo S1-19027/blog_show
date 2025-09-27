@@ -1,5 +1,24 @@
 ---
-date : '{{ .Date }}'
-draft : true
-title : '{{ replace .File.ContentBaseName "-" " " | title }}'
+
+title: "{{ replace .Name "-" " " | title }}"
+slug: "{{ .Name }}"
+description: 
+date: "{{ .Date }}"
+lastmod: "{{ .Date }}"
+image: cover.png
+math: 
+license: 
+hidden: false
+draft: false 
+categories: [""]
+tags: [""]
+
 ---
+
+## 附录
+
+### 参考文献
+
+### 版权信息
+
+本文原载于[blog.chenalna.site](https://blog.chenalna.site/)，遵循 CC BY-NC-SA 4.0 协议，复制请保留原文出处。

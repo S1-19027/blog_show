@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="从零开始的博客生活">
+<title>Hugo &#43; Stack 简单搭建一个静态博客</title>
+
+<link rel='canonical' href='https://example.com/p/hugo-stack_blog_tutorial/'>
+
+<link rel="stylesheet" href="/scss/style.min.cac69214c8302269ee3e6ca35020a4db9b8e79aabea56cb301ccc471f00b9f16.css">
+
+<link rel="stylesheet" href="/scss/custom.min.2d342f467fd823e80779fec51a79449af341574c91722ab8c192d65cd70133a2.css" integrity="sha256-LTQvRn/YI&#43;gHef7FGnlEmvNBV0yRciq4wZLWXNcBM6I="><meta property='og:title' content="Hugo + Stack 简单搭建一个静态博客">
+<meta property='og:description' content="从零开始的博客生活">
+<meta property='og:url' content='https://example.com/p/hugo-stack_blog_tutorial/'>
+<meta property='og:site_name' content='chenalna'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:published_time' content='2025-09-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-23T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Hugo + Stack 简单搭建一个静态博客">
+<meta name="twitter:description" content="从零开始的博客生活">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                
+                <a href="https://github.com/S1-19027">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_9192c1e85cf4320b.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🪐</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">chenalna</a></h1>
+            <h2 class="site-description">往者不諫，來者可追</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/S1-19027'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://x.com/chen129909186'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/14816686'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='mailto:chenalna52@gmail.com'
+                        target="_blank"
+                        title="Email"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://blog.chenalna.site/index.xml'
+                        target="_blank"
+                        title="RSS"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/solution/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-bulb"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" /><path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" /><path d="M9.7 17l4.6 0" /></svg>
+                
+                <span>解答</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://example.com/en/" >English</option>
+                                
+                                    <option value="https://example.com/" selected>中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#hugo优势">Hugo优势</a></li>
+    <li><a href="#环境准备">环境准备</a>
+      <ol>
+        <li><a href="#安装golang">安装golang</a></li>
+        <li><a href="#安装nodejsnpm">安装nodejs/npm</a></li>
+        <li><a href="#安装hugo">安装Hugo</a></li>
+      </ol>
+    </li>
+    <li><a href="#hugo安装完成后的配置工作">Hugo安装完成后的配置工作</a></li>
+    <li><a href="#设置代理">设置代理</a>
+      <ol>
+        <li><a href="#npm代理">npm代理</a></li>
+      </ol>
+    </li>
+    <li><a href="#站点骨架">站点骨架</a></li>
+    <li><a href="#配置主题">配置主题</a>
+      <ol>
+        <li><a href="#常用命令">常用命令</a></li>
+        <li><a href="#404-page-not-found">404 Page Not Found</a></li>
+      </ol>
+    </li>
+    <li><a href="#github推送自动化">Github推送自动化</a>
+      <ol>
+        <li><a href="#自动化流程">自动化流程</a></li>
+      </ol>
+    </li>
+    <li><a href="#使用netlify">使用Netlify</a></li>
+    <li><a href="#typora-picgo-图床配置">Typora +PicGo 图床配置</a></li>
+    <li><a href="#使用云服务器">使用云服务器</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/hugo/" >
+                Hugo
+            </a>
+        
+            <a href="/categories/web/" >
+                Web
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/hugo-stack_blog_tutorial/">Hugo &#43; Stack 简单搭建一个静态博客</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            从零开始的博客生活
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 23, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言
+</h2><p>静态博客已成为现代技术博客、个人站点和文档系统的热门选择。</p>
+<p>本文基于Hugo</p>
+<h2 id="hugo优势">Hugo优势
+</h2><p>生产的性能好。Hugo是由 Go 语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。</p>
+<p>无论是Hugo还是Hexo，本质上都是将master文件通过预定好的模板渲染html文件</p>
+<h2 id="环境准备">环境准备
+</h2><ol>
+<li>
+<p>下载golang</p>
+</li>
+<li>
+<p>下载node.js</p>
+</li>
+</ol>
+<h3 id="安装golang">安装golang
+</h3><p>安装hugo之前，先安装好<a class="link" href="https://go.dev/dl/"  target="_blank" rel="noopener"
+    >golang</a>，推荐安装最新版本。</p>
+<p>安装时选择安装目录为 <code>C:\Users\sky\work\soft\golang</code> 或者 <code>D:\sky\work\soft\golang</code>。</p>
+<p>修改环境变量，将 GOPATH 的值修改为 <code>C:\Users\sky\work\soft\gopath</code> 或者<code> D:\sky\work\soft\gopath</code>（默认为 %USERPROFILE%\go）。</p>
+<h3 id="安装nodejsnpm">安装nodejs/npm
+</h3><p>为了使用Google Docsy主题，需要安装nodejs/npm。</p>
+<p>在网站下载<a class="link" href="https://nodejs.org/en/download/package-manager"  target="_blank" rel="noopener"
+    >nodejs</a></p>
+<p>安装时选择安装路径为<code>C:\Users\sky\work\soft\nodejs</code>或者<code> D:\sky\work\soft\nodejs</code>。</p>
+<h3 id="安装hugo">安装Hugo
+</h3><p>在Hugo Releases页面下载对应操作系统版本的安装包。<a class="link" href="https://gohugo.io/installation/"  target="_blank" rel="noopener"
+    >Hugo官方下载文档</a>
+,如<code>hugo_extended_0.150.0_windows-amd64.zip</code>.下载下来之后，解压缩，将 hugo.exe 文件复制到目录下。</p>
+<p>然后修改环境变量，在 Path 中增加这个路径，
+验证安装
+<code>$ which hugo</code>
+、<code>$ hugo version</code>。</p>
+<p>切记由于 hugo和主题之间版本有依赖关系，因此不同主题选择不同版本</p>
+<p>打开命令提示符，输入<code>hugo version</code>来验证安装是否成功。</p>
+<h2 id="hugo安装完成后的配置工作">Hugo安装完成后的配置工作
+</h2><p><strong>设置别名</strong></p>
+<p>为了方便使用，增加 hugo server 命令的 alias 用来本地编辑时的实时预览：
+vi ~/.zshrc
+增加内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># hugo
+</span></span><span class="line"><span class="cl">alias h=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34;&#39;
+</span></span><span class="line"><span class="cl">alias h2=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 2323&#39;
+</span></span><span class="line"><span class="cl">alias h3=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 3333&#39;
+</span></span><span class="line"><span class="cl">alias h4=&#39;hugo -D -F server --disableFastRender --bind &#34;0.0.0.0&#34; --port 4343&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>hugo命令行参数说明：</p>
+<p>-D: 等同&ndash;buildDrafts，标记为 Draft 的内容也会一起构建，方便在本地编写和预览新的暂时未发布的内容。</p>
+<p>-F: 等同&ndash;buildFuture，发布时间为&quot;未来&quot;(即时间比当前时间还要晚)内容也会一起构建，方便在本地编写和预览新的暂时未发布的内容。
+&ndash;disableFastRender：当内容修改时，进行完整的重新构建，避免预览的内容不够新
+h2/h3/h4 指定了不同的端口，当需要在本地打开多个时，可以使用固定端口而不是随机端口。</p>
+<h2 id="设置代理">设置代理
+</h2><h3 id="npm代理">npm代理
+</h3><p>主要是 npm 命令需要代理才能顺利下载文件，比如:安装 PostCSS
+要构建或更新站点的 CSS 资源，您还需要PostCSS创建最终资产。</p>
+<p>如果您需要安装它，您必须在您的机器上安装最新版本的NodeJS，以便您可以使用npmNode 包管理器。</p>
+<p>默认情况npm下，在您运行的目录下安装工具</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">npm install：
+</span></span><span class="line"><span class="cl">npm install -D autoprefixer
+</span></span><span class="line"><span class="cl">npm install -D postcss-cli
+</span></span><span class="line"><span class="cl">npm install -D --save autoprefixer
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果发生报错，并且查看到如下的错误信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">path /home/sky/work/code/learning/docsy/&gt;node_modules/hugo-extended
+</span></span><span class="line"><span class="cl">command failed
+</span></span><span class="line"><span class="cl">command sh -c node postinstall.js
+</span></span><span class="line"><span class="cl">✖ Hugo installation failed. :
+</span></span><span class="line"><span class="cl">node:internal/process/promises:391
+</span></span><span class="line"><span class="cl">triggerUncaughtException(err, true /&gt;*fromPromise*/);
+</span></span><span class="line"><span class="cl">	^
+</span></span><span class="line"><span class="cl">RequestError: getaddrinfo ENOTFOUND github.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解决方式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">npm config set registry &lt;https://registry.npmmirror.com&gt;
+</span></span><span class="line"><span class="cl">npm config set proxy &lt;http://192.168.2.1:7890&gt;
+</span></span><span class="line"><span class="cl">npm config set https-proxy &lt;http://192.168.2.1:7890&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果遇到报错信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Failed to connect to github.com port 443 after 21045 ms
+</span></span><span class="line"><span class="cl">Could not connect to server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意修改成自己的IP和端口号</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global http.proxy &lt;http://127.0.0.1:7890&gt;
+</span></span><span class="line"><span class="cl">git config --global https.proxy &lt;http://127.0.0.1:7890&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="站点骨架">站点骨架
+</h2><p>每个 Hugo 项目都是一个目录，其中的子目录贡献于站点的内容、结构、行为和呈现。</p>
+<p>在创建新站点时，Hugo 会生成一个项目骨架。例如，以下命令：<br>
+利用hugo new site myblog(此时需要用到hugo.exe,假设存放在bin下),会在bin下生成myblog</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">myblog/
+</span></span><span class="line"><span class="cl">├── archetypes      #新建内容的模板（原型），方便统一管理文章格式，用于新建内容时自动填充默认 Front Matter
+</span></span><span class="line"><span class="cl">│   └── `default.md`
+</span></span><span class="line"><span class="cl">|--assests              #目录包含通常通过资源管道传递的全局资源。包括图片、CSS、Sass、JavaScript 和 TypeScript 等资源。
+</span></span><span class="line"><span class="cl">├── hugo.toml           # 博客站点的配置文件
+</span></span><span class="line"><span class="cl">├── content             # 博客文章所在目录.目录包含组成站点内容的标记文件（通常是 markdown）和页面资源
+</span></span><span class="line"><span class="cl">├── data                #目录包含用于增强内容、配置、本地化和导航的数据文件（JSON、TOML、YAML 或 XML），供模板调用
+</span></span><span class="line"><span class="cl">|----i18n               #目录包含多语言站点的翻译表。
+</span></span><span class="line"><span class="cl">├── layouts             # 自定义网站布局。目录包含将内容、数据和资源转换为完整网站的模板。决定网站的外观和布局。主题通常也会提供一套layouts，当你用自定义（不使用主题）时候可以在此覆盖主题默认模板。（hugo 初始化的layouts并不包含任何主题）
+</span></span><span class="line"><span class="cl">├── static              # 一些静态内容，目录包含在构建站点时将复制到 public 目录的文件，例如 .ico、.txt 和用于验证站点拥有权的文件。在引入 页面包 和 资源管道之前，static 目录也用于存放图片、CSS 和 JavaScript 等资源
+</span></span><span class="line"><span class="cl">└── themes              # 博客主题， 目录包含一个或多个主题，每个主题位于自己的子目录中。包含自己的layouts、static、配置文件等。启用主题后，Hugo首先会从主题中加载布局文件，再加载站点内自定义的覆盖文件
+</span></span><span class="line"><span class="cl">根据需要，可以将站点配置组织到子目录中：
+</span></span><span class="line"><span class="cl">|---config/                    #目录包含站点配置，可能分为多个子目录和文件。对于配置较少或不需要在不同环境中以不同方式运行的项目，项目根目录中的单个 hugo.toml 配置文件就足够了。
+</span></span><span class="line"><span class="cl">|___ _default/     
+</span></span><span class="line"><span class="cl">|_____config.toml #全局配置文件
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>config.toml</p>
+<p>Hugo的全局配置文件，用于定义站点的基本信息、URL、语言、主题、菜单等。也可以使用config.yaml/config.json</p>
+</li>
+<li>
+<p>content/</p>
+</li>
+</ul>
+<p>​	存放所有博客文章和页面。每个markdown文件的Front matter中定义标题、日期、草稿状态、标签与分类等信息。</p>
+<p>​	示例文件：</p>
+<pre><code>title:&quot;我的第一篇文章&quot;
+date:2024-03-21
+draft:false
+tags:[&quot;入门&quot;、“Hugo”]
+categories:[“技术博客”]
+这里是文章内容
+</code></pre>
+<ul>
+<li>archetypes/</li>
+</ul>
+<p>​	定义新建内容时所用的模板（原型），方便统一管理文章格式。你可以自定义默认模板以满足特定格式要求</p>
+<p>​	下有模板index.md</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">title: &#34;{{ replace .Name &#34;-&#34; &#34; &#34; | title }}&#34; # 标题，创建时自动填充
+</span></span><span class="line"><span class="cl">slug: &#34;{{ replace .Name &#34;-&#34; &#34; &#34; | title }}&#34; <span class="ni">#URL标识符</span>，如果没有则于title相同
+</span></span><span class="line"><span class="cl">description: # 文章简介
+</span></span><span class="line"><span class="cl">date: {{ .Date }} # 日期，创建时自动填充，格式同 2023-01-15T12:00:00+08:00
+</span></span><span class="line"><span class="cl">image: # 文章的封面，留空就是没有，填文章所在位置的相对地址，通常放在同目录下，
+</span></span><span class="line"><span class="cl">math: # 是否启用 KaTex，填 true 启用
+</span></span><span class="line"><span class="cl">license: # 文章尾部显示的协议，false 为隐藏，其他作为内容，留空就是使用 config.yaml 里默认的
+</span></span><span class="line"><span class="cl">hidden: false # 是否隐藏，一般用不到
+</span></span><span class="line"><span class="cl">comments: true # 因为 bug 所以这个属性只要存在，不管是 true 还是 false 都会导致回复无法显示，需要删掉
+</span></span><span class="line"><span class="cl">draft: true # 是否为草稿，建议改为 false 或者删掉这个属性以防止忘记修改，毕竟我们一般都是写好了才部署到服务器上
+</span></span><span class="line"><span class="cl">---
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>layouts/</p>
+<p>存放网站页面模板文件，决定网站的外观和布局。主题通常也会提供一套layouts，当你需要自定义时可以自此覆盖主题默认模板</p>
+</li>
+<li>
+<p>static/</p>
+<p>内容所有不会经过Hugo处理的静态文件，如图片、CSS文件、JS文件等。生成网站时，这些文件会直接复制到输出目录。</p>
+</li>
+<li>
+<p>themes/</p>
+<p>存放第三方主题，每个主题通常都包含自己的layouts、static、配置文件等。启用主题后，Hugo会先从主题中加载布局文件，再加载站点内自定义的覆盖文件。</p>
+</li>
+</ul>
+<ol>
+<li>利用Hugo命令构建站点时，Hugo 会创建一个 public 目录，目录包含发布的网站，在运行 hugo 命令时生成。Hugo 根据需要重建此目录及其内容。</li>
+<li>通常还会创建一个 resources 目录：目录包含 Hugo 资源管道的缓存输出，在运行 hugo 或 hugo server 命令时生成。默认情况下，此缓存目录包括 CSS 和图片。Hugo 根据需要重建此目录及其内容。</li>
+<li>Hugo 创建了一个联合文件系统，允许将两个或多个目录挂载到同一位置。例如，假设您的主目录包含一个 Hugo 项目的目录，另一个目录包含共享内容。您可以使用挂载（mounts）在构建站点时包含共享内容。</li>
+<li>在站点配置中当两个或多个文件具有相同路径时，优先级顺序遵循挂载的顺序。例如，如果共享内容目录包含 books/book-1.md，则会被忽略，因为项目的 content 目录先被挂载。</li>
+<li>将archetypes/default.md,&quot;+&ldquo;改成&rdquo;-&quot;,&quot;=&ldquo;改成&rdquo;+&quot;，因为这个时toml格式的，我们要改成yaml格式</li>
+</ol>
+<h2 id="配置主题">配置主题
+</h2><ol>
+<li><a class="link" href="https://themes.gohugo.io/"  target="_blank" rel="noopener"
+    >下载主题</a></li>
+</ol>
+<p>​	以Stack为例，下载<a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack"  target="_blank" rel="noopener"
+    >发布页面</a>.把解压好的主题放在themes下，并把后面的版本号如<code>3.3.10</code>去掉</p>
+<p>​	或者将存储库克隆到 <code>themes/hugo-theme-stack</code></p>
+<p>​	<code>git clone https://github.com/CaiJimmy/hugo-theme-stack/  themes/hugo-theme-stack</code></p>
+<p>​	或者如果您已经在您的网站中使用 Git，则可以通过在 Hugo 网站的根目录中运行以下命令将主题添加为子模块：</p>
+<p>​	<code>git submodule add https://github.com/CaiJimmy/hugo-theme-stack/  themes/hugo-theme-stack</code></p>
+<ol start="2">
+<li>
+<p>把子模块的hugo-theme-stack里的layouts复制出来，复制到myblog下的layouts</p>
+</li>
+<li>
+<p>在hugo-theme-stack里examplesite里面的content和hugo.yaml,复制到myblog 下，然后把原来的hugo.toml删掉</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">示例</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">baseurl</span><span class="p">:</span><span class="w"> </span><span class="l">https://example.com/ </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">languageCode</span><span class="p">:</span><span class="w"> </span><span class="l">en-us</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">hugo-theme-stack#指定主题</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Example Site</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">copyright</span><span class="p">:</span><span class="w"> </span><span class="l">Example Person</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">DefaultContentLanguage</span><span class="p">:</span><span class="w"> </span><span class="l">zh-cn# 默认语言</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>然后在终端执行hugo，进行构建（如果有一些我们没有，删除content下post的内容，只留下chinese-test）</p>
+</li>
+<li>
+<p>同一个文件可以通过多个markdown，后缀名不同来实现。默认的index就是默认的名字 <code>zh-cn# 默认语言</code>，默认的主题下的名字。如果。即content/post/chinese-test下的
+index-zh-cn.md可以通过index-zh-cn来改变在中文界面显示。index-en会在英文界面下显示。</p>
+</li>
+</ol>
+<p><strong>方法一：通过文件后缀名实现</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">你想要的效果</th>
+          <th style="text-align: left">做法</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>只在中文站显示</strong></td>
+          <td style="text-align: left">只创建 <code>index.zh-cn.md</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>只在英文站显示</strong></td>
+          <td style="text-align: left">只创建 <code>index.en.md</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>中英文都显示</strong></td>
+          <td style="text-align: left">创建 <code>index.zh-cn.md</code> 和 <code>index.en.md</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>根据默认语言</strong></td>
+          <td style="text-align: left">只创建 <code>index.md</code>（使用默认语言，在blog/hugo.yaml）</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>方法二：通过Front Matter指定</strong></p>
+<p>yaml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 在文章前面的Front Matter中强制指定语言
+</span></span><span class="line"><span class="cl">lang: zh-cn  # 这篇文章只在中文本显示
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​</p>
+<p>文章开头可以有cataglories分类和用来打tags标签</p>
+<p><strong>注意</strong>：如果创建多级文件夹时文章文件名不是 <code>index.md</code> 或者类别、标签文件名不是 <code>_index.md</code> 的话，设置封面图片会出现问题。</p>
+<ol start="9">
+<li>
+<p>如何快速创建一个文章？<code>hugo new potst/test/index.md</code>,就生成了<code>test/index.md</code>,将draft:true改成draft:false（此时是在content/post下）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">title: Chinese Test
+</span></span><span class="line"><span class="cl">description: 这是一个副标题
+</span></span><span class="line"><span class="cl">date: 2020-09-09
+</span></span><span class="line"><span class="cl">slug: test-chinese
+</span></span><span class="line"><span class="cl">image: helena-hertz-wWZzXlDpMog-unsplash.jpg
+</span></span><span class="line"><span class="cl">categories:
+</span></span><span class="line"><span class="cl">    <span class="k">-</span> Test
+</span></span><span class="line"><span class="cl">    <span class="k">-</span> 测试
+</span></span><span class="line"><span class="cl">    <span class="k">-</span> HLE
+</span></span><span class="line"><span class="cl">tags:
+</span></span><span class="line"><span class="cl">    <span class="k">-</span> lf
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="常用命令">常用命令
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">命令</th>
+          <th style="text-align: center">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">hugo new post/test/index.md</td>
+          <td style="text-align: center">创建新文章。新建文章后，Hugo会在<code>content/post</code>目录下生成一份Markdown文件，并根据<code>archetypes</code>中的模板填充默认Front Matter</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">hugo server -D</td>
+          <td style="text-align: center">启动本地服务器预览，使用<code>-D</code>参数可包含草稿内容进行预览</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">hugo</td>
+          <td style="text-align: center">构建站点（生成静态文件到public/目录）</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">hugo &ndash;cleanDestinationDir</td>
+          <td style="text-align: center">清理构建文件并重新生成</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">hugo &ndash;minify</td>
+          <td style="text-align: center">构建并压缩HTML/CSS/JS文件（适合生产部署）</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">hugo new site [path]</td>
+          <td style="text-align: center">创建一个新站点</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">hugo server</td>
+          <td style="text-align: center">启动本地服务器预览</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">hugo config</td>
+          <td style="text-align: center">显示站点配置信息</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">hugo list drafts</td>
+          <td style="text-align: center">列出所有处于草稿状态的文章</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>常用参数</p>
+<ul>
+<li>-D ,&ndash;buildDrafts:包括草稿文章</li>
+<li>-F，&ndash;buildFuture:包括未来发布的文章</li>
+<li>-E，&ndash;buildExpired：包括已过期的文章</li>
+<li>&ndash;minify:生成时压缩输出文件</li>
+<li>&ndash;gc:构建时运行垃圾回收</li>
+</ul>
+<p>在content/page里修改左侧的内容</p>
+<h3 id="404-page-not-found">404 Page Not Found
+</h3><p><strong>注意，一旦网站可以建立，那么除非你做一个新的文件，否则就一直404</strong></p>
+<ol>
+<li>hugo server &ndash;theme=your_theme_name(echo &ldquo;theme = &lsquo;ananke&rsquo;&rdquo; &raquo; hugo.toml)，这个相当于向hugo.toml添加theme</li>
+<li>删去 hugo.toml,保留config.toml</li>
+</ol>
+<p><strong>推荐</strong>：在 <code>config.toml</code> 中写 <code>theme = &quot;your_theme_name&quot;</code></p>
+<p><strong>临时</strong>：命令行 <code>hugo server --theme=your_theme_name</code></p>
+<p>如果需要更多,如配置favicon，评论区，参考<a class="link" href="https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/"  target="_blank" rel="noopener"
+    >建站技术 | 使用 Hugo + Stack 简单搭建一个博客</a></p>
+<h2 id="github推送自动化">Github推送自动化
+</h2><p>在使用 GitHub Pages 构建并托管博客时，我们面临一个常见问题：如何在保持源码安全的同时，将构建好</p>
+<p>的 <strong>public</strong> 文件用于页面展示。直接丢上去的往往是public文件。为了解决这一问题，我们可以通过创建两个 GitHub 仓库来实现不同用途的分离和自动化管理。</p>
+<ol>
+<li>源码仓库（source_blog）
+<ul>
+<li>用于存储博客相关的源码， 包括markdown文件、配置信息等未构建的内容</li>
+<li>设置为Private仓库</li>
+</ul>
+</li>
+<li>展示仓库（blog_show)
+<ul>
+<li>用于存储构建后的文件（如public文件夹），供Github Pages或其他托管服务使用</li>
+<li>设为Public仓库，确保可以正常访问页面</li>
+</ul>
+</li>
+</ol>
+<h3 id="自动化流程">自动化流程
+</h3><p>利用<strong>Github Actions</strong>或脚本实现如下自动化：</p>
+<ol>
+<li>
+<p>在源码仓库更新时触发构建操作，生成博客所需的静态文件。将生成的文件自动推送到展示仓库，无需手动干预。</p>
+</li>
+<li>
+<p><a id="step1"></a>Settings-&gt;Developer Settings-&gt;Personal access tokens -&gt; Tokens(classic),勾选repo和workflow，过期时间选择永远不过期。generate token，然后复制生成的token。</p>
+</li>
+<li>
+<p>点开<strong>source_blog</strong>,Security-Secrets and variables-Actions-Repository secrets-New repository secret,填写<a class="link" href="#step1" >2</a>中生成的token。</p>
+</li>
+<li>
+<p>修改自动化代码(deploy.yml)，将修改分支改成master。将.github_hugo移到blog下，并且去掉<code>_hugo</code>,作为部署文件</p>
+</li>
+<li>
+<p>git init 创建.git 文件</p>
+</li>
+<li>
+<p>EXTERNAL_REPOSITORY:<code>xx/blog_show</code>，展示的博客</p>
+</li>
+</ol>
+<p>​	blow_show里所展示的就是public里面的内容</p>
+<ol start="7">
+<li>blow_show&gt;Settings&gt;Pages&gt;Build and delployment，改成 master 和root</li>
+</ol>
+<p>你可以在根目录创建一个批处理脚本，用来快速启动本地服务器并使用 chrome 打开网页。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">本地运行.bat
+</span></span><span class="line"><span class="cl">@echo off
+</span></span><span class="line"><span class="cl">echo [本地运行]
+</span></span><span class="line"><span class="cl">start chrome http://localhost:1313/ #默认开放1313端口
+</span></span><span class="line"><span class="cl">hugo server
+</span></span><span class="line"><span class="cl">pause
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用netlify">使用Netlify
+</h2><p>Add new project → import an existing project→选择blog_show</p>
+<h2 id="typora-picgo-图床配置">Typora +PicGo 图床配置
+</h2><p>下载<a class="link" href="https://github.com/Molunerfinn/PicGo/releases"  title="Releases · Molunerfinn/PicGo"
+     target="_blank" rel="noopener"
+    >PicGo</a></p>
+<p>创建一个新的仓库如<strong>blog_picture</strong> 设置为公开博客图片</p>
+<p><a class="link" href="#%e8%87%aa%e5%8a%a8%e5%8c%96%e6%b5%81%e7%a8%8b" >再次重复操作</a>,生成一个blog_show,然后在PicGo里填写对应Token.</p>
+<p>这样子就可以通过PicGo上传了。</p>
+<p>但是我不想每次都得要先通过PicGo上传至Github，然后将链接如（<code>https://raw.githubusercontent.com/S1-19027/blog_picture/master/image-20250925115857370.png</code>）再复制到Markdown里的链接语法。</p>
+<p>我希望截图后就可以直接上传至github</p>
+<p>在Typora中：</p>
+<ol>
+<li>
+<p>指定一下图形设置的上传服务设定</p>
+</li>
+<li>
+<p>插入图片时选择上传图片。</p>
+</li>
+</ol>
+<p>阿里云图床,开通OSS教程：<a class="link" href="https://developer.aliyun.com/article/1465963"  target="_blank" rel="noopener"
+    >参考文献1</a>、<a class="link" href="https://blog.csdn.net/qq_51210361/article/details/145210585"  target="_blank" rel="noopener"
+    >参考文献2</a></p>
+<p>注：阿里云的99元/年云服务器似乎不太行，还是老实买点2核4Gib的</p>
+<p>华为云相比较太贵了，更多的我也懒得去找了。</p>
+<h2 id="使用云服务器">使用云服务器
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                        
+</span></span><span class="line"><span class="cl">│ A new version (/tmp/tmp.QB1PQknVLa) of configuration file /etc/ssh/sshd_config is available, but the version installed currently has been locally modified.  │                                           
+</span></span><span class="line"><span class="cl">│ What do you want to do about modified configuration file sshd_config?       
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>选择<code>Install the package maintainer's version</code>即可</p>
+<p>利用Nginx即可</p>
+<h2 id="参考">参考
+</h2><ol>
+<li><a class="link" href="https://www.bilibili.com/video/BV1fNNreEEDi"  target="_blank" rel="noopener"
+    >hexo与hugo博客搭建与github自动化推送和服务器推送</a></li>
+<li><a class="link" href="https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/"  target="_blank" rel="noopener"
+    >Stack官方文档 </a></li>
+</ol>
+<script>
+console.log('Waline 配置检查:');
+console.log('ServerURL:', 'https://commentsystem.chenalna.site');
+</script>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/hugo/">Hugo</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">遇到的问题</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://npm.elemecdn.com/@waline/emojis@1.1.0/bilibili"],"lang":"zh-CN","locale":{"admin":"Admin","placeholder":"请留言"},"requiredMeta":["nick"],"serverURL":"https://commentsystem.chenalna.site","visitor":false});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 chenalna
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.31.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

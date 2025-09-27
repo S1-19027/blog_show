@@ -6,6 +6,16 @@
         <description>Recent content in Test on chenalna</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>chenalna</copyright><atom:link href="https://example.com/categories/test/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>chenalna</copyright>
+        <lastBuildDate>Wed, 09 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/test/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>可选参数</title>
+        <link>https://example.com/p/test-chinese/</link>
+        <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/p/test-chinese/</guid>
+        <description>&lt;p&gt;四川省v测试DVD发的&lt;/p&gt;
+</description>
+        </item>
+        
     </channel>
 </rss>

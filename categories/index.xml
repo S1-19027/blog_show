@@ -24,12 +24,36 @@
         <description></description>
         </item>
         <item>
+        <title>HLE</title>
+        <link>https://example.com/categories/hle/</link>
+        <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/categories/hle/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Test</title>
         <link>https://example.com/categories/test/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/categories/test/</guid>
         <description>&lt;img src="https://example.com/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        </item>
+        <item>
+        <title>测试</title>
+        <link>https://example.com/categories/%E6%B5%8B%E8%AF%95/</link>
+        <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/categories/%E6%B5%8B%E8%AF%95/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Testcat</title>
+        <link>https://example.com/categories/testcat/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/categories/testcat/</guid>
+        <description></description>
         </item>
         
     </channel>

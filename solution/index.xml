@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>解答 on chenalna</title>
+        <link>https://example.com/solution/</link>
+        <description>Recent content in 解答 on chenalna</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>chenalna</copyright>
+        <lastBuildDate>Fri, 26 Sep 2025 23:55:56 +0800</lastBuildDate><atom:link href="https://example.com/solution/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Sotion</title>
+        <link>https://example.com/solution/solution/</link>
+        <pubDate>Fri, 26 Sep 2025 23:55:56 +0800</pubDate>
+        
+        <guid>https://example.com/solution/solution/</guid>
+        <description>&lt;img src="https://example.com/cover.png" alt="Featured image of post Sotion" /&gt;&lt;p&gt;xcdsvsdv&lt;/p&gt;
+&lt;p&gt;sa&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -75,10 +75,6 @@ removed. Implement taxonomy 'authors' or use .Site.Params.Author instead.
 ​	解决方法
 如报错信息，找到对应并替换即可
 
-
-
-
-
 3. `range can't iterate over Your Name`
 
   Hugo 提示 range can't iterate over Your Name，这意味着你在模板中尝试使用 range 迭代一个字符串（Your Name），
@@ -655,15 +651,15 @@ Netlify 部署时，你在项目设置中指定了**构建命令**和**输出目
 
 2. 与此站点的连接不安全此站点有一个由受信任的颁发机构颁发的有效证书。但是，网站的某些部分不安全。这意味着信息 (如密码或信用卡) 可能不会安全地发送到此站点，并可能被其他人截获或查看。
 
-   Let’s Encrypt 的证书 **有效期为 90 天（约 3 个月）**。
+Let’s Encrypt 的证书 **有效期为 90 天（约 3 个月）**。
 
-   Netlify 会在证书到期前 **自动续签**，无需手动干预。
+Netlify 会在证书到期前 **自动续签**，无需手动干预。
 
-   **清除 Edge 缓存和证书状态**
+**清除 Edge 缓存和证书状态**
 
-   - 打开 Edge → 设置 → 隐私、搜索和服务 → 清除浏览数据 → 勾选缓存文件、Cookie
-   - 也可以在地址栏输入 `edge://net-internals/#dns` → Clear host cache
-   - 再重新访问 `https://blog.chenalna.site`
+- 打开 Edge → 设置 → 隐私、搜索和服务 → 清除浏览数据 → 勾选缓存文件、Cookie
+- 也可以在地址栏输入 `edge://net-internals/#dns` → Clear host cache
+- 再重新访问 `https://blog.chenalna.site`
 
 ## 脚本功能
 
@@ -675,9 +671,13 @@ Netlify 部署时，你在项目设置中指定了**构建命令**和**输出目
 
    本地运行
 
-3. push.bat
+3. push_server.bat
 
 ​	**自动把本地 Hugo 生成网站推送到远程服务器部署**
+
+4. creat_post.bat
+
+   **省去了用hugo_new建立 新文章的操作**
 
 
 
@@ -768,16 +768,282 @@ Hugo 的推荐做法通常是：
 - 用 **目录（Table of Contents）** + **锚点跳转** (`#section-1`) 来组织长文章。
 - 通过 Hugo 的 `{{ .TableOfContents }}` 自动生成侧边导航，让读者可以快速跳转。
 
-## 注意
+
 
 ## **Hugo 的模板查找顺序**
 
 Hugo 按照以下优先级查找模板：
 
 ```
-1. layouts/ 目录（项目根目录）← **最高优先级**
-2. themes/主题名称/layouts/ 目录 ← **较低优先级**
-3. Hugo 内置默认模板 ← **最低优先级**
+博客根目录/
+├── hugo.yaml          ← 在这里配置（会被Hugo优先读取）
+├── content/
+├── themes/
+│   └── hugo-theme-stack/
+│       └── config.yaml ← 这个只是默认模板（优先级低）
 ```
 
 不要像作者一样去主题里面改了，改了也没用。
+
+每一页展示文章数目
+
+```yaml
+hugo.yaml:
+pagination:
+ pagerSize: 10
+```
+
+## 一些问题
+
+1. `'tory' is not recognized as an internal or external command, operable program or batch file. 请输入Slug:`
+
+#### 解决方法一：
+
+在两行命令中间加一个空行
+
+```batch
+echo 文件存在。
+ 
+set /p input=请选择: 
+```
+
+#### 解决方法二：
+
+给 echo 输出的内容结尾去掉中文字符
+
+```batch
+echo 文件存在
+ 
+set /p input=请选择:
+```
+
+identifier是什么？
+
+在 Hugo Stack 主题里，菜单项的 `identifier` 并不是 Hugo 官方必须的字段，而是 **Stack 主题自己定义用来唯一标识每个菜单项** 的属性。
+
+作用
+
+1. **唯一标识菜单项**
+   - Stack 会根据 `identifier` 判断菜单项是哪一类（Home / Links / Archives 等），方便主题在侧边栏里显示不同图标或处理逻辑。
+2. **和图标绑定**
+   - 主题里可能会有类似 `params.icon` 的设置，根据 `identifier` 自动匹配图标或样式。
+
+weight是什么？
+
+在 Hugo（以及 Stack 主题）菜单配置里，`weight` 是用来 **控制菜单项在侧边栏或导航栏中的排序顺序** 的数字属性。
+
+规则
+
+1. **数值越小 → 越靠前显示**
+
+**可以是正数或负数**
+
+- Hugo 允许负数权重，负数越小（如 -10）越靠前。
+
+------
+
+
+
+## 会出现什么情况？
+
+1. 在 **Hugo Stack** 主题中，如果你只是想做一个**单独的文章**，**推荐的做法是：直接在 `content/page/` 下新建一个 `search.md` 文件** 
+
+	⚡ **原因**：
+
+	content/page/xxx.md 表示一个“单页 (single page)”，它的 URL 自动是 /xxx/，非常适合搜索页、关于页、归档页这类独立页面。
+	Stack 主题的「Search」就是单页，不需要列表功能，所以 .md 就够了。
+
+
+
+2. ```
+   content/search/_index.md
+   适用于Section 列表页（文章合集），但搜索不是列表，不需要。
+   
+   ```
+
+2. 
+
+##  Hugo 如何生成页面 URL
+
+Hugo 的规则：
+
+| 文件位置                             | 前端 URL                    |
+| ------------------------------------ | --------------------------- |
+| `content/page/search.md`             | `/search/`                  |
+| `content/page/travelling.md`         | `/travelling/`              |
+| `content/travelling/_index.md`       | `/travelling/`              |
+| `content/travelling/some-article.md` | `/travelling/some-article/` |
+
+> 也就是说，**URL 的生成与菜单的 `url` 字段对应**，而不是 `identifier`。
+
+------
+
+##  Stack 菜单如何绑定页面
+
+在 Stack 主题里，菜单配置通常在 `config.toml` 或 `config.yaml`，示例：
+
+```
+- identifier: travelling
+  name: 旅行
+  url: /travelling/
+  weight: 40
+  params:
+    icon: map
+```
+
+### 工作原理
+
+1. `url: /travelling/` → Hugo 会根据这个 URL 去匹配实际页面：
+   - 先看 `content/page/travelling.md`
+   - 如果没有，再看 `content/travelling/_index.md`
+2. `identifier` 只用于 **Stack 内部逻辑和图标匹配**，不影响 URL。
+3. Hugo 会把对应 URL 的页面渲染到 `/travelling/index.html`，然后侧边栏点击就跳到这个页面。
+
+Hugo 的 **content 目录** = 站点内容源
+
+- **Section**：一个“内容分组”目录，例如 `post/`、`travelling/`。
+- **List Page（列表页）**：显示 Section 下文章列表的页面。
+- **Single Page（单页）**：显示一篇文章的页面。
+
+Hugo 通过文件名来判断一个内容是 **单页** 还是 **列表页**：
+
+| 文件名             | 含义                                |
+| ------------------ | ----------------------------------- |
+| `_index.md`        | 列表页（List Page）                 |
+| `index.md`         | 叶子页面（Leaf Bundle Single Page） |
+| 其他名字（abc.md） | 普通单篇文章（Single Page）         |
+
+## 1. content 根目录的例子
+
+ `content/_index.md`
+
+- 作用：站点根目录的**首页列表页**。
+- URL：`/`
+- 内容：可以写首页描述或 Front Matter，例如标题、副标题。
+- Stack 主题的首页就是通过这里配合 `params.mainSections` 来渲染文章列表。
+
+ `content/index.md`
+
+- 作用：站点根目录的**单页**。
+- URL：`/` 或主题自定义（大多数主题不这么用）。
+- 因为首页一般用 `_index.md`，所以很少使用 `index.md`。
+
+ `content/abc.md`
+
+- 作用：根目录下的一篇单独文章。
+- URL：`/abc/`
+
+第二种切换成index.md并没有什么效果，即并不是像abc.md为一篇文章,依然有列出所有文章的功能
+
+## 2. content/page 目录
+
+假设目录结构：
+
+```
+content/
+└─ page/
+   ├─ _index.md
+   ├─ index.md
+   └─ abc.md
+```
+
+| 文件             | 作用                                                         | URL                          |
+| ---------------- | ------------------------------------------------------------ | ---------------------------- |
+| `page/_index.md` | **page Section 的列表页**。如果要在 `/page/` 下显示所有子页面的列表，用它。 | `/page/`                     |
+| `page/index.md`  | `page` 目录本身作为**叶子单页**（Leaf Bundle）。通常很少用。 | `/page/`（除非主题重写规则） |
+| `page/abc.md`    | 一个普通单页（例如 About、Links 等）。会在左处出现。         | `/abc/`                      |
+
+
+
+当从index.md切换到_index.md，会报错
+
+⚡ Stack 主题的「Links / Archives / Search」这类单页通常直接用 `abc.md`，
+ 因为它们是单独的页面，不需要列表功能。
+
+## 3.  新建一个文件夹 solution
+
+```
+content/
+└─ solution/
+   ├─ _index.md
+   ├─ index.md
+   └─ abc.md
+```
+
+| 文件                 | 作用                                              | URL              |
+| -------------------- | ------------------------------------------------- | ---------------- |
+| `solution/_index.md` | **Solution Section 的列表页**（显示子文章列表）。 | `/solution/`     |
+| `solution/index.md`  | Solution 目录自身作为**叶子单页**。               | `/solution/`     |
+| `solution/abc.md`    | Solution 下的一篇文章。                           | `/solution/abc/` |
+
+> **常见用途**
+>
+> - 如果你想 `/solution/` 打开后看到**文章列表** → 用 `_index.md`。
+> - 如果你想 `/solution/` 打开后只显示**一篇独立页面** → 不要 `_index.md`，而是用 `index.md`（Leaf Bundle 模式）。
+
+## 4. post 目录的情况
+
+```
+content/
+└─ post/
+   ├─ _index.md
+   ├─ index.md
+   └─ abc.md
+```
+
+| 文件             | 作用                                              | URL          |
+| ---------------- | ------------------------------------------------- | ------------ |
+| `post/_index.md` | **文章列表页**（首页/归档会读取这里的 Section）。 | `/post/`     |
+| `post/index.md`  | `post` 整个目录作为一个**单页**（不常用）。       | `/post/`     |
+| `post/abc.md`    | 单篇博客文章。                                    | `/post/abc/` |
+
+> ⚡ **Stack 的首页**
+>  `content/post/` 下的文章会自动汇总到 `/`（通过 `mainSections`），
+>  但你也可以访问 `/post/`，它会用 `post/_index.md` 的配置作为标题/描述。
+
+第一种情况和第三种情况没有用,依然展示所有文章.
+
+不要将Solution放在content/page下而是content/下,否则,只是一篇文章
+
+##  让文件出现在侧栏
+
+```
+  menu:   
+     main:
+        - identifier: solution
+          name: "解答"
+          url: "/solution/"
+          weight: 3
+          params:
+            icon: bulb
+```
+
+
+
+## 不同语言设置不同的social和侧边栏
+
+将main:menu:放到language下
+
+如
+
+```
+
+  zh-cn:
+    languageName: 中文
+    title: chenalna
+    weight: 2
+    params:
+      sidebar:
+        subtitle: ....
+    menu:
+      main:
+        - identifier: solution
+          name: ...
+          url: "/solution/"
+          weight: 3
+          params:
+            icon: bulb
+      social:....
+```
+
+问题是，为什么page下的archives/about/links/search，是默认生成的，你在page下添加新的文件夹却不会自动添加到到侧边栏。笔者并不知道如何处理这个问题。

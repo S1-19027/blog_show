@@ -15,26 +15,101 @@ hasCJKLanguage: false
 languages:
   en:
     languageName: English
-    title: Example Site
+    title: chenalna
     weight: 1
     params:
       sidebar:
-        subtitle: Example description
+        subtitle: Let go and move on
+    menu:
+      main:
+        - identifier: solution
+          name: "Solution"
+          url: "/en/solution/"
+          weight: 3
+          params:
+            icon: bulb
+      social:
+        - identifier: github
+          name: GitHub
+          #   url: https://github.com/CaiJimmy/hugo-theme-stack
+          url: https://github.com/S1-19027
+          weight: 1
+          params:
+            icon: brand-github
+
+        - identifier: twitter
+          name: Twitter
+          url: https://x.com/chen129909186
+          weight: 2
+          params:
+            icon: brand-twitter
+        - identifier: bilibili
+          name: Bilibili
+          url: https://space.bilibili.com/14816686
+          weight: 3
+          params:
+            icon: brand-bilibili
+        - identifier: email
+          name: Email
+          url: mailto:chenalna52@gmail.com
+          weight: 4
+          params:
+            icon: mail
+        - identifier: rss
+          name: RSS
+          url: https://blog.chenalna.site/index.xml
+          weight: 5
+          params:
+            icon: rss
+
   zh-cn:
     languageName: 中文
     title: chenalna
     weight: 2
     params:
       sidebar:
-        subtitle: Let go and move on
-  ar:
-    languageName: عربي
-    languagedirection: rtl
-    title: موقع تجريبي
-    weight: 3
-    params:
-      sidebar:
-        subtitle: وصف تجريبي
+        subtitle: 往者不諫，來者可追
+    menu:
+      main:
+        - identifier: solution
+          name: "解答"
+          url: "/solution/"
+          weight: 3
+          params:
+            icon: bulb
+      social:
+        - identifier: github
+          name: GitHub
+          #   url: https://github.com/CaiJimmy/hugo-theme-stack
+          url: https://github.com/S1-19027
+          weight: 1
+          params:
+            icon: brand-github
+
+        - identifier: twitter
+          name: Twitter
+          url: https://x.com/chen129909186
+          weight: 2
+          params:
+            icon: brand-twitter
+        - identifier: bilibili
+          name: Bilibili
+          url: https://space.bilibili.com/14816686
+          weight: 3
+          params:
+            icon: brand-bilibili
+        - identifier: email
+          name: Email
+          url: mailto:chenalna52@gmail.com
+          weight: 4
+          params:
+            icon: mail
+        - identifier: rss
+          name: RSS
+          url: https://blog.chenalna.site/index.xml
+          weight: 5
+          params:
+            icon: rss
 
 services:
   # Change it to your Disqus shortname before using
@@ -45,7 +120,7 @@ services:
     id:
 
 pagination:
-  pagerSize: 3
+  pagerSize: 10
 
 permalinks:
   post: /p/:slug/
@@ -128,8 +203,8 @@ params:
         - https://npm.elemecdn.com/@waline/emojis@1.1.0/bilibili
       requiredMeta:
         - nick
-        - mail
-        - link
+        # - mail
+        # - link
       locale:
         admin: Admin
         placeholder: 请留言
@@ -211,54 +286,10 @@ params:
     content:
       enabled: true
 
-### Custom menu
-### See https://stack.jimmycai.com/config/menu
-### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
-menu:
-  main: []
+  ### Custom menu
+  ### See https://stack.jimmycai.com/config/menu
+  ### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
 
-  social:
-    - identifier: github
-      name: GitHub
-      #   url: https://github.com/CaiJimmy/hugo-theme-stack
-      url: https://github.com/S1-19027
-      weight: 1
-      params:
-        icon: brand-github
-
-    - identifier: twitter
-      name: Twitter
-      url: https://x.com/chen129909186
-      weight: 2
-      params:
-        icon: brand-twitter
-    - identifier: bilibili
-      name: Bilibili
-      url: https://space.bilibili.com/14816686
-      weight: 3
-      params:
-        icon: brand-bilibili
-    - identifier: email
-      name: Email
-      url: mailto:chenalna52@gmail.com
-      weight: 4
-      params:
-        icon: mail
-    - identifier: rss
-      name: RSS
-      url: https://github.com/S1-19027
-      weight: 5
-      params:
-        icon: rss
-links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
 related:
   includeNewer: true
   threshold: 60
