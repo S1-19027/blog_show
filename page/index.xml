@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Pages on chenalna</title>
-        <link>https://example.com/page/</link>
-        <description>Recent content in Pages on chenalna</description>
+        <title>Pages on chenalna的博客</title>
+        <link>https://blog.chenalna.site/page/</link>
+        <description>Recent content in Pages on chenalna的博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>chenalna</copyright>
-        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.chenalna.site/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>归档</title>
-        <link>https://example.com/archives/</link>
+        <link>https://blog.chenalna.site/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/archives/</guid>
+        <guid>https://blog.chenalna.site/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>关于</title>
-        <link>https://example.com/%E5%85%B3%E4%BA%8E/</link>
+        <link>https://blog.chenalna.site/about/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/%E5%85%B3%E4%BA%8E/</guid>
+        <guid>https://blog.chenalna.site/about/</guid>
         <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>链接</title>
-        <link>https://example.com/%E9%93%BE%E6%8E%A5/</link>
+        <link>https://blog.chenalna.site/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/%E9%93%BE%E6%8E%A5/</guid>
+        <guid>https://blog.chenalna.site/links/</guid>
         <description>&lt;h2 id=&#34;你好这里是chenalna的博客&#34;&gt;你好，这里是chenalna的博客！
 &lt;/h2&gt;&lt;p&gt;下方的链接是我收藏的一些网站或博客，用作本人快捷访问入口，同时也向你推荐。&lt;/p&gt;
 &lt;p&gt;如果是网站站长看到自己的网页出现在了下方，请不要见怪，我非常喜欢您的网站，也期待与您交流。&lt;/p&gt;
@@ -38,10 +38,10 @@
         </item>
         <item>
         <title>搜索</title>
-        <link>https://example.com/search/</link>
+        <link>https://blog.chenalna.site/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/search/</guid>
+        <guid>https://blog.chenalna.site/search/</guid>
         <description></description>
         </item>
         

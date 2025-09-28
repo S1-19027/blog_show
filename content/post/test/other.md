@@ -48,13 +48,11 @@ tags:
 >     使用下面命令启动服务：
 >     `>>> hugo server`
 
-
-
-## 遇到错误  
+### 使用Git遇到的错误  
 
 1.   子模块可能没有被正确初始化，或者 .gitmodules 文件中的配置与实际的子模块路径不匹配.
 
-```
+```bash
 /usr/bin/git -c protocol.version=2 submodule update --init --force
 Error: fatal: No url found for submodule path 'themes/hugo-theme-bootstrap4-blog' in .gitmodules
 Error: The process '/usr/bin/git' failed with exit code 128  
@@ -63,9 +61,9 @@ Error: The process '/usr/bin/git' failed with exit code 128
 ​	解决方法：添加子模块
   git submodule add <https://github.com/theNewDynamic/gohugo-theme-ananke.git> themes/ananke.
 
-2.  
+2.  .Site.Social被废弃
 
-```
+```bash
 ERROR deprecated: .Site.Social was deprecated in Hugo v0.124.0 and subsequently
 removed. Implement taxonomy 'social' or use .Site.Params.Social instead.
 ERROR deprecated: .Site.Authors was deprecated in Hugo v0.124.0 and subsequently
@@ -75,7 +73,7 @@ removed. Implement taxonomy 'authors' or use .Site.Params.Author instead.
 ​	解决方法
 如报错信息，找到对应并替换即可
 
-3. `range can't iterate over Your Name`
+3. `range can't iterate over Your Name`，range尝试迭代Your Name，但是个字符串
 
   Hugo 提示 range can't iterate over Your Name，这意味着你在模板中尝试使用 range 迭代一个字符串（Your Name），
   而 range 只能用于迭代数组、切片或映射（map），不能用于迭代单个字符串。
@@ -101,7 +99,7 @@ author = "Your Name"
 
   但你提供的是字符串 `"Your Name"`，模板自然找不到 `.twitter` 字段 → 报错。
 
-  方法 1：修改 config.toml 中的 author 配置
+  **方法 1**：修改 config.toml 中的 author 配置
   将 author 配置为一个对象或数组，而不是字符串。例如：
 
   ```go
@@ -133,7 +131,7 @@ twitter = "author2_twitter
 .
   ```
 
-  方法2：如果 author 必须是一个字符串（例如 author = "Your Name"），你需要修改模板文件，避免使用 range 迭代 .Site.Params.Author。
+  **方法2**：如果 author 必须是一个字符串（例如 author = "Your Name"），你需要修改模板文件，避免使用 range 迭代 .Site.Params.Author。
   例如，将 twitter_cards.html 中的代码：
 
   ```go
@@ -147,7 +145,7 @@ twitter = "author2_twitter
   改为：
   `{{ .Site.Params.Author }}`
 
-  方法 3：调试模板
+  **方法 3**：调试模板
 
   在 `twitter_cards.html` 中打印上下文，看看实际传入了什么：
 
@@ -158,7 +156,7 @@ twitter = "author2_twitter
   - 可以快速发现传入的上下文是否有 `twitter` 字段。
   - 用于排查问题，非常有用。
 
-  方法 4：临时禁用 Twitter 卡片
+  **方法 4**：临时禁用 Twitter 卡片
 
   如果不需要 Twitter 卡片，可以在 `head-meta.html` 注释掉调用：
 
@@ -169,9 +167,9 @@ twitter = "author2_twitter
   - 避免报错，让网站能正常生成。
   - 适合快速排查或暂时不需要社交卡片功能。
 
-4. 
+4. hugo版本设置
 
-```
+```bash
  $ hugo
  bash: line 1: hugo: command not found
  "build.command" failed                                        
@@ -215,7 +213,7 @@ Value: 0.120.4（替换为你需要的 Hugo 版本）。
 
 ​	**解决方法：回退 fork 的 master**
 
-如果你**必须**把 fork 的 master 恢复到推送前的状态（例如不想把修改放在 master 上）：
+​	如果你**必须**把 fork 的 master 恢复到推送前的状态（例如不想把修改放在 master 上）：
 
 1. 找到推送前的 commit：
 
@@ -233,23 +231,20 @@ Value: 0.120.4（替换为你需要的 Hugo 版本）。
    git reset --hard abcdef0      # 回到旧的 commit
    git push origin master --force
    ```
-   
+
 3. 把你的修改推到新分支：
 
-git checkout -b my-changes
-
-git push origin my-changes
+   ```
+   git checkout -b my-changes  
+   git push origin my-changes
 
 
 4. 更新父仓库指针：
 
-cd ../..
-
-git add themes/hugo-theme-stack
-
-git commit -m "Update submodule pointer to my-changes"
-
-git push origin master
+		cd ../..
+		git add themes/hugo-theme-stack  
+		git commit -m "Update submodule pointer to my-changes"  
+		git push origin master
 
 **如果你确实要修改主题源码（例如修改 theme 下的模板）**
 
@@ -283,193 +278,284 @@ git push origin master
 
 利用submodule来更新， 自己新建的没有更新是因为submodule没有更新
 
+## 问题二：
 
+我fork了一个子模块，https://github.com/S1-19027/hugo-theme-stack，我想获得最新的来自master的主仓库https://github.com/CaiJimmy/hugo-theme-stack的版本，我该怎么做？
 
-## Docsy主题
+明白了，你的情况是典型的 **fork 后同步 upstream 仓库**。我给你详细步骤（假设你在本地已经 clone 了你的 fork）：
 
-Docsy 是一个基于 Hugo 的主题，专门用于构建技术文档集。以下是一般 Docsy 项目的基本目录结构：
+1.  添加 upstream 远程仓库
 
-```
-.
-├── archetypes           # 自定义模板定义
-├── assets                # 存放静态资源，如样式表、JavaScript 和图片
-│  
-├── css               # 主题和站点的自定义 CSS
-│    └── ...
-├── content              # 网站内容，包括页面和博客文章
-│    ├── _index.md         # 主页内容
-│    ├── docs              # 文档区域
-│    │   └──_index.md     # 文档首页
-│    ├── blog              # 博客文章
-│    └── ...
-├── data                  # YAML 数据文件，可用于自定义站点变量或数据
-├── layouts               # 自定义布局文件
-├── static                # 非 Hugo 处理的静态资源，将被直接复制到生成的站点中
-├── themes                # 包含 Docsy 主题的子目录
-```
-
-### 项目的启动文件介绍
-
-在 Docsy 项目中，主要的启动文件是 config.toml 或 config.yaml（取决于你的偏好）。这些配置文件位于项目根目录下，用来设置网站的基本参数、导航菜单、多语言支持等。
-
-例如，一个简单的 config.toml 文件可能如下所示：
+进入你本地的主题目录：
 
 ```
-#Hugo 属性设置 
-title = "我的文档站点"
-#网站地址
-baseURL = "https://example.com/"
-#网站语言
-languageCode = "en-us"
-# 网站title
-title = "我的博客"                   
-
-# 主题的名字，这个要跟myblog/themes 目录中的子目录的目录名一致
-theme = "hugo-theme-bootstrap4-blog"    
-
-# home/category/tag 页面显示的文章数 (Default: 10)
-paginate = 5
-
-# home/category/tag 页面用于摘要的字数 (Default: 70)
-summaryLength = 50
-# optionally override the site's footer with custom copyright text
-# copyright = "Except where otherwise noted, content on this site is licensed under a [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/)."
-#googleAnalytics = "UA-123-45"
-#disqusShortname = "XYW"
-# 博客链接的路径格式
-[permalinks]
-  posts = "/:year/:month/:title/"
-  page = "/:slug/"
-顶部栏
-[[menu.main]]
-name = "首页"
-weight = 1
-identifier = "home"
-url = "/"
- 侧边栏
-[[menu.main]]
-name = "文档"
-weight = 2
-identifier = "docs"
-url = "/docs/"
-#Theme 属性设置
-#
-[params]
-  # Site author
-  author = "Your Name"
-
-  # Description/subtitle for homepage (can be Markdown)
-  description = "A simple Hugo theme based on the Bootstrap v4 blog example."
-
-  # Show header (default: true)
-  #header_visible = true
-
-  # Format dates with Go's time formatting
-  date_format = "Mon Jan 02, 2006"
-
-  # verification string for Google Webmaster Tools
-  #google_verify_meta = "BAi57DROASu4b2mkVNA_EyUsobfA7Mq8BmSg7Rn-Zp9"
-
-  # verification string for Bing Webmaster Tools
-  #bing_verify_meta = "3DA353059F945D1AA256B1CD8A3DA847"
-
-  # verification string for Yandex Webmaster Tools
-  #yandex_verify_meta = "66b077430f35f04a"
-
-  # Optionally display a message about the site's use of cookies, which may be
-  # required for your site in the European Union. Set the parameter below to a
-  # page where the user can get more information about cookies, either on your
-  # site or externally, for example:
-  #cookie_consent_info_url = "/cookie-information/"
-  #cookie_consent_info_url = "http://cookiesandyou.com"
-
-  # show sharing icons on pages/posts (default: true)
-  #sharingicons = true
-
-  # Display post summaries instead of content in list templates (default: true)
-  #truncate = true
-
-  # Disable the use of sub-resource integrity on CSS/JS assets (default: false)
-  # Useful if you're using a CDN or other host where you can't control cache headers
-  #disable_sri = false
-
-  [params.sidebar]
-    # Optional about block for sidebar (can be Markdown)
-    about = "A simple Hugo theme based on the [Bootstrap v4 blog example](http://v4-alpha.getbootstrap.com/examples/blog/)."
-
-    # How many posts to show on the sidebar (Default: 5)
-    #num_recent_posts = 2
-
-  [params.social]
-    # Optional, used for attribution in Twitter cards (ideally not a person
-    # for example: nytimes, flickr, NatGeo, etc).
-    # See: https://dev.twitter.com/cards/types/summary-large-image
-    twitter = "username"
-
-# Default content language for Hugo 0.17's multilingual support (default is "en")
-# See: https://github.com/spf13/hugo/blob/master/docs/content/content/multilingual.md
-#DefaultContentLanguage = "en"
-
-# Languages to render
-#[languages.en]
-#[languages.bg]
-  # Bulgarian date format is dd.mm.yyyy
-  #date_format = "02.01.2006"
-
-# vim: ts=2 sw=2 et
+cd path/to/hugo-theme-stack
 ```
 
-在这个例子中，我们设置了网站的标题、基础 URL 和语言代码，以及两个主菜单项（首页和文档）。
-
-### 项目的配置文件介绍
-
-config.toml/config.yaml
-这是整个站点的核心配置文件，你可以在这里设定站点的基本信息、导航菜单、元数据参数、多语言支持等。
-_config.yaml in /themes/docsy
-尽管这不是项目本身的配置文件，但 Docsy 主题也有自己的_config.yaml。这个文件包含了 Docsy 提供的默认配置，可以在项目中的 config.toml/config.yaml 中覆盖或扩展。
-.hugorc （可选）
-如果你选择使用 JSON 格式的配置，可以创建一个 .hugorc 文件来存储配置。它的工作方式与 config.toml 类似。
-archetypes 目录
-此目录下的文件定义了创建新页面时的默认内容结构。例如，你可以创建一个 doc.md 文件作为文档页面的模板。
-static 和 assets 目录
-这两个目录分别存放静态文件和处理过的静态资源。static 直接包含要复制到生成站点的内容，而 assets 内的文件会经过诸如 Sass 编译等预处理器处理。
-以上就是 Docsy 主题的基本介绍和使用指南。更多详细信息和高级配置，请参考 Docsy 的官方文档。
-
-
-
-## 自建主题骨架
-
-创建新主题时，Hugo 会生成一个可用的主题骨架。例如，以下命令：
-hugo new theme my-theme
-会创建以下目录结构(省略了子目录):  
+添加原仓库为 `upstream`：
 
 ```
-` my-theme/  
-  ├── archetypes/  
-  ├── assets/  
-  ├── content/  
-  ├── data/  
-  ├── i18n/  
-  ├── layouts/  
-  ├── static/  
-  ├── LICENSE  
-  ├── `README.md`  
-  ├── hugo.toml  
-  └── theme.toml  
+git remote add upstream https://github.com/CaiJimmy/hugo-theme-stack.git
 ```
 
+2.  获取 upstream 的最新内容
 
-使用上述描述的联合文件系统，Hugo 将每个目录挂载到项目的相应位置。当两个文件路径相同时，项目目录中的文件优先。这样，例如，您可以通过在项目目录相同位置放置一个副本来覆盖主题的模板。
+```
+git fetch upstream
+```
+
+这会把 upstream 的分支（例如 `master`）抓到本地，但不会自动合并。
+
+3.  合并 upstream 的 master 到你本地 master
+
+```
+git checkout master
+git merge upstream/master
+```
+
+- 如果没有冲突，会直接合并成功。
+- 如果有冲突，需要手动解决冲突，然后 [`git commit`](#step1)。
+
+> ⚡️ 可选：如果你希望**直接用 upstream 覆盖你的 master**（丢弃本地修改）：
+>
+> ```
+> git checkout master
+> git reset --hard upstream/master
+> ```
+
+4. 推送更新到你的 fork（GitHub 上）
+
+```
+git push origin master
+```
+
+这样你 fork 的仓库就同步了主仓库的最新版本。
+
+### 小结
+
+1. 添加 upstream
+2. `git fetch upstream`
+3. 合并/重置到 upstream/master
+4. `git push origin master`
+
+## 问题二续
+
+**那么如果我要更新一些子模块内容，当然对远程仓库没有权限push，只能在我的fork下更改咯？**
+
+同步 upstream 最新内容（可选）
+
+如果你想先基于主仓库最新版本更新 fork：
+
+```
+git fetch upstream
+git checkout master
+git merge upstream/master    # 或者 git reset --hard upstream/master
+```
+
+然后推送到你 fork：
+
+```
+git push origin master
+```
+
+ 更新子模块内容
+
+假设你在你的 fork 下更新了子模块（比如主题中的子模块或者 Hugo site 里的 `themes/hugo-theme-stack`），流程如下：
+
+A. 初始化/更新子模块
+
+```
+git submodule init
+git submodule update --remote --merge
+```
+
+或者指定分支：
+
+```
+git submodule update --remote --merge -- <path-to-submodule>
+```
+
+- `--remote` → 从子模块远程仓库拉取最新
+- `--merge` → 自动合并到本地子模块
+
+B. 提交子模块更新到你的 fork
+
+子模块更新实际上是父仓库对 **子模块 commit 指针的更新**：
+
+```
+git add <path-to-submodule>
+git commit -m "Update submodule to latest commit"
+git push origin master
+```
+
+提交到 GitHub
+
+- 你只能 push 到你 fork 的 `origin`
+- 原仓库 `upstream` 没有权限 push，所以主仓库不会受影响
+- 其他人如果想用你的更新，需要 clone 你的 fork
+
+注意事项
+
+1. **子模块本身的修改**
+   - 如果子模块本身不是你 fork 的仓库，提交修改到子模块需要你 fork 子模块或者在本地修改，然后更新父仓库指针
+2. **保持 fork 与 upstream 同步**
+   - 定期 `git fetch upstream && merge upstream/master`，保证你的 fork 能跟上原仓库
+
+------
+
+⚡ 总结
+
+1. 没权限 push → 所有改动只能在 fork 下操作
+2. 更新子模块 → 更新子模块 commit，提交父仓库更新
+3. push 到 fork → `git push origin master`
+4. 保持 fork 与 upstream 同步 → 定期 `fetch` & `merge`
+
+## 问题二续
+
+<a id="step1"></a>
+
+**在新分支上做 merge 测试**
+
+为了安全起见，先新建一个临时分支：
+
+```
+git checkout -b merge-test
+```
+
+然后合并远程 master：
+
+```
+git merge origin/master
+```
+
+- 如果本地和远程没有冲突 → 自动合并
+- 如果有冲突 → Git 会提示哪些文件有冲突，标记为 **unmerged**
+
+查看差异（diff）
+
+- 查看所有冲突文件的差异：
+
+```
+git status
+```
+
+- 查看单个文件差异：
+
+```
+git diff <file>
+```
+
+- 也可以使用更直观的工具：
+
+```
+git difftool <file>
+```
+
+> 你可以用 VS Code、Sourcetree、GitKraken 等可视化工具来比对本地与远程修改，选择保留哪一边。
+
+手动解决冲突
+
+Git 会在冲突文件里插入标记：
+
+```
+<<<<<<< HEAD
+# 你的本地改动
+=======
+# 远程 origin/master 改动
+>>>>>>> origin/master
+```
+
+- 修改文件，保留你想要的内容
+- 保存后标记为已解决：
+
+```
+git add <file>
+```
+
+完成 merge 并提交
+
+```
+git commit
+```
+
+> 如果合并过程中没有冲突，这步 Git 会自动生成 merge commit；
+>  如果手动解决冲突，需要你写 commit 信息。
+
+ 推送到 fork
+
+```
+git push origin merge-test
+```
+
+- 这样你就有一个**安全的测试分支**
+- 如果满意，可以再合并到 master：
+
+```
+git checkout master
+git merge merge-test
+git push origin master
+```
+
+## 问题二续
+
+**创建一个分支来做修改，而不是直接在 master 上改**，原因如下：
+
+为什么要用分支
+
+1. **保持 master 与 upstream 同步**
+   - master 分支通常用来跟踪主仓库（upstream）最新版本
+   - 如果直接在 master 上改，一旦你下次同步 upstream，就容易出现冲突或覆盖你的改动
+2. **便于管理修改**
+   - 新建分支（比如 `change` 或 `update-submodule`）可以专门存放你的自定义修改
+   - 需要回退或测试时更安全，不影响 master
+3. **方便 Pull Request**（如果将来想贡献回主仓库）
+   - upstream 的 PR 一般要求基于 master 的 feature 分支
+   - 用独立分支可以只包含你的改动，不带本地 merge 或同步历史
+
+推荐操作流程
+
+假设你要修改子模块或主题内容：
+
+```
+# 切到 master 并同步 upstream
+git checkout master
+git fetch upstream
+git merge upstream/master
+
+# 创建新分支
+git checkout -b change
+
+# 修改子模块或主题
+git submodule update --remote --merge
+# 或其他修改
+
+# 提交改动
+git add .
+git commit -m "Update submodule / custom changes"
+
+# 推送到 fork 的新分支
+git push origin change
+```
+
+这样：
+
+- `master` 始终和 upstream 保持一致
+- 你的修改都在 `change` 分支，可以随时合并或删除
+- 如果想合并到 master，只需 `git checkout master && git merge change` 或发 Pull Request
+
+------
+
+💡 小结
+
+- **有必要创建分支**：安全、便于管理、避免冲突
+- **命名建议**：`update-submodule`、`change-theme`、`feature-xxx`
+- **master 保持干净**，只用于同步 upstream
 
 ## 安装hexo
 
 npm install -g hexo-cli
 
-
-
-
-
-### 如何建立自己的（博客）域名 
+## 如何建立自己的（博客）域名 
 
 ​	以`blog.xyz.site`为例
 
@@ -675,129 +761,19 @@ Netlify 会在证书到期前 **自动续签**，无需手动干预。
 
 ​	**自动把本地 Hugo 生成网站推送到远程服务器部署**
 
-4. creat_post.bat
+4. creat_post_new_theme.bat
 
    **省去了用hugo_new建立 新文章的操作**
 
+5. creat_post.bat
 
+   在特定主题下新建一个文章的操作
 
-## mailto的用法
-
-### 1. `mailto:` 基本用法
-
-`mailto:` 是一个 URL 协议，用来在网页上创建点击后自动打开默认邮件客户端的新邮件窗口，并自动填入收件人、主题等信息。
-
-**基本语法：**
-
-```
-mailto:email@example.com
-```
-
-**示例：**
-
-```
-<a href="mailto:chenalna52@gmail.com">发送邮件</a>
-```
-
-点击链接后，系统会自动打开默认的邮件客户端，并将 `chenalna52@gmail.com` 填入收件人字段。
-
-------
-
-### 2. `mailto:` 高级用法（可带参数）
-
-你还可以附加 `subject`（主题）、`body`（邮件内容）、`cc`、`bcc` 等参数：
-
-```
-mailto:chenalna52@gmail.com?subject=Hello&body=This%20is%20a%20test
-```
-
-- **注意**：空格和特殊字符需要用 URL 编码（比如空格用 `%20`）。
-- **多个收件人**可以用逗号分隔：
-
-```
-mailto:abc@example.com,xyz@example.com
-```
-
-## Hugo单篇文章分页探究
-
-#### 1. Hugo 的分页概念
-
-在 Hugo 中，分页 (`pagination`) 通常用于 **列表页面**，例如：
-
-- 博客首页（显示多篇文章的列表）
-- 分类页（显示某个分类下的文章列表）
-- 标签页（显示某个标签下的文章列表）
-
-分页的作用是：如果文章很多，每页只显示一定数量的文章（比如每页 5 篇），然后用户可以通过“上一页/下一页”或页码来浏览其他文章。
-
-#### 2. 单篇文章内分页
-
-Hugo 不支持单篇文章分页是通过 **`<!--more-->`** 或 **`read more`** 来控制文章摘要显示，但这和模板中的 `paginator` 并不一样。
- 文档中介绍的 `paginator` 是 `{{ .Paginate }}` 语法，用于列表分页，而不是单篇文章内容分页。
-
-Hugo 本质是**静态站点生成器**，生成的是一组 **固定的 HTML 文件**，它不会像 PHP 或 Node 这种动态后端根据 `?page=1` 之类的参数实时拆分内容。所以即使 URL 上写了 `?page=1`、`?page=2`，如果没有在构建时为每一个参数生成独立的页面文件，浏览器也只会访问到同一个静态文件。
-
-我之前给出的 `?page=` 方案，严格来说只是“伪分页”——
-
-使用 **单篇 Markdown 文件 + `<!--pagebreak-->`** 的方法，带上一页/下一页按钮。
-
-#### 3. 在 Hugo 中的现实做法
-
-如果你想**真正**实现一篇文章的分页阅读，通常有以下几种方式：
-
-##### 1. **拆分为多篇内容文件**（最可靠）
-
-例如：
-
-```
-content/posts/my-article/
-    _index.md    # 目录页（可以写简介）
-    part1.md
-    part2.md
-    part3.md
-```
-
-- 每个 `partX.md` 都是一篇独立文章。
-- 使用列表模板（或自定义导航）实现“上一页/下一页”跳转。
-- 构建后每个 part 都会生成一个独立的 HTML 文件，这才是真分页。
-
-##### 2. **直接写成长文**
-
-Hugo 的推荐做法通常是：
-
-- 用 **目录（Table of Contents）** + **锚点跳转** (`#section-1`) 来组织长文章。
-- 通过 Hugo 的 `{{ .TableOfContents }}` 自动生成侧边导航，让读者可以快速跳转。
-
-
-
-## **Hugo 的模板查找顺序**
-
-Hugo 按照以下优先级查找模板：
-
-```
-博客根目录/
-├── hugo.yaml          ← 在这里配置（会被Hugo优先读取）
-├── content/
-├── themes/
-│   └── hugo-theme-stack/
-│       └── config.yaml ← 这个只是默认模板（优先级低）
-```
-
-不要像作者一样去主题里面改了，改了也没用。
-
-每一页展示文章数目
-
-```yaml
-hugo.yaml:
-pagination:
- pagerSize: 10
-```
-
-## 一些问题
+## 批处理程序遇到的问题
 
 1. `'tory' is not recognized as an internal or external command, operable program or batch file. 请输入Slug:`
 
-#### 解决方法一：
+解决方法一：
 
 在两行命令中间加一个空行
 
@@ -807,7 +783,7 @@ echo 文件存在。
 set /p input=请选择: 
 ```
 
-#### 解决方法二：
+解决方法二：
 
 给 echo 输出的内容结尾去掉中文字符
 
@@ -817,233 +793,24 @@ echo 文件存在
 set /p input=请选择:
 ```
 
-identifier是什么？
-
-在 Hugo Stack 主题里，菜单项的 `identifier` 并不是 Hugo 官方必须的字段，而是 **Stack 主题自己定义用来唯一标识每个菜单项** 的属性。
-
-作用
-
-1. **唯一标识菜单项**
-   - Stack 会根据 `identifier` 判断菜单项是哪一类（Home / Links / Archives 等），方便主题在侧边栏里显示不同图标或处理逻辑。
-2. **和图标绑定**
-   - 主题里可能会有类似 `params.icon` 的设置，根据 `identifier` 自动匹配图标或样式。
-
-weight是什么？
-
-在 Hugo（以及 Stack 主题）菜单配置里，`weight` 是用来 **控制菜单项在侧边栏或导航栏中的排序顺序** 的数字属性。
-
-规则
-
-1. **数值越小 → 越靠前显示**
-
-**可以是正数或负数**
-
-- Hugo 允许负数权重，负数越小（如 -10）越靠前。
-
-------
 
 
-
-## 会出现什么情况？
-
-1. 在 **Hugo Stack** 主题中，如果你只是想做一个**单独的文章**，**推荐的做法是：直接在 `content/page/` 下新建一个 `search.md` 文件** 
-
-	⚡ **原因**：
-
-	content/page/xxx.md 表示一个“单页 (single page)”，它的 URL 自动是 /xxx/，非常适合搜索页、关于页、归档页这类独立页面。
-	Stack 主题的「Search」就是单页，不需要列表功能，所以 .md 就够了。
-
-
-
-2. ```
-   content/search/_index.md
-   适用于Section 列表页（文章合集），但搜索不是列表，不需要。
-   
-   ```
-
-2. 
-
-##  Hugo 如何生成页面 URL
-
-Hugo 的规则：
-
-| 文件位置                             | 前端 URL                    |
-| ------------------------------------ | --------------------------- |
-| `content/page/search.md`             | `/search/`                  |
-| `content/page/travelling.md`         | `/travelling/`              |
-| `content/travelling/_index.md`       | `/travelling/`              |
-| `content/travelling/some-article.md` | `/travelling/some-article/` |
-
-> 也就是说，**URL 的生成与菜单的 `url` 字段对应**，而不是 `identifier`。
-
-------
-
-##  Stack 菜单如何绑定页面
-
-在 Stack 主题里，菜单配置通常在 `config.toml` 或 `config.yaml`，示例：
+## Nginx遇到的问题
 
 ```
-- identifier: travelling
-  name: 旅行
-  url: /travelling/
-  weight: 40
-  params:
-    icon: map
+│ A new version (/tmp/tmp.QB1PQknVLa) of configuration file /etc/ssh/sshd_config is available, but the version installed currently has been locally modified.  │                                           
+│ What do you want to do about modified configuration file sshd_config?       
 ```
 
-### 工作原理
-
-1. `url: /travelling/` → Hugo 会根据这个 URL 去匹配实际页面：
-   - 先看 `content/page/travelling.md`
-   - 如果没有，再看 `content/travelling/_index.md`
-2. `identifier` 只用于 **Stack 内部逻辑和图标匹配**，不影响 URL。
-3. Hugo 会把对应 URL 的页面渲染到 `/travelling/index.html`，然后侧边栏点击就跳到这个页面。
-
-Hugo 的 **content 目录** = 站点内容源
-
-- **Section**：一个“内容分组”目录，例如 `post/`、`travelling/`。
-- **List Page（列表页）**：显示 Section 下文章列表的页面。
-- **Single Page（单页）**：显示一篇文章的页面。
-
-Hugo 通过文件名来判断一个内容是 **单页** 还是 **列表页**：
-
-| 文件名             | 含义                                |
-| ------------------ | ----------------------------------- |
-| `_index.md`        | 列表页（List Page）                 |
-| `index.md`         | 叶子页面（Leaf Bundle Single Page） |
-| 其他名字（abc.md） | 普通单篇文章（Single Page）         |
-
-## 1. content 根目录的例子
-
- `content/_index.md`
-
-- 作用：站点根目录的**首页列表页**。
-- URL：`/`
-- 内容：可以写首页描述或 Front Matter，例如标题、副标题。
-- Stack 主题的首页就是通过这里配合 `params.mainSections` 来渲染文章列表。
-
- `content/index.md`
-
-- 作用：站点根目录的**单页**。
-- URL：`/` 或主题自定义（大多数主题不这么用）。
-- 因为首页一般用 `_index.md`，所以很少使用 `index.md`。
-
- `content/abc.md`
-
-- 作用：根目录下的一篇单独文章。
-- URL：`/abc/`
-
-第二种切换成index.md并没有什么效果，即并不是像abc.md为一篇文章,依然有列出所有文章的功能
-
-## 2. content/page 目录
-
-假设目录结构：
-
-```
-content/
-└─ page/
-   ├─ _index.md
-   ├─ index.md
-   └─ abc.md
-```
-
-| 文件             | 作用                                                         | URL                          |
-| ---------------- | ------------------------------------------------------------ | ---------------------------- |
-| `page/_index.md` | **page Section 的列表页**。如果要在 `/page/` 下显示所有子页面的列表，用它。 | `/page/`                     |
-| `page/index.md`  | `page` 目录本身作为**叶子单页**（Leaf Bundle）。通常很少用。 | `/page/`（除非主题重写规则） |
-| `page/abc.md`    | 一个普通单页（例如 About、Links 等）。会在左处出现。         | `/abc/`                      |
+选择`Install the package maintainer's version`即可.
 
 
 
-当从index.md切换到_index.md，会报错
+## 附录
 
-⚡ Stack 主题的「Links / Archives / Search」这类单页通常直接用 `abc.md`，
- 因为它们是单独的页面，不需要列表功能。
+### 参考文献
 
-## 3.  新建一个文件夹 solution
+### 版权信息
 
-```
-content/
-└─ solution/
-   ├─ _index.md
-   ├─ index.md
-   └─ abc.md
-```
+本文原载于[blog.chenalna.site](https://blog.chenalna.site/)，遵循 CC BY-NC-SA 4.0 协议，复制请保留原文出处。
 
-| 文件                 | 作用                                              | URL              |
-| -------------------- | ------------------------------------------------- | ---------------- |
-| `solution/_index.md` | **Solution Section 的列表页**（显示子文章列表）。 | `/solution/`     |
-| `solution/index.md`  | Solution 目录自身作为**叶子单页**。               | `/solution/`     |
-| `solution/abc.md`    | Solution 下的一篇文章。                           | `/solution/abc/` |
-
-> **常见用途**
->
-> - 如果你想 `/solution/` 打开后看到**文章列表** → 用 `_index.md`。
-> - 如果你想 `/solution/` 打开后只显示**一篇独立页面** → 不要 `_index.md`，而是用 `index.md`（Leaf Bundle 模式）。
-
-## 4. post 目录的情况
-
-```
-content/
-└─ post/
-   ├─ _index.md
-   ├─ index.md
-   └─ abc.md
-```
-
-| 文件             | 作用                                              | URL          |
-| ---------------- | ------------------------------------------------- | ------------ |
-| `post/_index.md` | **文章列表页**（首页/归档会读取这里的 Section）。 | `/post/`     |
-| `post/index.md`  | `post` 整个目录作为一个**单页**（不常用）。       | `/post/`     |
-| `post/abc.md`    | 单篇博客文章。                                    | `/post/abc/` |
-
-> ⚡ **Stack 的首页**
->  `content/post/` 下的文章会自动汇总到 `/`（通过 `mainSections`），
->  但你也可以访问 `/post/`，它会用 `post/_index.md` 的配置作为标题/描述。
-
-第一种情况和第三种情况没有用,依然展示所有文章.
-
-不要将Solution放在content/page下而是content/下,否则,只是一篇文章
-
-##  让文件出现在侧栏
-
-```
-  menu:   
-     main:
-        - identifier: solution
-          name: "解答"
-          url: "/solution/"
-          weight: 3
-          params:
-            icon: bulb
-```
-
-
-
-## 不同语言设置不同的social和侧边栏
-
-将main:menu:放到language下
-
-如
-
-```
-
-  zh-cn:
-    languageName: 中文
-    title: chenalna
-    weight: 2
-    params:
-      sidebar:
-        subtitle: ....
-    menu:
-      main:
-        - identifier: solution
-          name: ...
-          url: "/solution/"
-          weight: 3
-          params:
-            icon: bulb
-      social:....
-```
-
-问题是，为什么page下的archives/about/links/search，是默认生成的，你在page下添加新的文件夹却不会自动添加到到侧边栏。笔者并不知道如何处理这个问题。

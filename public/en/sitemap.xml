@@ -2,141 +2,141 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://example.com/en/</loc>
+    <loc>https://blog.chenalna.site/en/</loc>
     <lastmod>2025-09-26T23:55:56+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/"
+                href="https://blog.chenalna.site/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/"
+                href="https://blog.chenalna.site/en/"
                 />
   </url><url>
-    <loc>https://example.com/en/solution/</loc>
+    <loc>https://blog.chenalna.site/en/solution/</loc>
     <lastmod>2025-09-26T23:55:56+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/solution/"
+                href="https://blog.chenalna.site/solution/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/solution/"
+                href="https://blog.chenalna.site/en/solution/"
                 />
   </url><url>
-    <loc>https://example.com/en/archives/</loc>
+    <loc>https://blog.chenalna.site/en/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/archives/"
+                href="https://blog.chenalna.site/archives/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/archives/"
+                href="https://blog.chenalna.site/en/archives/"
                 />
   </url><url>
-    <loc>https://example.com/en/page/</loc>
+    <loc>https://blog.chenalna.site/en/page/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/page/"
+                href="https://blog.chenalna.site/page/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/page/"
+                href="https://blog.chenalna.site/en/page/"
                 />
   </url><url>
-    <loc>https://example.com/en/about/</loc>
+    <loc>https://blog.chenalna.site/en/about/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/%E5%85%B3%E4%BA%8E/"
+                href="https://blog.chenalna.site/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/about/"
+                href="https://blog.chenalna.site/en/about/"
                 />
   </url><url>
-    <loc>https://example.com/en/categories/test/</loc>
+    <loc>https://blog.chenalna.site/en/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/categories/test/"
+                href="https://blog.chenalna.site/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/categories/test/"
+                href="https://blog.chenalna.site/en/categories/"
                 />
   </url><url>
-    <loc>https://example.com/en/categories/</loc>
+    <loc>https://blog.chenalna.site/en/links/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/categories/"
+                href="https://blog.chenalna.site/links/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/categories/"
+                href="https://blog.chenalna.site/en/links/"
                 />
   </url><url>
-    <loc>https://example.com/en/links/</loc>
+    <loc>https://blog.chenalna.site/en/search/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/%E9%93%BE%E6%8E%A5/"
+                href="https://blog.chenalna.site/search/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/links/"
+                href="https://blog.chenalna.site/en/search/"
                 />
   </url><url>
-    <loc>https://example.com/en/search/</loc>
+    <loc>https://blog.chenalna.site/en/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/search/"
+                href="https://blog.chenalna.site/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/search/"
+                href="https://blog.chenalna.site/en/tags/"
                 />
   </url><url>
-    <loc>https://example.com/en/tags/</loc>
+    <loc>https://blog.chenalna.site/en/categories/test/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/tags/"
+                href="https://blog.chenalna.site/categories/test/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/tags/"
+                href="https://blog.chenalna.site/en/categories/test/"
                 />
   </url><url>
-    <loc>https://example.com/en/categories/testcat/</loc>
+    <loc>https://blog.chenalna.site/en/categories/testcat/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/categories/testcat/"
+                href="https://blog.chenalna.site/categories/testcat/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/en/categories/testcat/"
+                href="https://blog.chenalna.site/en/categories/testcat/"
                 />
   </url>
 </urlset>

@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Categories on chenalna</title>
-        <link>https://example.com/categories/</link>
-        <description>Recent content in Categories on chenalna</description>
+        <title>Categories on chenalna的博客</title>
+        <link>https://blog.chenalna.site/categories/</link>
+        <description>Recent content in Categories on chenalna的博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>chenalna</copyright>
-        <lastBuildDate>Tue, 23 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 23 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.chenalna.site/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo</title>
-        <link>https://example.com/categories/hugo/</link>
+        <link>https://blog.chenalna.site/categories/hugo/</link>
         <pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/categories/hugo/</guid>
+        <guid>https://blog.chenalna.site/categories/hugo/</guid>
         <description></description>
         </item>
         <item>
         <title>Web</title>
-        <link>https://example.com/categories/web/</link>
+        <link>https://blog.chenalna.site/categories/web/</link>
         <pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/categories/web/</guid>
+        <guid>https://blog.chenalna.site/categories/web/</guid>
         <description></description>
         </item>
         <item>
         <title>HLE</title>
-        <link>https://example.com/categories/hle/</link>
+        <link>https://blog.chenalna.site/categories/hle/</link>
         <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/categories/hle/</guid>
+        <guid>https://blog.chenalna.site/categories/hle/</guid>
         <description></description>
         </item>
         <item>
         <title>Test</title>
-        <link>https://example.com/categories/test/</link>
+        <link>https://blog.chenalna.site/categories/test/</link>
         <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/categories/test/</guid>
-        <description>&lt;img src="https://example.com/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        <guid>https://blog.chenalna.site/categories/test/</guid>
+        <description>&lt;img src="https://blog.chenalna.site/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
         </item>
         <item>
         <title>测试</title>
-        <link>https://example.com/categories/%E6%B5%8B%E8%AF%95/</link>
+        <link>https://blog.chenalna.site/categories/%E6%B5%8B%E8%AF%95/</link>
         <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/categories/%E6%B5%8B%E8%AF%95/</guid>
+        <guid>https://blog.chenalna.site/categories/%E6%B5%8B%E8%AF%95/</guid>
         <description></description>
         </item>
         <item>
         <title>Testcat</title>
-        <link>https://example.com/categories/testcat/</link>
+        <link>https://blog.chenalna.site/categories/testcat/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/categories/testcat/</guid>
+        <guid>https://blog.chenalna.site/categories/testcat/</guid>
         <description></description>
         </item>
         

@@ -4,14 +4,14 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="从零开始的博客生活">
 <title>Hugo &#43; Stack 简单搭建一个静态博客</title>
 
-<link rel='canonical' href='https://example.com/p/hugo-stack_blog_tutorial/'>
+<link rel='canonical' href='https://blog.chenalna.site/p/hugo-stack_blog_tutorial/'>
 
 <link rel="stylesheet" href="/scss/style.min.cac69214c8302269ee3e6ca35020a4db9b8e79aabea56cb301ccc471f00b9f16.css">
 
 <link rel="stylesheet" href="/scss/custom.min.2d342f467fd823e80779fec51a79449af341574c91722ab8c192d65cd70133a2.css" integrity="sha256-LTQvRn/YI&#43;gHef7FGnlEmvNBV0yRciq4wZLWXNcBM6I="><meta property='og:title' content="Hugo + Stack 简单搭建一个静态博客">
 <meta property='og:description' content="从零开始的博客生活">
-<meta property='og:url' content='https://example.com/p/hugo-stack_blog_tutorial/'>
-<meta property='og:site_name' content='chenalna'>
+<meta property='og:url' content='https://blog.chenalna.site/p/hugo-stack_blog_tutorial/'>
+<meta property='og:site_name' content='chenalna的博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:published_time' content='2025-09-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-09-23T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Hugo + Stack 简单搭建一个静态博客">
 <meta name="twitter:description" content="从零开始的博客生活">
@@ -55,13 +55,13 @@
             
             <figure class="site-avatar">
                 
-                <a href="https://github.com/S1-19027">
+                <a href="https://chenalna.site">
                 
                     
                     
                     
                         
-                        <img src="/img/avatar_hu_9192c1e85cf4320b.png" width="300"
+                        <img src="/img/avatar_hu_f5cb22d87702aae9.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -74,7 +74,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">chenalna</a></h1>
+            <h1 class="site-name"><a href="/">chenalna的博客</a></h1>
             <h2 class="site-description">往者不諫，來者可追</h2>
         </div>
     </header><ol class="menu-social">
@@ -194,7 +194,7 @@
         
         
         <li >
-            <a href='/%E5%85%B3%E4%BA%8E/' >
+            <a href='/about/' >
                 
                 
                 
@@ -252,7 +252,7 @@
         
         
         <li >
-            <a href='/%E9%93%BE%E6%8E%A5/' >
+            <a href='/links/' >
                 
                 
                 
@@ -298,9 +298,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="https://example.com/en/" >English</option>
+                                    <option value="https://blog.chenalna.site/en/" >English</option>
                                 
-                                    <option value="https://example.com/" selected>中文</option>
+                                    <option value="https://blog.chenalna.site/" selected>中文</option>
                                 
                             </select>
                         </li>
@@ -385,7 +385,12 @@
     <li><a href="#使用netlify">使用Netlify</a></li>
     <li><a href="#typora-picgo-图床配置">Typora +PicGo 图床配置</a></li>
     <li><a href="#使用云服务器">使用云服务器</a></li>
-    <li><a href="#参考">参考</a></li>
+    <li><a href="#附录">附录</a>
+      <ol>
+        <li><a href="#参考文献">参考文献</a></li>
+        <li><a href="#版权信息">版权信息</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -800,22 +805,18 @@ index-zh-cn.md可以通过index-zh-cn来改变在中文界面显示。index-en�
   </tbody>
 </table></div>
 <p><strong>方法二：通过Front Matter指定</strong></p>
-<p>yaml</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 在文章前面的Front Matter中强制指定语言
-</span></span><span class="line"><span class="cl">lang: zh-cn  # 这篇文章只在中文本显示
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># 在文章前面的Front Matter中强制指定语言</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="l">zh-cn </span><span class="w"> </span><span class="c"># 这篇文章只在中文本显示</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>​</p>
-<p>文章开头可以有cataglories分类和用来打tags标签</p>
+</div><p>文章开头可以有categories分类和用来打tags标签</p>
 <p><strong>注意</strong>：如果创建多级文件夹时文章文件名不是 <code>index.md</code> 或者类别、标签文件名不是 <code>_index.md</code> 的话，设置封面图片会出现问题。</p>
-<ol start="9">
-<li>
 <p>如何快速创建一个文章？<code>hugo new potst/test/index.md</code>,就生成了<code>test/index.md</code>,将draft:true改成draft:false（此时是在content/post下）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -845,9 +846,7 @@ index-zh-cn.md可以通过index-zh-cn来改变在中文界面显示。index-en�
 </span></span><span class="line"><span class="cl">    <span class="k">-</span> lf
 </span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-</ol>
-<h3 id="常用命令">常用命令
+</div><h3 id="常用命令">常用命令
 </h3><div class="table-wrapper"><table>
   <thead>
       <tr>
@@ -998,34 +997,26 @@ index-zh-cn.md可以通过index-zh-cn来改变在中文界面显示。index-en�
 <p>阿里云图床,开通OSS教程：<a class="link" href="https://developer.aliyun.com/article/1465963"  target="_blank" rel="noopener"
     >参考文献1</a>、<a class="link" href="https://blog.csdn.net/qq_51210361/article/details/145210585"  target="_blank" rel="noopener"
     >参考文献2</a></p>
-<p>注：阿里云的99元/年云服务器似乎不太行，还是老实买点2核4Gib的</p>
+<p>注：阿里云的99元/年云服务器似乎不太行，还是老实买点2核4Gib的70元/月</p>
 <p>华为云相比较太贵了，更多的我也懒得去找了。</p>
 <h2 id="使用云服务器">使用云服务器
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                        
-</span></span><span class="line"><span class="cl">│ A new version (/tmp/tmp.QB1PQknVLa) of configuration file /etc/ssh/sshd_config is available, but the version installed currently has been locally modified.  │                                           
-</span></span><span class="line"><span class="cl">│ What do you want to do about modified configuration file sshd_config?       
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>选择<code>Install the package maintainer's version</code>即可</p>
-<p>利用Nginx即可</p>
-<h2 id="参考">参考
-</h2><ol>
+</h2><p>利用Nginx即可</p>
+<h2 id="附录">附录
+</h2><h3 id="参考文献">参考文献
+</h3><ol>
 <li><a class="link" href="https://www.bilibili.com/video/BV1fNNreEEDi"  target="_blank" rel="noopener"
     >hexo与hugo博客搭建与github自动化推送和服务器推送</a></li>
 <li><a class="link" href="https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/"  target="_blank" rel="noopener"
     >Stack官方文档 </a></li>
+<li><a class="link" href="https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/"  target="_blank" rel="noopener"
+    >建站技术 | 使用 Hugo + Stack 简单搭建一个博客</a></li>
+<li><a class="link" href="https://limuran.top/p/hugo-stack%e5%bc%80%e5%90%af%e5%a4%9a%e8%af%ad%e8%a8%80%e6%a8%a1%e5%bc%8f/"  target="_blank" rel="noopener"
+    >Hugo Stack开启多语言模式</a></li>
 </ol>
-<script>
-console.log('Waline 配置检查:');
-console.log('ServerURL:', 'https://commentsystem.chenalna.site');
-</script>
+<h3 id="版权信息">版权信息
+</h3><p>本文原载于<a class="link" href="https://blog.chenalna.site/"  target="_blank" rel="noopener"
+    >blog.chenalna.site</a>，遵循 CC BY-NC-SA 4.0 协议，复制请保留原文出处。</p>
+
 </section>
 
 

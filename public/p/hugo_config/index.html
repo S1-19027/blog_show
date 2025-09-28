@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Hugo中的列表页、叶子页面和文章 在 Hugo Stack 主题中，如果你只是想做一个单独的文章，推荐的做法是：直接在 content/page/ 下新建一个 search.md 文件\n⚡ 原因：\ncontent/page/xxx.md 表示一个“单页 (single page)”，它的 URL 自动是 /xxx/，非常适合搜索页、关于页、归档页这类独立页面。 Stack 主题的「Search」就是单页，不需要列表功能，所以 .md 就够了。\ncontent/search/_index.md 适用于Section 列表页（文章合集），但搜索不是列表，不需要。\nHugo 如何生成页面 URL Hugo 的规则：\n文件位置 前端 URL content/page/search.md /search/ content/page/travelling.md /travelling/ content/travelling/_index.md /travelling/ content/travelling/some-article.md /travelling/some-article/ 也就是说，URL 的生成与菜单的 url 字段对应，而不是 identifier。\nStack 菜单如何绑定页面 在 Stack 主题里，菜单配置通常在 config.toml 或 config.yaml，示例：\n1 2 3 4 5 6 - identifier: travelling name: 旅行 url: /travelling/ weight: 40 params: icon: map 工作原理 url: /travelling/ → Hugo 会根据这个 URL 去匹配实际页面： 先看 content/page/travelling.md 如果没有，再看 content/travelling/_index.md identifier 只用于 Stack 内部逻辑和图标匹配，不影响 URL。 Hugo 会把对应 URL 的页面渲染到 /travelling/index.html，然后侧边栏点击就跳到这个页面。 Hugo 的 content 目录 = 站点内容源\n">
+<title>Hugo_config</title>
+
+<link rel='canonical' href='https://blog.chenalna.site/p/hugo_config/'>
+
+<link rel="stylesheet" href="/scss/style.min.cac69214c8302269ee3e6ca35020a4db9b8e79aabea56cb301ccc471f00b9f16.css">
+
+<link rel="stylesheet" href="/scss/custom.min.2d342f467fd823e80779fec51a79449af341574c91722ab8c192d65cd70133a2.css" integrity="sha256-LTQvRn/YI&#43;gHef7FGnlEmvNBV0yRciq4wZLWXNcBM6I="><meta property='og:title' content="Hugo_config">
+<meta property='og:description' content="Hugo中的列表页、叶子页面和文章 在 Hugo Stack 主题中，如果你只是想做一个单独的文章，推荐的做法是：直接在 content/page/ 下新建一个 search.md 文件\n⚡ 原因：\ncontent/page/xxx.md 表示一个“单页 (single page)”，它的 URL 自动是 /xxx/，非常适合搜索页、关于页、归档页这类独立页面。 Stack 主题的「Search」就是单页，不需要列表功能，所以 .md 就够了。\ncontent/search/_index.md 适用于Section 列表页（文章合集），但搜索不是列表，不需要。\nHugo 如何生成页面 URL Hugo 的规则：\n文件位置 前端 URL content/page/search.md /search/ content/page/travelling.md /travelling/ content/travelling/_index.md /travelling/ content/travelling/some-article.md /travelling/some-article/ 也就是说，URL 的生成与菜单的 url 字段对应，而不是 identifier。\nStack 菜单如何绑定页面 在 Stack 主题里，菜单配置通常在 config.toml 或 config.yaml，示例：\n1 2 3 4 5 6 - identifier: travelling name: 旅行 url: /travelling/ weight: 40 params: icon: map 工作原理 url: /travelling/ → Hugo 会根据这个 URL 去匹配实际页面： 先看 content/page/travelling.md 如果没有，再看 content/travelling/_index.md identifier 只用于 Stack 内部逻辑和图标匹配，不影响 URL。 Hugo 会把对应 URL 的页面渲染到 /travelling/index.html，然后侧边栏点击就跳到这个页面。 Hugo 的 content 目录 = 站点内容源\n">
+<meta property='og:url' content='https://blog.chenalna.site/p/hugo_config/'>
+<meta property='og:site_name' content='chenalna的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='' /><meta property='article:published_time' content='2025-09-28T12:10:49&#43;08:00'/><meta property='article:modified_time' content='2025-09-28T12:10:49&#43;08:00'/><meta property='og:image' content='https://blog.chenalna.site/cover.png' />
+<meta name="twitter:title" content="Hugo_config">
+<meta name="twitter:description" content="Hugo中的列表页、叶子页面和文章 在 Hugo Stack 主题中，如果你只是想做一个单独的文章，推荐的做法是：直接在 content/page/ 下新建一个 search.md 文件\n⚡ 原因：\ncontent/page/xxx.md 表示一个“单页 (single page)”，它的 URL 自动是 /xxx/，非常适合搜索页、关于页、归档页这类独立页面。 Stack 主题的「Search」就是单页，不需要列表功能，所以 .md 就够了。\ncontent/search/_index.md 适用于Section 列表页（文章合集），但搜索不是列表，不需要。\nHugo 如何生成页面 URL Hugo 的规则：\n文件位置 前端 URL content/page/search.md /search/ content/page/travelling.md /travelling/ content/travelling/_index.md /travelling/ content/travelling/some-article.md /travelling/some-article/ 也就是说，URL 的生成与菜单的 url 字段对应，而不是 identifier。\nStack 菜单如何绑定页面 在 Stack 主题里，菜单配置通常在 config.toml 或 config.yaml，示例：\n1 2 3 4 5 6 - identifier: travelling name: 旅行 url: /travelling/ weight: 40 params: icon: map 工作原理 url: /travelling/ → Hugo 会根据这个 URL 去匹配实际页面： 先看 content/page/travelling.md 如果没有，再看 content/travelling/_index.md identifier 只用于 Stack 内部逻辑和图标匹配，不影响 URL。 Hugo 会把对应 URL 的页面渲染到 /travelling/index.html，然后侧边栏点击就跳到这个页面。 Hugo 的 content 目录 = 站点内容源\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog.chenalna.site/cover.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                
+                <a href="https://chenalna.site">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f5cb22d87702aae9.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🪐</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">chenalna的博客</a></h1>
+            <h2 class="site-description">往者不諫，來者可追</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/S1-19027'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://x.com/chen129909186'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/14816686'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='mailto:chenalna52@gmail.com'
+                        target="_blank"
+                        title="Email"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://blog.chenalna.site/index.xml'
+                        target="_blank"
+                        title="RSS"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/solution/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-bulb"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" /><path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" /><path d="M9.7 17l4.6 0" /></svg>
+                
+                <span>解答</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://blog.chenalna.site/en/" >English</option>
+                                
+                                    <option value="https://blog.chenalna.site/" selected>中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#hugo中的列表页叶子页面和文章">Hugo中的列表页、叶子页面和文章</a>
+      <ol>
+        <li><a href="#hugo-如何生成页面-url">Hugo 如何生成页面 URL</a></li>
+        <li><a href="#stack-菜单如何绑定页面">Stack 菜单如何绑定页面</a></li>
+        <li><a href="#工作原理">工作原理</a>
+          <ol>
+            <li><a href="#content-根目录的例子">content 根目录的例子</a></li>
+            <li><a href="#contentpage-目录">content/page 目录</a></li>
+            <li><a href="#新建一个文件夹-solution">新建一个文件夹 solution</a></li>
+            <li><a href="#post-目录的情况">post 目录的情况</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#一些小巧思">一些小巧思</a>
+      <ol>
+        <li><a href="#让文件出现在侧栏">让文件出现在侧栏</a></li>
+        <li><a href="#不同语言设置不同的social和侧边栏">不同语言设置不同的social和侧边栏</a></li>
+      </ol>
+    </li>
+    <li><a href="#附录">附录</a>
+      <ol>
+        <li><a href="#参考文献">参考文献</a></li>
+        <li><a href="#版权信息">版权信息</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/hugo_config/">
+                
+                    <img src="/cover.png" loading="lazy" alt="Featured image of post Hugo_config" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/hugo_config/">Hugo_config</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 28, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="hugo中的列表页叶子页面和文章">Hugo中的列表页、叶子页面和文章
+</h2><ol>
+<li>
+<p>在 <strong>Hugo Stack</strong> 主题中，如果你只是想做一个<strong>单独的文章</strong>，<strong>推荐的做法是：直接在 <code>content/page/</code> 下新建一个 <code>search.md</code> 文件</strong></p>
+<p>⚡ <strong>原因</strong>：</p>
+<p>content/page/xxx.md 表示一个“单页 (single page)”，它的 URL 自动是 /xxx/，非常适合搜索页、关于页、归档页这类独立页面。
+Stack 主题的「Search」就是单页，不需要列表功能，所以 .md 就够了。</p>
+</li>
+<li>
+<p>content/search/_index.md
+适用于Section 列表页（文章合集），但搜索不是列表，不需要。</p>
+</li>
+</ol>
+<h3 id="hugo-如何生成页面-url">Hugo 如何生成页面 URL
+</h3><p>Hugo 的规则：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>文件位置</th>
+          <th>前端 URL</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>content/page/search.md</code></td>
+          <td><code>/search/</code></td>
+      </tr>
+      <tr>
+          <td><code>content/page/travelling.md</code></td>
+          <td><code>/travelling/</code></td>
+      </tr>
+      <tr>
+          <td><code>content/travelling/_index.md</code></td>
+          <td><code>/travelling/</code></td>
+      </tr>
+      <tr>
+          <td><code>content/travelling/some-article.md</code></td>
+          <td><code>/travelling/some-article/</code></td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>也就是说，<strong>URL 的生成与菜单的 <code>url</code> 字段对应</strong>，而不是 <code>identifier</code>。</p></blockquote>
+<hr>
+<h3 id="stack-菜单如何绑定页面">Stack 菜单如何绑定页面
+</h3><p>在 Stack 主题里，菜单配置通常在 <code>config.toml</code> 或 <code>config.yaml</code>，示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- identifier: travelling
+</span></span><span class="line"><span class="cl">  name: 旅行
+</span></span><span class="line"><span class="cl">  url: /travelling/
+</span></span><span class="line"><span class="cl">  weight: 40
+</span></span><span class="line"><span class="cl">  params:
+</span></span><span class="line"><span class="cl">    icon: map
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="工作原理">工作原理
+</h3><ol>
+<li><code>url: /travelling/</code> → Hugo 会根据这个 URL 去匹配实际页面：
+<ul>
+<li>先看 <code>content/page/travelling.md</code></li>
+<li>如果没有，再看 <code>content/travelling/_index.md</code></li>
+</ul>
+</li>
+<li><code>identifier</code> 只用于 <strong>Stack 内部逻辑和图标匹配</strong>，不影响 URL。</li>
+<li>Hugo 会把对应 URL 的页面渲染到 <code>/travelling/index.html</code>，然后侧边栏点击就跳到这个页面。</li>
+</ol>
+<p>Hugo 的 <strong>content 目录</strong> = 站点内容源</p>
+<ul>
+<li><strong>Section</strong>：一个“内容分组”目录，例如 <code>post/</code>、<code>travelling/</code>。</li>
+<li><strong>List Page（列表页）</strong>：显示 Section 下文章列表的页面。</li>
+<li><strong>Single Page（单页）</strong>：显示一篇文章的页面。</li>
+</ul>
+<p>Hugo 通过文件名来判断一个内容是 <strong>单页</strong> 还是 <strong>列表页</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>文件名</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>_index.md</code></td>
+          <td>列表页（List Page）</td>
+      </tr>
+      <tr>
+          <td><code>index.md</code></td>
+          <td>叶子页面（Leaf Bundle Single Page）</td>
+      </tr>
+      <tr>
+          <td>其他名字（abc.md）</td>
+          <td>普通单篇文章（Single Page）</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="content-根目录的例子">content 根目录的例子
+</h4><p><code>content/_index.md</code></p>
+<ul>
+<li>作用：站点根目录的<strong>首页列表页</strong>。</li>
+<li>URL：<code>/</code></li>
+<li>内容：可以写首页描述或 Front Matter，例如标题、副标题。</li>
+<li>Stack 主题的首页就是通过这里配合 <code>params.mainSections</code> 来渲染文章列表。</li>
+</ul>
+<p><code>content/index.md</code></p>
+<ul>
+<li>作用：站点根目录的<strong>单页</strong>。</li>
+<li>URL：<code>/</code> 或主题自定义（大多数主题不这么用）。</li>
+<li>因为首页一般用 <code>_index.md</code>，所以很少使用 <code>index.md</code>。</li>
+</ul>
+<p><code>content/abc.md</code></p>
+<ul>
+<li>作用：根目录下的一篇单独文章。</li>
+<li>URL：<code>/abc/</code></li>
+</ul>
+<p>第二种切换成index.md并没有什么效果，即并不是像abc.md为一篇文章,依然有列出所有文章的功能</p>
+<h4 id="contentpage-目录">content/page 目录
+</h4><p>假设目录结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">content/
+</span></span><span class="line"><span class="cl">└─ page/
+</span></span><span class="line"><span class="cl">   ├─ _index.md
+</span></span><span class="line"><span class="cl">   ├─ index.md
+</span></span><span class="line"><span class="cl">   └─ abc.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>文件</th>
+          <th>作用</th>
+          <th>URL</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>page/_index.md</code></td>
+          <td><strong>page Section 的列表页</strong>。如果要在 <code>/page/</code> 下显示所有子页面的列表，用它。</td>
+          <td><code>/page/</code></td>
+      </tr>
+      <tr>
+          <td><code>page/index.md</code></td>
+          <td><code>page</code> 目录本身作为<strong>叶子单页</strong>（Leaf Bundle）。通常很少用。</td>
+          <td><code>/page/</code>（除非主题重写规则）</td>
+      </tr>
+      <tr>
+          <td><code>page/abc.md</code></td>
+          <td>一个普通单页（例如 About、Links 等）。会在左处出现。</td>
+          <td><code>/abc/</code></td>
+      </tr>
+  </tbody>
+</table></div>
+<p>当从index.md切换到_index.md，会报错</p>
+<p>⚡ Stack 主题的「Links / Archives / Search」这类单页通常直接用 <code>abc.md</code>，
+因为它们是单独的页面，不需要列表功能。</p>
+<h4 id="新建一个文件夹-solution">新建一个文件夹 solution
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">content/
+</span></span><span class="line"><span class="cl">└─ solution/
+</span></span><span class="line"><span class="cl">   ├─ _index.md
+</span></span><span class="line"><span class="cl">   ├─ index.md
+</span></span><span class="line"><span class="cl">   └─ abc.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>文件</th>
+          <th>作用</th>
+          <th>URL</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>solution/_index.md</code></td>
+          <td><strong>Solution Section 的列表页</strong>（显示子文章列表）。</td>
+          <td><code>/solution/</code></td>
+      </tr>
+      <tr>
+          <td><code>solution/index.md</code></td>
+          <td>Solution 目录自身作为<strong>叶子单页</strong>。</td>
+          <td><code>/solution/</code></td>
+      </tr>
+      <tr>
+          <td><code>solution/abc.md</code></td>
+          <td>Solution 下的一篇文章。</td>
+          <td><code>/solution/abc/</code></td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p><strong>常见用途</strong></p>
+<ul>
+<li>如果你想 <code>/solution/</code> 打开后看到<strong>文章列表</strong> → 用 <code>_index.md</code>。</li>
+<li>如果你想 <code>/solution/</code> 打开后只显示<strong>一篇独立页面</strong> → 不要 <code>_index.md</code>，而是用 <code>index.md</code>（Leaf Bundle 模式）。</li>
+</ul></blockquote>
+<h4 id="post-目录的情况">post 目录的情况
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">content/
+</span></span><span class="line"><span class="cl">└─ post/
+</span></span><span class="line"><span class="cl">   ├─ _index.md
+</span></span><span class="line"><span class="cl">   ├─ index.md
+</span></span><span class="line"><span class="cl">   └─ abc.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>文件</th>
+          <th>作用</th>
+          <th>URL</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>post/_index.md</code></td>
+          <td><strong>文章列表页</strong>（首页/归档会读取这里的 Section）。</td>
+          <td><code>/post/</code></td>
+      </tr>
+      <tr>
+          <td><code>post/index.md</code></td>
+          <td><code>post</code> 整个目录作为一个<strong>单页</strong>（不常用）。</td>
+          <td><code>/post/</code></td>
+      </tr>
+      <tr>
+          <td><code>post/abc.md</code></td>
+          <td>单篇博客文章。</td>
+          <td><code>/post/abc/</code></td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>⚡ <strong>Stack 的首页</strong>
+<code>content/post/</code> 下的文章会自动汇总到 <code>/</code>（通过 <code>mainSections</code>），
+但你也可以访问 <code>/post/</code>，它会用 <code>post/_index.md</code> 的配置作为标题/描述。</p></blockquote>
+<p>第一种情况和第三种情况没有用,依然展示所有文章.</p>
+<p>不要将Solution放在content/page下而是content/下,否则,只是一篇文章.</p>
+<h2 id="一些小巧思">一些小巧思
+</h2><h3 id="让文件出现在侧栏">让文件出现在侧栏
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  menu:   
+</span></span><span class="line"><span class="cl">     main:
+</span></span><span class="line"><span class="cl">        - identifier: solution
+</span></span><span class="line"><span class="cl">          name: &#34;解答&#34;
+</span></span><span class="line"><span class="cl">          url: &#34;/solution/&#34;
+</span></span><span class="line"><span class="cl">          weight: 3
+</span></span><span class="line"><span class="cl">          params:
+</span></span><span class="line"><span class="cl">            icon: bulb
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="不同语言设置不同的social和侧边栏">不同语言设置不同的social和侧边栏
+</h3><p>将main:menu:放到language下</p>
+<p>如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  zh-cn:
+</span></span><span class="line"><span class="cl">    languageName: 中文
+</span></span><span class="line"><span class="cl">    title: chenalna
+</span></span><span class="line"><span class="cl">    weight: 2
+</span></span><span class="line"><span class="cl">    params:
+</span></span><span class="line"><span class="cl">      sidebar:
+</span></span><span class="line"><span class="cl">        subtitle: ....
+</span></span><span class="line"><span class="cl">    menu:
+</span></span><span class="line"><span class="cl">      main:
+</span></span><span class="line"><span class="cl">        - identifier: solution
+</span></span><span class="line"><span class="cl">          name: ...
+</span></span><span class="line"><span class="cl">          url: &#34;/solution/&#34;
+</span></span><span class="line"><span class="cl">          weight: 3
+</span></span><span class="line"><span class="cl">          params:
+</span></span><span class="line"><span class="cl">            icon: bulb
+</span></span><span class="line"><span class="cl">      social:....
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>问题是，为什么page下的archives/about/links/search，是默认生成的，你在page下添加新的文件夹却不会自动添加到到侧边栏。笔者并不知道为什么。</p>
+<p>如果是自己新加的，需要在在对应语言下增加-identifier</p>
+<p><strong>使用Hugo创建类别、标签</strong>一节，新增的分类并不会在主页post列表出现，而是在归档下的Catgories出现。而分类更是，在归档下也没有出现。</p>
+<p><strong>总而言之，问题有四：</strong></p>
+<ol>
+<li>关于单篇文章内的分页问题。（这是不是意味着倡导博客写短一点）</li>
+<li>关于社交信息的多语言问题，只能重新复制一遍到语言模块下。</li>
+<li>为什么在Page下的archives/about/links/search默认添加到默认语言，而自己新建的必须在对应语言下增加-identifier。</li>
+<li>关于多语言切换到部署到Github却没有生成对应的英文网址的问题。</li>
+</ol>
+<h2 id="附录">附录
+</h2><h3 id="参考文献">参考文献
+</h3><h3 id="版权信息">版权信息
+</h3><p>本文原载于<a class="link" href="https://blog.chenalna.site/"  target="_blank" rel="noopener"
+    >blog.chenalna.site</a>，遵循 CC BY-NC-SA 4.0 协议，复制请保留原文出处。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/docsy/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/cover.png" loading="lazy" data-key="Docsy" data-hash="/cover.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docsy</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/solution/solution/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/cover.png" loading="lazy" data-key="solution" data-hash="/cover.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Sotion</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://npm.elemecdn.com/@waline/emojis@1.1.0/bilibili"],"lang":"zh-CN","locale":{"admin":"Admin","placeholder":"请留言"},"requiredMeta":["nick"],"serverURL":"https://commentsystem.chenalna.site","visitor":false});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 chenalna
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.31.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

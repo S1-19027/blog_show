@@ -263,36 +263,31 @@ draft: true # 是否为草稿，建议改为 false 或者删掉这个属性以�
 
 **方法二：通过Front Matter指定**
 
-yaml
-
-```
+```yaml
 # 在文章前面的Front Matter中强制指定语言
 lang: zh-cn  # 这篇文章只在中文本显示
 ```
 
-​	
-
-文章开头可以有cataglories分类和用来打tags标签
-
+文章开头可以有categories分类和用来打tags标签
 
 **注意**：如果创建多级文件夹时文章文件名不是 `index.md` 或者类别、标签文件名不是 `_index.md` 的话，设置封面图片会出现问题。
 
-9. 如何快速创建一个文章？`hugo new potst/test/index.md`,就生成了`test/index.md`,将draft:true改成draft:false（此时是在content/post下）
+如何快速创建一个文章？`hugo new potst/test/index.md`,就生成了`test/index.md`,将draft:true改成draft:false（此时是在content/post下）
 
-   ```markdown
-   title: Chinese Test
-   description: 这是一个副标题
-   date: 2020-09-09
-   slug: test-chinese
-   image: helena-hertz-wWZzXlDpMog-unsplash.jpg
-   categories:
-       - Test
-       - 测试
-       - HLE
-   tags:
-       - lf
-   ```
-   
+```markdown
+title: Chinese Test
+description: 这是一个副标题
+date: 2020-09-09
+slug: test-chinese
+image: helena-hertz-wWZzXlDpMog-unsplash.jpg
+categories:
+    - Test
+    - 测试
+    - HLE
+tags:
+    - lf
+```
+
 ### 常用命令
 
 | 命令                 | 说明           |
@@ -401,33 +396,25 @@ Add new project → import an existing project→选择blog_show
 
 阿里云图床,开通OSS教程：[参考文献1](https://developer.aliyun.com/article/1465963)、[参考文献2](https://blog.csdn.net/qq_51210361/article/details/145210585)
 
-注：阿里云的99元/年云服务器似乎不太行，还是老实买点2核4Gib的
+注：阿里云的99元/年云服务器似乎不太行，还是老实买点2核4Gib的70元/月
 
 华为云相比较太贵了，更多的我也懒得去找了。
 
 ## 使用云服务器
 
-```
-                        
-│ A new version (/tmp/tmp.QB1PQknVLa) of configuration file /etc/ssh/sshd_config is available, but the version installed currently has been locally modified.  │                                           
-│ What do you want to do about modified configuration file sshd_config?       
-```
-选择`Install the package maintainer's version`即可
-
 利用Nginx即可
 
+## 附录
 
+### 参考文献
 
-
-## 参考
 1. [hexo与hugo博客搭建与github自动化推送和服务器推送](https://www.bilibili.com/video/BV1fNNreEEDi)
 2. [Stack官方文档 ](https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/)   
+3. [建站技术 | 使用 Hugo + Stack 简单搭建一个博客](https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/)
+4. [Hugo Stack开启多语言模式](https://limuran.top/p/hugo-stack开启多语言模式/)
 
 [1]: https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/
 
+### 版权信息
 
-
-<script>
-console.log('Waline 配置检查:');
-console.log('ServerURL:', 'https://commentsystem.chenalna.site');
-</script>
+本文原载于[blog.chenalna.site](https://blog.chenalna.site/)，遵循 CC BY-NC-SA 4.0 协议，复制请保留原文出处。
